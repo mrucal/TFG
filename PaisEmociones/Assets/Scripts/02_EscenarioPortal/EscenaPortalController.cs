@@ -9,11 +9,12 @@ public class EscenaPortalController : MonoBehaviour {
 
     public GameObject sol;
 
+    private const float t_sig_escena = 2f;
+
     private const float td = 0f;
-    private const float t_sig_escena = 5f;
     private const float t_entrar_portal = 7f;
 
-    private bool portal_activo = false;
+    private bool enabled_portal = false;
 
     // Use this for initialization
     void Start () {
@@ -25,15 +26,15 @@ public class EscenaPortalController : MonoBehaviour {
 		
 	}
 
-    void activarPortal()
+    void enablePortal()
     {
         //print("ACTIVADO!!");
-        portal_activo = true;
+        enabled_portal = true;
     }
 
     void PortalRun()
     {
-        if (portal_activo)
+        if (enabled_portal)
         {
             personaje.GetComponent<Animator>().Play("PersonajeEntrarPortal");
             StartCoroutine(SiguienteEscena("03_EscenaLlegada", t_entrar_portal + t_sig_escena));

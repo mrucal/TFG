@@ -9,9 +9,10 @@ public class EscenaLlegadaController : MonoBehaviour {
 
     public GameObject sol;
 
+    private const float t_sig_escena = 2f;
+
     private const float t_animacion_inicial = 7.3f;
     private const float td = 0f;
-    private const float t_sig_escena = 5f;
 
     // Use this for initialization
     void Start () {

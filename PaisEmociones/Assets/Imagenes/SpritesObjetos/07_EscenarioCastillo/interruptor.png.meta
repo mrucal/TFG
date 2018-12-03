@@ -5,6 +5,8 @@ TextureImporter:
     21300000: interruptor_1
     21300002: interruptor_3
     21300004: interruptor_5
+    21300006: interruptor_0
+    21300008: interruptor_2
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -103,7 +105,7 @@ TextureImporter:
         serializedVersion: 2
         x: 39
         y: 0
-        width: 114
+        width: 116
         height: 281
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -153,6 +155,46 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 593e04f3b92b60242b19e98b0cab9651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: interruptor_0
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 0
+        width: 120
+        height: 281
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2d518da646bf0146842af3321d23c3b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: interruptor_2
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 0
+        width: 122
+        height: 281
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df28ba22a17a14b479548189cb05e763
       vertices: []
       indices: 
       edges: []

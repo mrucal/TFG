@@ -14,7 +14,7 @@ public class EscenaDragonController : MonoBehaviour
     public GameObject conejo;
     public GameObject emoticono;
 
-    private const float t_sig_escena = 5.0f;
+    private const float t_sig_escena = 2f;
 
     private const float t_pers_dr_as = 4.6f;
     private const float t_pers_fin_as = 2.6f;

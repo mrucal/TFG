@@ -20,9 +20,10 @@ public class EscenaPuebloController : MonoBehaviour {
     private bool farola_on;
     private bool encontrado;
 
+    private const float t_sig_escena = 2f;
+
     private const float t_niño_feliz = 2.5f;
     private const float t_emoticono = 1f;
-    private const float t_sig_escena = 5f;
 
     private bool confirmacion = false;
 

@@ -204,7 +204,7 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_Events:
   - time: 6.35
-    functionName: activarPortal
+    functionName: enable
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
