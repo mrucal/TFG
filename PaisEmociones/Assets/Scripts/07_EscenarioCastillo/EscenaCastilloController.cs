@@ -23,7 +23,7 @@ public class EscenaCastilloController  : MonoBehaviour {
     void Start () {
         sol.GetComponent<Animator>().Play("SolAnimation");
         enabled_interruptor = false;
-        print(escena_anterior);
+        //print(escena_anterior);
         if (escena_anterior.Equals("laberinto"))
         {
             personaje.GetComponent<Animator>().Play("PersonajeLlegaCastillo");
@@ -33,7 +33,7 @@ public class EscenaCastilloController  : MonoBehaviour {
             interruptor.GetComponent<Animator>().Play("PantallaCorrecta");
             personaje.GetComponent<Animator>().Play("PersonajeEntraCastillo");
             this.GetComponent<Animator>().Play("AbrirCastillo");
-            StartCoroutine(SiguienteEscena("08_EscenaParejas", t_entrada + t_sig_escena));
+            StartCoroutine(SiguienteEscena("09_EscenaMago", t_entrada + t_sig_escena));
             escena_anterior = "laberinto";
         }
     }

@@ -17,10 +17,24 @@ public class EscenaParqueController  : MonoBehaviour {
     private const float t_patada = 0.65f;
     private const float t_pelota = 2f;
 
+    private string escena_anterior = "Inicio";
+
 	// Use this for initialization
 	void Start () {
         sol.GetComponent<Animator>().Play("SolAnimation");
-        StartCoroutine(patear(td + t_transicion));
+        if (escena_anterior.Equals("Inicio"))
+        {
+            print("BREAK 1");
+            StartCoroutine(patear(td + t_transicion));
+            escena_anterior = "Patio";
+        }
+        else
+        {
+            print("BREAK 2 "+pelota.transform.position);
+            pelota.transform.position = new Vector3(0,0,0);
+            print("BREAK 3 " + pelota.transform.position);
+            escena_anterior = "Inicio";
+        }
     }
 	
 	// Update is called once per frame
