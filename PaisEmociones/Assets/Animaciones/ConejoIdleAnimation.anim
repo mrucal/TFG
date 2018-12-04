@@ -3,7 +3,7 @@
 --- !u!74 &7400000
 AnimationClip:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: ConejoIdleAnimation
   serializedVersion: 6
@@ -26,10 +26,10 @@ AnimationClip:
       value: {fileID: 21300000, guid: 7e83b2b034dbfb34a8d7260ede856158, type: 3}
     - time: 3
       value: {fileID: 21300004, guid: 7e83b2b034dbfb34a8d7260ede856158, type: 3}
-    - time: 3.5166667
+    - time: 3.5333333
       value: {fileID: 21300000, guid: 7e83b2b034dbfb34a8d7260ede856158, type: 3}
     attribute: m_Sprite
-    path: Body
+    path: Conejo/Body
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 60
@@ -40,7 +40,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 2073732236
+      path: 3342862455
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -57,7 +57,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 3.5333333
+    m_StopTime: 3.55
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
