@@ -23,7 +23,7 @@ public class EscenaCastilloController  : MonoBehaviour {
     void Start () {
         sol.GetComponent<Animator>().Play("SolAnimation");
         enabled_interruptor = false;
-        //print(escena_anterior);
+        print(escena_anterior);
         if (escena_anterior.Equals("laberinto"))
         {
             personaje.GetComponent<Animator>().Play("PersonajeLlegaCastillo");

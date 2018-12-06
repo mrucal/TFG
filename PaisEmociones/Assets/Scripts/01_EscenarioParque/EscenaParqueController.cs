@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class EscenaParqueController  : MonoBehaviour {
 
     public GameObject personaje;
+    public GameObject portal;
     public GameObject pelota;
     public GameObject sol;
     //public GameObject pelota_movimiento;
@@ -17,22 +18,25 @@ public class EscenaParqueController  : MonoBehaviour {
     private const float t_patada = 0.65f;
     private const float t_pelota = 2f;
 
-    private string escena_anterior = "Inicio";
+    private static string escena_anterior = "Patio";
 
 	// Use this for initialization
 	void Start () {
         sol.GetComponent<Animator>().Play("SolAnimation");
+        print(escena_anterior);
         if (escena_anterior.Equals("Inicio"))
         {
-            print("BREAK 1");
-            StartCoroutine(patear(td + t_transicion));
             escena_anterior = "Patio";
+            print("BREAK 1 "+ escena_anterior);
+            StartCoroutine(patear(td + t_transicion));
         }
         else
         {
-            print("BREAK 2 "+pelota.transform.position);
-            pelota.transform.position = new Vector3(0,0,0);
-            print("BREAK 3 " + pelota.transform.position);
+            //print("BREAK 2 "+pelota.transform.position);
+            //pelota.transform.position = new Vector3(0,0,0);
+            pelota.GetComponent<Animator>().Play("PelotaNoVisible");
+            personaje.GetComponent<Animator>().Play("PersonajeNoVisible");
+            //print("BREAK 3 " + pelota.transform.position);
             escena_anterior = "Inicio";
         }
     }
@@ -41,6 +45,23 @@ public class EscenaParqueController  : MonoBehaviour {
 	void Update () {
 		
 	}
+    
+    void PortalDesaparece()
+    {
+        portal.GetComponent<Animator>().Play("PortalDesaparece");
+    }
+
+    void PortalVisible()
+    {
+        print("BREAK PORTAL");
+        portal.GetComponent<Animator>().Play("PortalApareceRaiz");
+    }
+
+    void PersonajeRegresa()
+    {
+        print("BREAK PERSONAJE");
+        personaje.GetComponent<Animator>().Play("PersonajeRegresa");
+    }
 
     IEnumerator patear(float seconds)
     {

@@ -269,8 +269,6 @@ GameObject:
   - component: {fileID: 892915405}
   - component: {fileID: 892915404}
   - component: {fileID: 892915403}
-  - component: {fileID: 892915402}
-  - component: {fileID: 892915401}
   - component: {fileID: 892915400}
   m_Layer: 0
   m_Name: Portal
@@ -287,46 +285,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 892915399}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a4d67ace3571b449a04de92cbfc486c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &892915401
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 892915399}
-  m_CullTransparentMesh: 0
---- !u!114 &892915402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 892915399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7341b1c0314e6a4e8067b7a905b987f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  touchObject: {fileID: 892915399}
-  controller: {fileID: 0}
-  name_function: EntrarPortal
+  controller_escena: {fileID: 1185103448}
+  enableFunction: PersonajeRegresa
 --- !u!65 &892915403
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -348,7 +311,7 @@ Animator:
   m_GameObject: {fileID: 892915399}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9a4fb66505b77654895c18299262cc1f, type: 2}
+  m_Controller: {fileID: 9100000, guid: ab81102d25f32fa45ab83482e1165c05, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -392,7 +355,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d5a97ac6a901fd646871bb87bc8659af, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8d089a78e30d8c54b949787e464bf677, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -410,7 +373,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 892915399}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 3.0735002, y: 3.0735002, z: 2.049}
   m_Children: []
   m_Father: {fileID: 0}
@@ -431,6 +394,7 @@ GameObject:
   - component: {fileID: 1076311226}
   - component: {fileID: 1076311225}
   - component: {fileID: 1076311224}
+  - component: {fileID: 1076311223}
   m_Layer: 0
   m_Name: Pelota
   m_TagString: Untagged
@@ -438,6 +402,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1076311223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1076311222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a4d67ace3571b449a04de92cbfc486c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller_escena: {fileID: 1185103448}
+  enableFunction: PortalVisible
 --- !u!95 &1076311224
 Animator:
   serializedVersion: 3
@@ -669,6 +646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   personaje: {fileID: 1756156877}
+  portal: {fileID: 892915399}
   pelota: {fileID: 1076311222}
   sol: {fileID: 1678170095}
 --- !u!1 &1203573249
@@ -837,6 +815,7 @@ GameObject:
   - component: {fileID: 1756156878}
   - component: {fileID: 1756156879}
   - component: {fileID: 1756156880}
+  - component: {fileID: 1756156881}
   m_Layer: 0
   m_Name: Personaje
   m_TagString: Untagged
@@ -851,7 +830,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1756156877}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.2}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1882701459}
@@ -922,6 +901,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1756156881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1756156877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a4d67ace3571b449a04de92cbfc486c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller_escena: {fileID: 1185103448}
+  enableFunction: PortalDesaparece
 --- !u!1 &1882701458
 GameObject:
   m_ObjectHideFlags: 0
