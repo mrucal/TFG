@@ -17,7 +17,7 @@ public class EscenaLlegadaController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         sol.GetComponent<Animator>().Play("SolNubeAnimation");
-        StartCoroutine(PersonajeFeliz(t_animacion_inicial+td));
+        //StartCoroutine(PersonajeFeliz(t_animacion_inicial+td));
     }
 	
 	// Update is called once per frame
@@ -25,9 +25,9 @@ public class EscenaLlegadaController : MonoBehaviour {
 		
 	}
 
-    public IEnumerator PersonajeFeliz(float seconds)
+    //public IEnumerator PersonajeFeliz(float seconds)
+    public void PersonajeFeliz()
     {
-        yield return new WaitForSeconds(seconds);
         //print("BREAK " + personaje.name);
         personaje.GetComponent<Animator>().Play("PersonajeFelizIdleAnimation");
         sol.GetComponent<Animator>().Play("SolAnimation");

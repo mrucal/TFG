@@ -18,7 +18,7 @@ public class EscenaParqueController  : MonoBehaviour {
     private const float t_patada = 0.65f;
     private const float t_pelota = 2f;
 
-    private static string escena_anterior = "Patio";
+    private static string escena_anterior = "Inicio";
 
 	// Use this for initialization
 	void Start () {
