@@ -9,20 +9,20 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1602348792011230}
+  m_RootGameObject: {fileID: 1770874929789834}
   m_IsPrefabAsset: 1
---- !u!1 &1602348792011230
+--- !u!1 &1770874929789834
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4474589471796322}
-  - component: {fileID: 33619181608074216}
-  - component: {fileID: 23103182042501228}
-  - component: {fileID: 65525067741918296}
-  - component: {fileID: 114201018449148692}
+  - component: {fileID: 4730957845495656}
+  - component: {fileID: 33768014243973882}
+  - component: {fileID: 23207083343809922}
+  - component: {fileID: 65953525237474022}
+  - component: {fileID: 114211080050313480}
   m_Layer: 0
   m_Name: Casilla
   m_TagString: Untagged
@@ -30,25 +30,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4474589471796322
+--- !u!4 &4730957845495656
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1602348792011230}
+  m_GameObject: {fileID: 1770874929789834}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.6, y: 3.6, z: -0.1}
+  m_LocalPosition: {x: -5.6, y: 3.6, z: -5}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.07}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23103182042501228
+--- !u!23 &23207083343809922
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1602348792011230}
+  m_GameObject: {fileID: 1770874929789834}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -78,34 +78,38 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33619181608074216
+--- !u!33 &33768014243973882
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1602348792011230}
+  m_GameObject: {fileID: 1770874929789834}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65525067741918296
+--- !u!65 &65953525237474022
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1602348792011230}
+  m_GameObject: {fileID: 1770874929789834}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114201018449148692
+--- !u!114 &114211080050313480
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1602348792011230}
+  m_GameObject: {fileID: 1770874929789834}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37cb4eed92b082643917147fee0dc62a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumCasila: 0
+  numCasilla: 0
+  idCarta: 0
+  epc: {fileID: 0}
+  reverso: {fileID: 2800000, guid: a10f5fb005d44724da9bb9dedb1fe871, type: 3}
+  carta: {fileID: 0}
