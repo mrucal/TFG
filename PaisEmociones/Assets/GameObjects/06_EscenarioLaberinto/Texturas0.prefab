@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1311521349280366}
+  m_IsPrefabAsset: 1
+--- !u!1 &1311521349280366
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4102310059296254}
+  - component: {fileID: 114830837695888356}
+  m_Layer: 0
+  m_Name: Texturas0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4102310059296254
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1311521349280366}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.07914618, y: 6.791232, z: 0.037791386}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114830837695888356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1311521349280366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f61041727a1aa42b57562f054dba2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texturas_pasillo_dif0:
+  - {fileID: 2800000, guid: 0eafb05f809d9304aaf58e3cb57b537a, type: 3}
+  - {fileID: 2800000, guid: 1c0b8485298e3d34b966d12add738bcc, type: 3}
+  - {fileID: 2800000, guid: 9df20c465dd3dc146a3a28cdd1ea3554, type: 3}
+  - {fileID: 2800000, guid: 49e82ba8cc997484d910a6b3b3d66f92, type: 3}
+  - {fileID: 2800000, guid: dbe5829f2ab85ce49860b480c9203e4f, type: 3}
+  - {fileID: 2800000, guid: e2f5c445850aea44b9321fb566e44254, type: 3}
+  texturas_pasillo_dif1:
+  - {fileID: 2800000, guid: 9bc0dca499075ac478205ace4b247ede, type: 3}
+  - {fileID: 2800000, guid: cc07207f6790a2548ac20b9fcef0cea1, type: 3}
+  - {fileID: 2800000, guid: 595b62ced1a2d5642939712ab7a87e26, type: 3}
+  - {fileID: 2800000, guid: f95b266b765419749a7679d2b16ae15f, type: 3}
+  - {fileID: 2800000, guid: 8f834819c7459874d81be6df77780c6a, type: 3}
+  - {fileID: 2800000, guid: 8789cabaf1d4eff4c92818fa9d1e88cb, type: 3}
+  texturas_pasillo_dif2:
+  - {fileID: 2800000, guid: 98b34d365b3388c45afe12991684a80b, type: 3}
+  - {fileID: 2800000, guid: f517c92989e39bf4580081ef0f9275e3, type: 3}
+  - {fileID: 2800000, guid: 377291051b57fd347ba61094c74b90c1, type: 3}
+  - {fileID: 2800000, guid: 04d317a8a3f51d64ab4a3c34a81c9e33, type: 3}
+  - {fileID: 2800000, guid: b2bfaa4673ca4ae40ace63d64e36e3a0, type: 3}
+  - {fileID: 2800000, guid: 938d9d06ed3d9ab4f86bb4056054725f, type: 3}
