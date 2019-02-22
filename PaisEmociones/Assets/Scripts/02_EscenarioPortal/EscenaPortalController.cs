@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EscenaPortalController : MonoBehaviour {
-
+    
     public GameObject personaje;
 
     public GameObject sol;
@@ -16,9 +16,30 @@ public class EscenaPortalController : MonoBehaviour {
 
     private bool enabled_portal = false;
 
+    private EstadoJuego estado_juego;
+
+    private void Iniciar()
+    {
+        estado_juego.cargar();
+        estado_juego.datos.ultima_escena = "02_EscenaPortal";
+        estado_juego.guardar();
+        //estado_juego.reset();
+    }
+
+    private void Finalizar()
+    {
+        estado_juego.guardar();
+    }
+
+    private void Awake()
+    {
+        estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+    }
+
     // Use this for initialization
     void Start () {
-            sol.GetComponent<Animator>().Play("SolAnimation");
+        Iniciar();
+        sol.GetComponent<Animator>().Play("SolAnimation");
     }
 	
 	// Update is called once per frame
@@ -44,6 +65,7 @@ public class EscenaPortalController : MonoBehaviour {
     public IEnumerator SiguienteEscena(string escena, float seconds)
     {
         yield return new WaitForSeconds(seconds);
+        Finalizar();
         SceneManager.LoadScene(escena);
     }
 

@@ -16,6 +16,8 @@ public class EscenaParejasController : MonoBehaviour {
 
     public int dificultad;
 
+    private int n_juegos = 3;
+
     private float[] col_dif = {3.0f, 4.0f, 4.0f };
     private float[] fil_dif = {2.0f,2.0f,3.0f};
 
@@ -42,7 +44,32 @@ public class EscenaParejasController : MonoBehaviour {
     private bool fin_turno = false;
     private Casilla ultima_casilla = null, casilla_actual = null;
 
-	void Start () {
+    private EstadoJuego estado_juego;
+
+    private void Iniciar()
+    {
+        estado_juego.cargar();
+        estado_juego.datos.ultima_escena = "08_EscenaParejas";
+        estado_juego.guardar();
+        //estado_juego.reset();
+    }
+
+    private void Finalizar()
+    {
+        estado_juego.guardar();
+    }
+
+    private void Awake()
+    {
+        estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+    }
+
+    // Use this for initialization
+    void Start()
+    {
+        Iniciar();
+        dificultad = estado_juego.datos.dificultad;
+        n_juegos = 3;
         parejas = new Texture2D[3][][];
         for (int i = 0; i < 3; i++)
             parejas[i] = new Texture2D[2][];
@@ -132,6 +159,7 @@ public class EscenaParejasController : MonoBehaviour {
 
         for (int i = 0; i < casillas.Count; i++)
         {
+            casillas[i].GetComponent<Casilla>().ocultarCarta();
             casillas[i].GetComponent<Casilla>().asignarCarta(parejas_barajadas[i]);
             casillas[i].GetComponent<Casilla>().idCarta=indices_barajados[i];
         }
@@ -149,16 +177,34 @@ public class EscenaParejasController : MonoBehaviour {
             } else { // Se destapa la segunda pareja
                 fin_turno = true;
                 c.mostrarCarta();
-                if (c.idCarta != ultima_casilla.idCarta)
+                if (dificultad == 2)
                 {
-                    Invoke("ocultarAcutalUltima", 1f);
-                }else
+                    if(c.carta.name[1] != ultima_casilla.carta.name[1] && c.carta.name[2] == ultima_casilla.carta.name[2])
+                    {
+                        n_parejas--;
+                        print("Quedan " + n_parejas + " parejas");
+                        fin_turno = false;
+                        if (n_parejas == 0)
+                            Invoke("ganar", 1f);
+                    }else
+                    {
+                        Invoke("ocultarAcutalUltima", 1f);
+                    }
+                }
+                else
                 {
-                    n_parejas--;
-                    print("Quedan " + n_parejas + " parejas");
-                    fin_turno = false;
-                    if (n_parejas == 0)
-                        ganar();
+                    if (c.idCarta != ultima_casilla.idCarta)
+                    {
+                        Invoke("ocultarAcutalUltima", 1f);
+                    }
+                    else
+                    {
+                        n_parejas--;
+                        print("Quedan " + n_parejas + " parejas");
+                        fin_turno = false;
+                        if (n_parejas == 0)
+                            Invoke("ganar", 1f);
+                    }
                 }
             }
             turno = (turno + 1) % 2;
@@ -176,7 +222,11 @@ public class EscenaParejasController : MonoBehaviour {
     public void ganar()
     {
         print("HAS GANADO!!!!");
-        StartCoroutine(SiguienteEscena("07_EscenaCastillo", t_sig_escena));
+        n_juegos--;
+        if(n_juegos > 0)
+            asignarParejas();
+        else
+            StartCoroutine(SiguienteEscena("07_EscenaCastillo", t_sig_escena - 1f));
     }
 
     public IEnumerator SiguienteEscena(string escena, float seconds)

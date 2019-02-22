@@ -27,9 +27,30 @@ public class EscenaPuebloController : MonoBehaviour {
 
     private bool confirmacion = false;
 
-	// Use this for initialization
-	void Start ()
+    private EstadoJuego estado_juego;
+
+    private void Iniciar()
     {
+        estado_juego.cargar();
+        estado_juego.datos.ultima_escena = "05_EscenaPueblo";
+        estado_juego.guardar();
+        //estado_juego.reset();
+    }
+
+    private void Finalizar()
+    {
+        estado_juego.guardar();
+    }
+
+    private void Awake()
+    {
+        estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+    }
+
+    // Use this for initialization
+    void Start()
+    {
+        Iniciar();
         sol.GetComponent<Animator>().Play("SolNubeAnimation");
         farola_on = false;
         encontrado = false;
@@ -76,6 +97,12 @@ public class EscenaPuebloController : MonoBehaviour {
             StartCoroutine(esperarAnimacion(t_niño_feliz + t_emoticono, emoticono, "AlegriaAnimation"));
             //StartCoroutine(esperarAnimacion(3.5f, emoticono, "AlegriaAnimation"));
             StartCoroutine(esperarAnimacion(3.5f, sol, "SolAnimation"));
+            /*print("fallos: " + estado_juego.datos.fallos[estado_juego.datos.dificultad][2]);
+            estado_juego.datos.fallos[estado_juego.datos.dificultad][2]++;
+            print("fallos: " + estado_juego.datos.fallos[estado_juego.datos.dificultad][2]);*/
+
+            estado_juego.incrementarFallos(2);
+            Finalizar();
             StartCoroutine(SiguienteEscena("06_EscenaLaberinto", t_niño_feliz + t_emoticono+t_sig_escena));
             encontrado = true;
         }

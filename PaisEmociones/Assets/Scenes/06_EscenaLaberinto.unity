@@ -113,6 +113,62 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &43470977
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 43470979}
+  - component: {fileID: 43470978}
+  m_Layer: 0
+  m_Name: Enfado
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &43470978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 43470977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18c054a0d358da24098938dbecccb026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texturas_pasillo_dif0:
+  - {fileID: 2800000, guid: 20471c4e9dcff4640bb80b54ea6797f6, type: 3}
+  - {fileID: 2800000, guid: 148221cd4ebb2ab438c163b4e0809f41, type: 3}
+  - {fileID: 2800000, guid: 1fa8c347b6f83d044a2427faf8daa02a, type: 3}
+  - {fileID: 2800000, guid: 9cd92d9d98876fe42b46c8341617bdc4, type: 3}
+  texturas_pasillo_dif1:
+  - {fileID: 2800000, guid: 5bb86a59209cb02449cbc179dafaccd3, type: 3}
+  - {fileID: 2800000, guid: a18f577e1353ab84cb5df911432763ea, type: 3}
+  - {fileID: 2800000, guid: 1c2cdf7406b5e4f469c7b4943e572e05, type: 3}
+  - {fileID: 2800000, guid: 3ddd609c3b7c1a346955f91476b9f59e, type: 3}
+  texturas_pasillo_dif2:
+  - {fileID: 2800000, guid: 2df280b65a494a4459171003ea8dadf6, type: 3}
+  - {fileID: 2800000, guid: 0d3962cfb2fd48f4a8644590ab855b42, type: 3}
+  - {fileID: 2800000, guid: c43468acb8ba84e45a348cb118b3fde0, type: 3}
+  - {fileID: 2800000, guid: cac2ca8970aa4074981bbef9e17ed59e, type: 3}
+  elegidos: 
+--- !u!4 &43470979
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 43470977}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.09422997, y: 2.2825422, z: 0.18386862}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &44552416
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,64 +337,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1455780937}
   m_Script: {fileID: 11500000, guid: b9cf3a191bf254340ab6709fe172f8f8, type: 3}
---- !u!1001 &388592554
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 114483806756402914, guid: 02cef9dd2355f704f88b68514eedbc12,
-        type: 2}
-      propertyPath: texturas_pasillo_dif1.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135960750168668, guid: 02cef9dd2355f704f88b68514eedbc12, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.07914618
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135960750168668, guid: 02cef9dd2355f704f88b68514eedbc12, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 6.791232
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135960750168668, guid: 02cef9dd2355f704f88b68514eedbc12, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.037791386
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135960750168668, guid: 02cef9dd2355f704f88b68514eedbc12, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135960750168668, guid: 02cef9dd2355f704f88b68514eedbc12, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135960750168668, guid: 02cef9dd2355f704f88b68514eedbc12, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135960750168668, guid: 02cef9dd2355f704f88b68514eedbc12, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135960750168668, guid: 02cef9dd2355f704f88b68514eedbc12, type: 2}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 114483806756402914, guid: 02cef9dd2355f704f88b68514eedbc12,
-        type: 2}
-      propertyPath: texturas_pasillo_dif1.Array.data[5]
-      value: 
-      objectReference: {fileID: 2800000, guid: 938d9d06ed3d9ab4f86bb4056054725f, type: 3}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 02cef9dd2355f704f88b68514eedbc12, type: 2}
-  m_IsPrefabAsset: 0
---- !u!114 &400123427 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114483806756402914, guid: 02cef9dd2355f704f88b68514eedbc12,
-    type: 2}
-  m_PrefabInternal: {fileID: 388592554}
-  m_Script: {fileID: 11500000, guid: 15f61041727a1aa42b57562f054dba2f, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,6 +456,70 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bf0db9ff45b5434a81b937ed710545d, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &600982231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 600982233}
+  - component: {fileID: 600982232}
+  m_Layer: 0
+  m_Name: Tristeza
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &600982232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 600982231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18c054a0d358da24098938dbecccb026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texturas_pasillo_dif0:
+  - {fileID: 2800000, guid: 248fc73d64dd2b045b6d5c2aea860fa6, type: 3}
+  - {fileID: 2800000, guid: 9341de5c4bbf5224482bd51c8859da68, type: 3}
+  - {fileID: 2800000, guid: fd4cd18192bc5de408d3fc7f75b03345, type: 3}
+  - {fileID: 2800000, guid: a8712d56badb2454f90a9085122df565, type: 3}
+  - {fileID: 2800000, guid: 7ca648c3e0046b346b6ab1ec0553819e, type: 3}
+  texturas_pasillo_dif1:
+  - {fileID: 2800000, guid: 9f8ec7def31000c4b8b9b6549cf047e9, type: 3}
+  - {fileID: 2800000, guid: 3a27f8699f3abba40984c01c8bd1ffae, type: 3}
+  - {fileID: 2800000, guid: 476a579d6da83dd4d9b825f8c60ce2b3, type: 3}
+  - {fileID: 2800000, guid: 9b19c16babad9074388794b8f6556e06, type: 3}
+  - {fileID: 2800000, guid: f7217c40db2d2e640ac31c10a677a57c, type: 3}
+  - {fileID: 2800000, guid: 85aa93c20d1250546bad266ea900ee86, type: 3}
+  - {fileID: 2800000, guid: 34d2ca9c8933c2641b323c75af5b1b72, type: 3}
+  texturas_pasillo_dif2:
+  - {fileID: 2800000, guid: 0410ff19d7f5c294d9bc44af6b27985e, type: 3}
+  - {fileID: 2800000, guid: 40bf8869e50160e42bddf7be320910b0, type: 3}
+  - {fileID: 2800000, guid: 1d53b6da86e056140b903241c7355b5e, type: 3}
+  - {fileID: 2800000, guid: 108e4d262bc16fe42b0994faffb5d235, type: 3}
+  - {fileID: 2800000, guid: 1f7c2bb760089dd4da66fef531f786e6, type: 3}
+  - {fileID: 2800000, guid: 887c0ff63aed5c744b30f275fb93c37f, type: 3}
+  - {fileID: 2800000, guid: 80c77dbc73c8bda4cb26392be49fa233, type: 3}
+  - {fileID: 2800000, guid: f95167abcaa307b47bf27c4fb177f263, type: 3}
+  elegidos: 
+--- !u!4 &600982233
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 600982231}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.09422997, y: 2.2825422, z: 0.18386862}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &609023052
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,52 +568,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1001 &706149561
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4120364788518298, guid: 7fc56b716311dda4880afd5bb70416ec, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.07914618
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120364788518298, guid: 7fc56b716311dda4880afd5bb70416ec, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 6.791232
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120364788518298, guid: 7fc56b716311dda4880afd5bb70416ec, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.037791386
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120364788518298, guid: 7fc56b716311dda4880afd5bb70416ec, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120364788518298, guid: 7fc56b716311dda4880afd5bb70416ec, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120364788518298, guid: 7fc56b716311dda4880afd5bb70416ec, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120364788518298, guid: 7fc56b716311dda4880afd5bb70416ec, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120364788518298, guid: 7fc56b716311dda4880afd5bb70416ec, type: 2}
-      propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1549482624428674, guid: 7fc56b716311dda4880afd5bb70416ec, type: 2}
-      propertyPath: m_Name
-      value: Texturas2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7fc56b716311dda4880afd5bb70416ec, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1001 &801497793
 Prefab:
   m_ObjectHideFlags: 0
@@ -570,7 +586,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4324748756177144, guid: 6590338ede11beb4ea5f9eef3ab164c5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4324748756177144, guid: 6590338ede11beb4ea5f9eef3ab164c5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -602,7 +618,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4324748756177144, guid: 6590338ede11beb4ea5f9eef3ab164c5, type: 2}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114354533381157446, guid: 6590338ede11beb4ea5f9eef3ab164c5,
         type: 2}
@@ -657,79 +673,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idPasillo: 0
   elc: {fileID: 1185103455}
-  texturas_pasillo_dif0:
-  - {fileID: 2800000, guid: 0eafb05f809d9304aaf58e3cb57b537a, type: 3}
-  - {fileID: 2800000, guid: 1c0b8485298e3d34b966d12add738bcc, type: 3}
-  - {fileID: 2800000, guid: 9df20c465dd3dc146a3a28cdd1ea3554, type: 3}
-  - {fileID: 2800000, guid: 49e82ba8cc997484d910a6b3b3d66f92, type: 3}
-  - {fileID: 2800000, guid: dbe5829f2ab85ce49860b480c9203e4f, type: 3}
-  - {fileID: 2800000, guid: e2f5c445850aea44b9321fb566e44254, type: 3}
-  texturas_pasillo_dif1:
-  - {fileID: 2800000, guid: 9bc0dca499075ac478205ace4b247ede, type: 3}
-  - {fileID: 2800000, guid: cc07207f6790a2548ac20b9fcef0cea1, type: 3}
-  - {fileID: 2800000, guid: 595b62ced1a2d5642939712ab7a87e26, type: 3}
-  - {fileID: 2800000, guid: f95b266b765419749a7679d2b16ae15f, type: 3}
-  - {fileID: 2800000, guid: 8f834819c7459874d81be6df77780c6a, type: 3}
-  - {fileID: 2800000, guid: 8789cabaf1d4eff4c92818fa9d1e88cb, type: 3}
-  texturas_pasillo_dif2:
-  - {fileID: 2800000, guid: 98b34d365b3388c45afe12991684a80b, type: 3}
-  - {fileID: 2800000, guid: f517c92989e39bf4580081ef0f9275e3, type: 3}
-  - {fileID: 2800000, guid: 377291051b57fd347ba61094c74b90c1, type: 3}
-  - {fileID: 2800000, guid: 04d317a8a3f51d64ab4a3c34a81c9e33, type: 3}
-  - {fileID: 2800000, guid: b2bfaa4673ca4ae40ace63d64e36e3a0, type: 3}
-  - {fileID: 2800000, guid: 938d9d06ed3d9ab4f86bb4056054725f, type: 3}
---- !u!1001 &845626502
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4102310059296254, guid: 085e46752488180448c8f75b4f88397a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.07914618
-      objectReference: {fileID: 0}
-    - target: {fileID: 4102310059296254, guid: 085e46752488180448c8f75b4f88397a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 6.791232
-      objectReference: {fileID: 0}
-    - target: {fileID: 4102310059296254, guid: 085e46752488180448c8f75b4f88397a, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.037791386
-      objectReference: {fileID: 0}
-    - target: {fileID: 4102310059296254, guid: 085e46752488180448c8f75b4f88397a, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4102310059296254, guid: 085e46752488180448c8f75b4f88397a, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4102310059296254, guid: 085e46752488180448c8f75b4f88397a, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4102310059296254, guid: 085e46752488180448c8f75b4f88397a, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4102310059296254, guid: 085e46752488180448c8f75b4f88397a, type: 2}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1311521349280366, guid: 085e46752488180448c8f75b4f88397a, type: 2}
-      propertyPath: m_Name
-      value: Texturas0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 085e46752488180448c8f75b4f88397a, type: 2}
-  m_IsPrefabAsset: 0
---- !u!114 &848415403 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114830837695888356, guid: 085e46752488180448c8f75b4f88397a,
-    type: 2}
-  m_PrefabInternal: {fileID: 845626502}
-  m_Script: {fileID: 11500000, guid: 15f61041727a1aa42b57562f054dba2f, type: 3}
 --- !u!1001 &1155857506
 Prefab:
   m_ObjectHideFlags: 0
@@ -763,7 +706,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4324748756177144, guid: 6590338ede11beb4ea5f9eef3ab164c5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4324748756177144, guid: 6590338ede11beb4ea5f9eef3ab164c5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -923,6 +866,14 @@ Prefab:
       propertyPath: elc
       value: 
       objectReference: {fileID: 1185103455}
+    - target: {fileID: 4324748756177144, guid: 6590338ede11beb4ea5f9eef3ab164c5, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324748756177144, guid: 6590338ede11beb4ea5f9eef3ab164c5, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 6590338ede11beb4ea5f9eef3ab164c5, type: 2}
@@ -1106,15 +1057,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   personaje: {fileID: 0}
-  dificultad: 1
+  "emoticono_peque\xF1o": {fileID: 1811009043}
+  dificultad: 0
   pasillos:
   - {fileID: 801497795}
   - {fileID: 1155857509}
   - {fileID: 372422368}
   texturas:
-  - {fileID: 848415403}
-  - {fileID: 400123427}
-  - {fileID: 2016718631}
+  - {fileID: 1468195720}
+  - {fileID: 600982232}
+  - {fileID: 43470978}
 --- !u!1 &1203573249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,7 +1162,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4324748756177144, guid: 6590338ede11beb4ea5f9eef3ab164c5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4324748756177144, guid: 6590338ede11beb4ea5f9eef3ab164c5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1370,9 +1322,124 @@ Prefab:
       propertyPath: elc
       value: 
       objectReference: {fileID: 1185103455}
+    - target: {fileID: 4324748756177144, guid: 6590338ede11beb4ea5f9eef3ab164c5, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 6590338ede11beb4ea5f9eef3ab164c5, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!1 &1468195719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1468195721}
+  - component: {fileID: 1468195720}
+  m_Layer: 0
+  m_Name: Alegria
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1468195720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1468195719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18c054a0d358da24098938dbecccb026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texturas_pasillo_dif0:
+  - {fileID: 2800000, guid: a58f042800c6e2a4e845b3cf641e6648, type: 3}
+  - {fileID: 2800000, guid: 7818510b9e61478419fac380a942d2b8, type: 3}
+  - {fileID: 2800000, guid: 7e5069f34e5dbbb4faf57d7da8608542, type: 3}
+  - {fileID: 2800000, guid: 1909894b6a229254ea504deaf0784338, type: 3}
+  texturas_pasillo_dif1:
+  - {fileID: 2800000, guid: 9ea2e0c6e9a367442a2203f7c42d935a, type: 3}
+  - {fileID: 2800000, guid: 8798566aca7646941bedd909bd0985ff, type: 3}
+  - {fileID: 2800000, guid: 5983dcee1c416594d8ebc144469e2d7b, type: 3}
+  - {fileID: 2800000, guid: fd14a23198cc18f49a732d750b00f332, type: 3}
+  - {fileID: 2800000, guid: e2794923d6a9b484aa6e3b4ffd3144da, type: 3}
+  - {fileID: 2800000, guid: 4f431f0cf5f120240b408d3a5bc67d77, type: 3}
+  - {fileID: 2800000, guid: d2ee91da1bb96684080dd15123cc6dbd, type: 3}
+  texturas_pasillo_dif2:
+  - {fileID: 2800000, guid: d6593056578ea5c42a05eb6ebe2ad8fc, type: 3}
+  - {fileID: 2800000, guid: d1c9c186f551c5446b701db12403d1d9, type: 3}
+  - {fileID: 2800000, guid: c1e4e7fc7f5f8014ebfafa33dac6ef07, type: 3}
+  - {fileID: 2800000, guid: ab0c4fcee0ead874bb96b09f747c33cb, type: 3}
+  - {fileID: 2800000, guid: a3d100e2732d886489ddf6a91c04d4f6, type: 3}
+  - {fileID: 2800000, guid: bbfb5afa8c6fbfb4db93df8b83544b1e, type: 3}
+  - {fileID: 2800000, guid: a9ffc4fb15fa4d6479c7d3cd5543c8b8, type: 3}
+  - {fileID: 2800000, guid: 1fbb413f2b0c6af49bf152f24604bdbe, type: 3}
+  - {fileID: 2800000, guid: 53ea8e705a7976d419960333c654e11e, type: 3}
+  elegidos: 
+--- !u!4 &1468195721
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1468195719}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.09422997, y: 2.2825422, z: 0.18386862}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1474266406
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4377021689022488, guid: f7e5a1a045878234f81f0ff07e746f64, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 3.8378432
+      objectReference: {fileID: 0}
+    - target: {fileID: 4377021689022488, guid: f7e5a1a045878234f81f0ff07e746f64, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.2859766
+      objectReference: {fileID: 0}
+    - target: {fileID: 4377021689022488, guid: f7e5a1a045878234f81f0ff07e746f64, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.16699219
+      objectReference: {fileID: 0}
+    - target: {fileID: 4377021689022488, guid: f7e5a1a045878234f81f0ff07e746f64, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4377021689022488, guid: f7e5a1a045878234f81f0ff07e746f64, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4377021689022488, guid: f7e5a1a045878234f81f0ff07e746f64, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4377021689022488, guid: f7e5a1a045878234f81f0ff07e746f64, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4377021689022488, guid: f7e5a1a045878234f81f0ff07e746f64, type: 2}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114215471614983468, guid: f7e5a1a045878234f81f0ff07e746f64,
+        type: 2}
+      propertyPath: id
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f7e5a1a045878234f81f0ff07e746f64, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1756156877
 GameObject:
@@ -1638,9 +1705,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2016718631 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114851850477836986, guid: 7fc56b716311dda4880afd5bb70416ec,
-    type: 2}
-  m_PrefabInternal: {fileID: 706149561}
-  m_Script: {fileID: 11500000, guid: 15f61041727a1aa42b57562f054dba2f, type: 3}

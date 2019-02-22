@@ -19,8 +19,30 @@ public class EscenaCastilloController  : MonoBehaviour {
 
     static string escena_anterior = "laberinto";
 
+    private EstadoJuego estado_juego;
+
+    private void Iniciar()
+    {
+        estado_juego.cargar();
+        estado_juego.datos.ultima_escena = "07_EscenaCastillo";
+        estado_juego.guardar();
+        //estado_juego.reset();
+    }
+
+    private void Finalizar()
+    {
+        estado_juego.guardar();
+    }
+
+    private void Awake()
+    {
+        estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+    }
+
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
+        Iniciar();
         sol.GetComponent<Animator>().Play("SolAnimation");
         enabled_interruptor = false;
         print(escena_anterior);
@@ -30,9 +52,12 @@ public class EscenaCastilloController  : MonoBehaviour {
             interruptor.GetComponent<Animator>().Play("PantallaParpadea");
         }else
         {
+            estado_juego.datos.ultima_escena = "09_EscenaMago";
+            print("BREAK ultima escena: " + estado_juego.datos.ultima_escena);
             interruptor.GetComponent<Animator>().Play("PantallaCorrecta");
             personaje.GetComponent<Animator>().Play("PersonajeEntraCastillo");
             this.GetComponent<Animator>().Play("AbrirCastillo");
+            Finalizar();
             StartCoroutine(SiguienteEscena("09_EscenaMago", t_entrada + t_sig_escena));
             escena_anterior = "laberinto";
         }

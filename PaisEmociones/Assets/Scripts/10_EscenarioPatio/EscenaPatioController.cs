@@ -18,8 +18,30 @@ public class EscenaPatioController  : MonoBehaviour {
 
     private bool enabled_portal = false;
 
+    private EstadoJuego estado_juego;
+
+    private void Iniciar()
+    {
+        estado_juego.cargar();
+        estado_juego.datos.ultima_escena = "10_EscenaPatio";
+        estado_juego.guardar();
+        //estado_juego.reset();
+    }
+
+    private void Finalizar()
+    {
+        estado_juego.guardar();
+    }
+
+    private void Awake()
+    {
+        estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+    }
+
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
+        Iniciar();
         sol.GetComponent<Animator>().Play("SolNubeAnimation");
     }
 	

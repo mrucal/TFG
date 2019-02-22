@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class EscenaParqueController  : MonoBehaviour {
 
+    private EstadoJuego estado_juego;
+
     public GameObject personaje;
     public GameObject portal;
     public GameObject pelota;
@@ -20,11 +22,31 @@ public class EscenaParqueController  : MonoBehaviour {
 
     private static string escena_anterior = "Inicio";
 
-	// Use this for initialization
-	void Start () {
+    private void Iniciar()
+    {        
+        estado_juego.cargar();
+        estado_juego.datos.ultima_escena = "01_EscenaParque";
+        estado_juego.guardar();
+        //estado_juego.reset();
+    }
+
+    private void Finalizar()
+    {
+        estado_juego.guardar();
+    }
+
+    private void Awake()
+    {
+        estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+    }
+
+    // Use this for initialization
+    void Start () {
+
         sol.GetComponent<Animator>().Play("SolAnimation");
         print(escena_anterior);
-        if (escena_anterior.Equals("Inicio"))
+        //if (escena_anterior.Equals("Inicio"))
+        if(string.IsNullOrEmpty(estado_juego.datos.ultima_escena))
         {
             escena_anterior = "Patio";
             print("BREAK 1 "+ escena_anterior);
@@ -39,6 +61,7 @@ public class EscenaParqueController  : MonoBehaviour {
             //print("BREAK 3 " + pelota.transform.position);
             escena_anterior = "Inicio";
         }
+        Iniciar();
     }
 	
 	// Update is called once per frame
@@ -74,6 +97,7 @@ public class EscenaParqueController  : MonoBehaviour {
     {
         yield return new WaitForSeconds(seconds);
         pelota.GetComponent<Animator>().Play("PelotaMoveAnimation");
+        //Finalizar();
         StartCoroutine(SiguienteEscena("02_EscenaPortal", t_pelota + t_sig_escena/*7f*/));
         //pelota_movimiento.GetComponent<Animator>().Play("AlegriaAnimation");
     }
@@ -81,6 +105,7 @@ public class EscenaParqueController  : MonoBehaviour {
     public IEnumerator SiguienteEscena(string escena, float seconds)
     {
         yield return new WaitForSeconds(seconds);
+        Finalizar();
         SceneManager.LoadScene(escena);
     }
 }

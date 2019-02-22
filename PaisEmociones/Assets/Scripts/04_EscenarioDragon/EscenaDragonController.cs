@@ -21,8 +21,30 @@ public class EscenaDragonController : MonoBehaviour
     private const float t_pers_dr_esp = 4.5f;
     private const float t_pers_fin_esp = 12.6f;
 
+    private EstadoJuego estado_juego;
+
+    private void Iniciar()
+    {
+        estado_juego.cargar();
+        estado_juego.datos.ultima_escena = "04_EscenaDragon";
+        estado_juego.guardar();
+        //estado_juego.reset();
+    }
+
+    private void Finalizar()
+    {
+        estado_juego.guardar();
+    }
+
+    private void Awake()
+    {
+        estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+    }
+
+    // Use this for initialization
     void Start()
     {
+        Iniciar();
         animator = GetComponent<Animator>();
     }
 
@@ -73,6 +95,9 @@ public class EscenaDragonController : MonoBehaviour
         emoticono.GetComponent<Animator>().Play("AlegriaAnimation");
         cambiarEstado("EscenaDragonFeliz");
         dragon.SendMessage("cambiarEstado", "DragonFelizAnimation");
+        //estado_juego.datos.aciertos[estado_juego.datos.dificultad][2]++;
+        estado_juego.incrementarAciertos(2);
+        Finalizar();
         StartCoroutine(SiguienteEscena("05_EscenaPueblo", t_pers_fin_as + t_sig_escena/*7f*/));
     }
 
@@ -91,6 +116,11 @@ public class EscenaDragonController : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         dragon.SendMessage("cambiarEstado", "DragonEnfadoMaximoAnimation");
         astilla.GetComponent<Animator>().Play("AstillaMoveAnimation");
+        /*print("fallos: " + estado_juego.datos.fallos[estado_juego.datos.dificultad][2]);
+        estado_juego.datos.fallos[estado_juego.datos.dificultad][2]++;
+        print("fallos: " + estado_juego.datos.fallos[estado_juego.datos.dificultad][2]);*/
+        estado_juego.incrementarFallos(2);
+        Finalizar();
         StartCoroutine(SiguienteEscena("05_EscenaPueblo", t_pers_fin_esp + t_sig_escena/*7f*/));
     }
 }

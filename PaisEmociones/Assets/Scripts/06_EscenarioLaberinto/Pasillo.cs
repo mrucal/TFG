@@ -9,11 +9,11 @@ public class Pasillo  : MonoBehaviour {
 
     public EscenaLaberintoController elc;
 
-    public Texture2D[] texturas_pasillo_dif0;
+    /*public Texture2D[] texturas_pasillo_dif0;
     public Texture2D[] texturas_pasillo_dif1;
     public Texture2D[] texturas_pasillo_dif2;
 
-    public Texture2D[][] texturas_pasillo;
+    public Texture2D[][] texturas_pasillo;*/
 
     void Start () {
         /*texturas_pasillo = new Texture2D[3][];

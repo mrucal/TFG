@@ -14,8 +14,30 @@ public class EscenaLlegadaController : MonoBehaviour {
     private const float t_animacion_inicial = 7.3f;
     private const float td = 0f;
 
+    private EstadoJuego estado_juego;
+
+    private void Iniciar()
+    {
+        estado_juego.cargar();
+        estado_juego.datos.ultima_escena = "03_EscenaLlegada";
+        estado_juego.guardar();
+        //estado_juego.reset();
+    }
+
+    private void Finalizar()
+    {
+        estado_juego.guardar();
+    }
+
+    private void Awake()
+    {
+        estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+    }
+
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        Iniciar();
         sol.GetComponent<Animator>().Play("SolNubeAnimation");
         //StartCoroutine(PersonajeFeliz(t_animacion_inicial+td));
     }

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class EscenaLaberintoController  : MonoBehaviour {
 
     public GameObject personaje;
+    public GameObject emoticono_pequeño;
     //public GameObject pelota_movimiento;
 
     public int dificultad;
@@ -20,11 +21,11 @@ public class EscenaLaberintoController  : MonoBehaviour {
     public PasilloTexturas texturas1;
     public PasilloTexturas texturas2;*/
 
-    public PasilloTexturas[] texturas;// = new PasilloTexturas[3];
+    public EmocionTexturas[] texturas;// = new PasilloTexturas[3];
 
-    private int[] soluciones_dif0 = { 0, 1, 0, 2, 2, 1 };
-    private int[] soluciones_dif1 = { 0, 1, 0, 2, 2, 1 };
-    private int[] soluciones_dif2 = { 0, 1, 0, 2, 2, 1 };//GVGRRV
+    private int[] soluciones_dif0 = { 0, 1, 2 };
+    private int[] soluciones_dif1 = { 0, 0, 1, 1, 2, 2 };
+    private int[] soluciones_dif2 = { 0, 0, 1, 1, 2, 2 };//GVGRRV
 
     private int[][] soluciones = new int[3][];
 
@@ -36,8 +37,31 @@ public class EscenaLaberintoController  : MonoBehaviour {
 
     private const float td = 0f;
 
+    private EstadoJuego estado_juego;
+
+    private void Iniciar()
+    {
+        estado_juego.cargar();
+        estado_juego.datos.ultima_escena = "06_EscenaLaberinto";
+        estado_juego.guardar();
+        //estado_juego.reset();
+    }
+
+    private void Finalizar()
+    {
+        estado_juego.guardar();
+    }
+
+    private void Awake()
+    {
+        estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+    }
+
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
+        Iniciar();
+        dificultad = estado_juego.datos.dificultad;
         n_cruces =  2 + (2 * dificultad);
         soluciones[0] = soluciones_dif0;
         soluciones[1] = soluciones_dif1;
@@ -63,19 +87,32 @@ public class EscenaLaberintoController  : MonoBehaviour {
 
     void mostrarCruceLaberinto(int dificultad,int i)
     {
+        //print(texturas.Length);
         List<int> orden = new List<int>();
         for (int j = 0; j < 3; j++)
             orden.Add(j);
         int r;
-        for (int j = 0; j < n_pasillos; j++){
+        /*for (int j = 0; j < n_pasillos; j++){
             r = Random.Range(0, orden.Count);
+            print("BREAK1: "+pasillos[j].idPasillo + " " + r + " ");
+            print("BREAK2: " + texturas[orden[r]].obtenerTextura(dificultad, i));
             pasillos[j].mostrarCrucePasillo(texturas[orden[r]].obtenerTextura(dificultad, i));
+            if (soluciones[dificultad][cruce_actual] == orden[r])
+                solucion_actual = j;
+            //print(soluciones[dificultad][cruce_actual] + " " + orden[r] + " " + r + " " + orden.Count);
+            orden.RemoveAt(r);*/
+
+        for (int j = 0; j < n_pasillos; j++)
+        {
+            r = Random.Range(0, orden.Count);
+            pasillos[j].mostrarCrucePasillo(texturas[orden[r]].obtenerTextura(dificultad));
             if (soluciones[dificultad][cruce_actual] == orden[r])
                 solucion_actual = j;
             //print(soluciones[dificultad][cruce_actual] + " " + orden[r] + " " + r + " " + orden.Count);
             orden.RemoveAt(r);
 
         }
+        emoticono_pequeño.GetComponent<Animator>().Play("Emocion"+ soluciones[dificultad][cruce_actual]);
 
         /*for (int j = 0; j < n_pasillos; j++)
             //pasillos[j].mostrarCrucePasillo(dificultad, i);
@@ -85,9 +122,9 @@ public class EscenaLaberintoController  : MonoBehaviour {
     void siguienteCruce()
     {
         //print(cruces.Count);
-        int r = Random.Range(0, cruces.Count);print(r+" "+cruces.Count);
+        int r = Random.Range(0, cruces.Count);//print(r+" "+cruces.Count);
         cruce_actual = cruces[r];
-        print("Cruce_i:" + cruce_i + " cruce_actual:" + cruce_actual + " n_cruces:" + n_cruces);
+        //print("Cruce_i:" + cruce_i + " cruce_actual:" + cruce_actual + " n_cruces:" + n_cruces);
         mostrarCruceLaberinto(dificultad, cruce_actual);
         cruces.Remove(cruce_actual);
         cruce_i++;
