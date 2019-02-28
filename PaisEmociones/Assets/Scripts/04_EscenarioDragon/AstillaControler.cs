@@ -25,7 +25,8 @@ public class AstillaControler : MonoBehaviour {
                 if (hit.transform.name == "Astilla" && !click)
                 {
                     print("Clcik en astilla!!");
-                    StartCoroutine(resetClick());
+                    //StartCoroutine(resetClick());
+                    click = true;
                     escena.SendMessage("AnimacionAstilla");
                     /*escena.SendMessage("cambiarEstado", "EscenaDragonFeliz");
                     dragon.SendMessage("cambiarEstado", "DragonFelizAnimation");*/

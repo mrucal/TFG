@@ -13,6 +13,7 @@ public class EscenaPuebloController : MonoBehaviour {
     public GameObject farola;
     public GameObject pelota;
     public GameObject perro;
+    public AnimacionTrofeo animacion_trofeo;
 
     public GameObject emoticono;
     public GameObject sol;
@@ -45,6 +46,7 @@ public class EscenaPuebloController : MonoBehaviour {
     private void Awake()
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+        animacion_trofeo = GameObject.Find("AnimacionTrofeo").GetComponent<AnimacionTrofeo>();
     }
 
     // Use this for initialization
@@ -101,9 +103,9 @@ public class EscenaPuebloController : MonoBehaviour {
             estado_juego.datos.fallos[estado_juego.datos.dificultad][2]++;
             print("fallos: " + estado_juego.datos.fallos[estado_juego.datos.dificultad][2]);*/
 
-            estado_juego.incrementarFallos(2);
+            estado_juego.incrementarAciertos(1);
             Finalizar();
-            StartCoroutine(SiguienteEscena("06_EscenaLaberinto", t_niño_feliz + t_emoticono+t_sig_escena));
+            StartCoroutine(SiguienteEscena("06_EscenaLaberinto", t_niño_feliz + t_emoticono+t_sig_escena,true));
             encontrado = true;
         }
     }
@@ -119,8 +121,12 @@ public class EscenaPuebloController : MonoBehaviour {
 
     void SalirPueblo()
     {
-        if(confirmacion)
-            StartCoroutine(SiguienteEscena("06_EscenaLaberinto", t_sig_escena));
+        if (confirmacion)
+        {
+            estado_juego.incrementarFallos(1);
+            Finalizar();
+            StartCoroutine(SiguienteEscena("06_EscenaLaberinto", t_sig_escena,false));
+        }
         /*else
             Conejo pregunta si esta seguro de salir del pueblo
         */
@@ -133,10 +139,11 @@ public class EscenaPuebloController : MonoBehaviour {
         go.GetComponent<Animator>().Play(animacion);
     }
 
-    public IEnumerator SiguienteEscena(string escena, float seconds)
+    public IEnumerator SiguienteEscena(string escena, float seconds,bool acierto)
     {
         yield return new WaitForSeconds(seconds);
-        SceneManager.LoadScene(escena);
+        //SceneManager.LoadScene(escena);
+        animacion_trofeo.IniciarAnimacion(acierto, 1, escena);
     }
 
 }

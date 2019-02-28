@@ -7,11 +7,13 @@ public class EscenaLaberintoController  : MonoBehaviour {
 
     public GameObject personaje;
     public GameObject emoticono_pequeño;
+    public AnimacionTrofeoLaberinto animacion_trofeo;
     //public GameObject pelota_movimiento;
 
     public int dificultad;
     private int n_cruces;
     private int cruce_i = 0, cruce_actual;
+    private int[] cruce_actual_emociones = new int[3];
     private List<int> cruces;
 
     private int n_pasillos = 3;
@@ -55,6 +57,7 @@ public class EscenaLaberintoController  : MonoBehaviour {
     private void Awake()
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+        animacion_trofeo = GameObject.Find("AnimacionTrofeoLaberinto").GetComponent<AnimacionTrofeoLaberinto>();
     }
 
     // Use this for initialization
@@ -106,6 +109,7 @@ public class EscenaLaberintoController  : MonoBehaviour {
         {
             r = Random.Range(0, orden.Count);
             pasillos[j].mostrarCrucePasillo(texturas[orden[r]].obtenerTextura(dificultad));
+            cruce_actual_emociones[j] = orden[r];
             if (soluciones[dificultad][cruce_actual] == orden[r])
                 solucion_actual = j;
             //print(soluciones[dificultad][cruce_actual] + " " + orden[r] + " " + r + " " + orden.Count);
@@ -119,9 +123,10 @@ public class EscenaLaberintoController  : MonoBehaviour {
             pasillos[j].mostrarCrucePasillo(texturas[j].obtenerTextura(dificultad,i));*/
     }
 
-    void siguienteCruce()
+    public void siguienteCruce()
     {
         //print(cruces.Count);
+        pasillos[1].GetComponent<BoxCollider>().enabled = true;
         int r = Random.Range(0, cruces.Count);//print(r+" "+cruces.Count);
         cruce_actual = cruces[r];
         //print("Cruce_i:" + cruce_i + " cruce_actual:" + cruce_actual + " n_cruces:" + n_cruces);
@@ -132,22 +137,36 @@ public class EscenaLaberintoController  : MonoBehaviour {
 
     public void corregirCruce(int idPasillo)
     {
+        bool acierto; int emocion =-1, emocion1 =-1, emocion2 = -1;
         if (solucion_actual == idPasillo) {//(soluciones[dificultad][cruce_actual] == idPasillo){
-            print("Cruce " + cruce_actual + ": CORRECTO!!");
+            acierto = true;
+            emocion = cruce_actual_emociones[solucion_actual];
+            print("Cruce " + cruce_actual + ": CORRECTO!! "+emocion);
+            estado_juego.incrementarAciertosLaberinto(cruce_actual_emociones[solucion_actual]);
         }else{
+            acierto = false;
+            emocion1 = cruce_actual_emociones[solucion_actual];
+            emocion2 = cruce_actual_emociones[idPasillo];
             print("Cruce " + cruce_actual + ": HAS FALLADO :(");
+            estado_juego.incrementarFallosLaberinto(cruce_actual_emociones[solucion_actual]);
+            estado_juego.incrementarFallosLaberinto(cruce_actual_emociones[idPasillo]);
+            estado_juego.datos.total_laberinto[cruce_actual_emociones[solucion_actual]]++;
         }
+        pasillos[1].GetComponent<BoxCollider>().enabled = false;
         if (cruce_i < n_cruces){
-            siguienteCruce();
+            StartCoroutine(SiguienteEscena("-", t_sig_escena, acierto, emocion, emocion1, emocion2));
+            //siguienteCruce();
         }else
         {
-            StartCoroutine(SiguienteEscena("07_EscenaCastillo", t_sig_escena));
+            Finalizar();
+            StartCoroutine(SiguienteEscena("07_EscenaCastillo", t_sig_escena,acierto, emocion, emocion1, emocion2));
         }
     }
 
-    public IEnumerator SiguienteEscena(string escena, float seconds)
+    public IEnumerator SiguienteEscena(string escena, float seconds,bool acierto, int emocion, int emocion1, int emocion2)
     {
         yield return new WaitForSeconds(seconds);
-        SceneManager.LoadScene(escena);
+        //SceneManager.LoadScene(escena);
+        animacion_trofeo.IniciarAnimacion(acierto,emocion, emocion1, emocion2, escena);
     }
 }

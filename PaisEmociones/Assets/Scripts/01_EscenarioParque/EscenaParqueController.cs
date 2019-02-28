@@ -44,12 +44,12 @@ public class EscenaParqueController  : MonoBehaviour {
     void Start () {
 
         sol.GetComponent<Animator>().Play("SolAnimation");
-        print(escena_anterior);
+        //print(escena_anterior);
         //if (escena_anterior.Equals("Inicio"))
         if(string.IsNullOrEmpty(estado_juego.datos.ultima_escena))
         {
             escena_anterior = "Patio";
-            print("BREAK 1 "+ escena_anterior);
+            //print("BREAK 1 "+ escena_anterior);
             StartCoroutine(patear(td + t_transicion));
         }
         else

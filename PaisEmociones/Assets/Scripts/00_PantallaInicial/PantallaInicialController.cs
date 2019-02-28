@@ -20,12 +20,12 @@ public class PantallaInicialController  : MonoBehaviour {
     // Use this for initialization
     void Start () {
         estado_juego.cargar();
-        print("Ultima escena: " + estado_juego.datos.ultima_escena);
+        //print("Ultima escena: " + estado_juego.datos.ultima_escena);
         //estado_juego.reset();
         //estado_juego.datos.dificultad = 1;
         estado_juego.guardar();
-        if (!string.IsNullOrEmpty(estado_juego.datos.ultima_escena))
-            SceneManager.LoadScene(estado_juego.datos.ultima_escena);
+        /*if (!string.IsNullOrEmpty(estado_juego.datos.ultima_escena))
+            SceneManager.LoadScene(estado_juego.datos.ultima_escena);*/
     }
 	
 	// Update is called once per frame
@@ -36,7 +36,10 @@ public class PantallaInicialController  : MonoBehaviour {
     void Inicio()
     {
         boton_inicio.GetComponent<Animator>().Play("BotonInicioPulsado");
-        StartCoroutine(SiguienteEscena("01_EscenaParque", 1+t_sig_escena));
+        if (string.IsNullOrEmpty(estado_juego.datos.ultima_escena))
+            StartCoroutine(SiguienteEscena("01_EscenaParque", 1+t_sig_escena));
+        else
+            StartCoroutine(SiguienteEscena(estado_juego.datos.ultima_escena, 1 + t_sig_escena));
     }
 
     public IEnumerator SiguienteEscena(string escena, float seconds)

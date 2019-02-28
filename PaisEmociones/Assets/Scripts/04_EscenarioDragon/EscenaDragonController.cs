@@ -13,13 +13,14 @@ public class EscenaDragonController : MonoBehaviour
     public GameObject astilla;
     public GameObject conejo;
     public GameObject emoticono;
+    public AnimacionTrofeo animacion_trofeo;
 
     private const float t_sig_escena = 2f;
 
     private const float t_pers_dr_as = 4.6f;
-    private const float t_pers_fin_as = 2.6f;
+    private const float t_pers_fin_as = 3.6f;
     private const float t_pers_dr_esp = 4.5f;
-    private const float t_pers_fin_esp = 12.6f;
+    private const float t_pers_fin_esp = 11.6f;
 
     private EstadoJuego estado_juego;
 
@@ -31,7 +32,7 @@ public class EscenaDragonController : MonoBehaviour
         //estado_juego.reset();
     }
 
-    private void Finalizar()
+    private void Finalizar(bool acierto)
     {
         estado_juego.guardar();
     }
@@ -39,6 +40,7 @@ public class EscenaDragonController : MonoBehaviour
     private void Awake()
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+        animacion_trofeo = GameObject.Find("AnimacionTrofeo").GetComponent<AnimacionTrofeo>();
     }
 
     // Use this for initialization
@@ -82,10 +84,11 @@ public class EscenaDragonController : MonoBehaviour
 
     }
 
-    IEnumerator SiguienteEscena(string escena, float seconds)
+    IEnumerator SiguienteEscena(string escena, float seconds,bool acierto)
     {
         yield return new WaitForSeconds(seconds);
-        SceneManager.LoadScene(escena);
+        animacion_trofeo.IniciarAnimacion(acierto, 2,escena);
+        //SceneManager.LoadScene(escena);
     }
 
     IEnumerator esperarPersonajeAstilla(float seconds)
@@ -97,8 +100,8 @@ public class EscenaDragonController : MonoBehaviour
         dragon.SendMessage("cambiarEstado", "DragonFelizAnimation");
         //estado_juego.datos.aciertos[estado_juego.datos.dificultad][2]++;
         estado_juego.incrementarAciertos(2);
-        Finalizar();
-        StartCoroutine(SiguienteEscena("05_EscenaPueblo", t_pers_fin_as + t_sig_escena/*7f*/));
+        Finalizar(true);
+        StartCoroutine(SiguienteEscena("05_EscenaPueblo", t_pers_fin_as + t_sig_escena/*7f*/,true));
     }
 
     public void AnimacionEspada()
@@ -120,7 +123,7 @@ public class EscenaDragonController : MonoBehaviour
         estado_juego.datos.fallos[estado_juego.datos.dificultad][2]++;
         print("fallos: " + estado_juego.datos.fallos[estado_juego.datos.dificultad][2]);*/
         estado_juego.incrementarFallos(2);
-        Finalizar();
-        StartCoroutine(SiguienteEscena("05_EscenaPueblo", t_pers_fin_esp + t_sig_escena/*7f*/));
+        Finalizar(false);
+        StartCoroutine(SiguienteEscena("05_EscenaPueblo", t_pers_fin_esp + t_sig_escena/*7f*/,false));
     }
 }
