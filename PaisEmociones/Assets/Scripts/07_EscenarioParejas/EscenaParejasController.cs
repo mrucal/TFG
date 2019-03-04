@@ -49,7 +49,7 @@ public class EscenaParejasController : MonoBehaviour {
     private void Iniciar()
     {
         estado_juego.cargar();
-        estado_juego.datos.ultima_escena = "08_EscenaParejas";
+        estado_juego.datos.ultima_escena = "07_EscenaParejas";
         estado_juego.guardar();
         //estado_juego.reset();
     }
@@ -226,7 +226,7 @@ public class EscenaParejasController : MonoBehaviour {
         if(n_juegos > 0)
             asignarParejas();
         else
-            StartCoroutine(SiguienteEscena("07_EscenaCastillo", t_sig_escena - 1f));
+            StartCoroutine(SiguienteEscena("06_EscenaCastillo", t_sig_escena - 1f));
     }
 
     public IEnumerator SiguienteEscena(string escena, float seconds)

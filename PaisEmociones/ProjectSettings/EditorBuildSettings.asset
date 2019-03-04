@@ -29,13 +29,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/05_EscenaPueblo.unity
     guid: 81e0fe44f059915459d71016ec5ab3db
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/06_EscenaLaberinto.unity
     guid: 379d979f954d0e249bec8df9c626d64e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/07_EscenaCastillo.unity
     guid: 1ca0882b5d427294e97c7e2b27ba515e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/08_EscenaParejas.unity
     guid: daf752927aa769b45b54ad1f746542bd
   - enabled: 1

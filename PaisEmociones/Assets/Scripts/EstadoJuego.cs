@@ -85,7 +85,7 @@ public class EstadoJuego : MonoBehaviour
     public void incrementarFallosLaberinto(int emocion)
     {
         datos.fallos_laberinto[(datos.dificultad * 3) + emocion]++;
-        datos.fallos_general++;
+        //datos.fallos_general++;
     }
 }
 

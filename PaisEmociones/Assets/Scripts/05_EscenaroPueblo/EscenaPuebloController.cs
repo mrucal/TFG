@@ -105,7 +105,7 @@ public class EscenaPuebloController : MonoBehaviour {
 
             estado_juego.incrementarAciertos(1);
             Finalizar();
-            StartCoroutine(SiguienteEscena("06_EscenaLaberinto", t_niño_feliz + t_emoticono+t_sig_escena,true));
+            StartCoroutine(SiguienteEscena(/*"06_EscenaLaberinto"*/"06_EscenaCastillo", t_niño_feliz + t_emoticono+t_sig_escena,true));
             encontrado = true;
         }
     }
@@ -125,7 +125,7 @@ public class EscenaPuebloController : MonoBehaviour {
         {
             estado_juego.incrementarFallos(1);
             Finalizar();
-            StartCoroutine(SiguienteEscena("06_EscenaLaberinto", t_sig_escena,false));
+            StartCoroutine(SiguienteEscena(/*"06_EscenaLaberinto"*/"06_EscenaCastillo", t_sig_escena,false));
         }
         /*else
             Conejo pregunta si esta seguro de salir del pueblo

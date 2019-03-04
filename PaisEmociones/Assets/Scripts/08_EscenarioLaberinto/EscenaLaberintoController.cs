@@ -44,7 +44,7 @@ public class EscenaLaberintoController  : MonoBehaviour {
     private void Iniciar()
     {
         estado_juego.cargar();
-        estado_juego.datos.ultima_escena = "06_EscenaLaberinto";
+        estado_juego.datos.ultima_escena = "08_EscenaLaberinto";
         estado_juego.guardar();
         //estado_juego.reset();
     }
@@ -150,16 +150,17 @@ public class EscenaLaberintoController  : MonoBehaviour {
             print("Cruce " + cruce_actual + ": HAS FALLADO :(");
             estado_juego.incrementarFallosLaberinto(cruce_actual_emociones[solucion_actual]);
             estado_juego.incrementarFallosLaberinto(cruce_actual_emociones[idPasillo]);
+            estado_juego.datos.fallos_general++;
             estado_juego.datos.total_laberinto[cruce_actual_emociones[solucion_actual]]++;
         }
         pasillos[1].GetComponent<BoxCollider>().enabled = false;
         if (cruce_i < n_cruces){
-            StartCoroutine(SiguienteEscena("-", t_sig_escena, acierto, emocion, emocion1, emocion2));
+            StartCoroutine(SiguienteEscena("-", 1f, acierto, emocion, emocion1, emocion2));
             //siguienteCruce();
         }else
         {
             Finalizar();
-            StartCoroutine(SiguienteEscena("07_EscenaCastillo", t_sig_escena,acierto, emocion, emocion1, emocion2));
+            StartCoroutine(SiguienteEscena(/*"07_EscenaCastillo"*/"09_EscenaMago", t_sig_escena,acierto, emocion, emocion1, emocion2));
         }
     }
 

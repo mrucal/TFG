@@ -24,7 +24,7 @@ public class EscenaCastilloController  : MonoBehaviour {
     private void Iniciar()
     {
         estado_juego.cargar();
-        estado_juego.datos.ultima_escena = "07_EscenaCastillo";
+        estado_juego.datos.ultima_escena = "06_EscenaCastillo";
         estado_juego.guardar();
         //estado_juego.reset();
     }
@@ -52,13 +52,13 @@ public class EscenaCastilloController  : MonoBehaviour {
             interruptor.GetComponent<Animator>().Play("PantallaParpadea");
         }else
         {
-            estado_juego.datos.ultima_escena = "09_EscenaMago";
+            estado_juego.datos.ultima_escena = /*"09_EscenaMago"*/"08_EscenaLaberinto";
             print("BREAK ultima escena: " + estado_juego.datos.ultima_escena);
             interruptor.GetComponent<Animator>().Play("PantallaCorrecta");
             personaje.GetComponent<Animator>().Play("PersonajeEntraCastillo");
             this.GetComponent<Animator>().Play("AbrirCastillo");
             Finalizar();
-            StartCoroutine(SiguienteEscena("09_EscenaMago", t_entrada + t_sig_escena));
+            StartCoroutine(SiguienteEscena(/*"09_EscenaMago"*/"08_EscenaLaberinto", t_entrada + t_sig_escena));
             escena_anterior = "laberinto";
         }
     }
@@ -77,7 +77,7 @@ public class EscenaCastilloController  : MonoBehaviour {
     {
         if (enabled_interruptor)
         {
-            StartCoroutine(SiguienteEscena("08_EscenaParejas", t_sig_escena));
+            StartCoroutine(SiguienteEscena("07_EscenaParejas", t_sig_escena));
             escena_anterior = "parejas";
         }
     }
