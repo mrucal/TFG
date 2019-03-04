@@ -8,7 +8,9 @@ public class EscenaParejasController : MonoBehaviour {
     //public GameObject personaje;
     //public GameObject pelota_movimiento;
 
-    private const float t_sig_escena = 2f;
+    public AnimacionTrofeo animacion_trofeo;
+
+    private const float t_sig_escena = 1f;
 
     private const float td = 0f;
 
@@ -16,7 +18,8 @@ public class EscenaParejasController : MonoBehaviour {
 
     public int dificultad;
 
-    private int n_juegos = 3;
+    private int n_juegos = 1;
+    private int total_juegos = 3;
 
     private float[] col_dif = {3.0f, 4.0f, 4.0f };
     private float[] fil_dif = {2.0f,2.0f,3.0f};
@@ -62,6 +65,7 @@ public class EscenaParejasController : MonoBehaviour {
     private void Awake()
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+        animacion_trofeo = GameObject.Find("AnimacionTrofeo").GetComponent<AnimacionTrofeo>();
     }
 
     // Use this for initialization
@@ -69,7 +73,7 @@ public class EscenaParejasController : MonoBehaviour {
     {
         Iniciar();
         dificultad = estado_juego.datos.dificultad;
-        n_juegos = 3;
+        n_juegos = 1;
         parejas = new Texture2D[3][][];
         for (int i = 0; i < 3; i++)
             parejas[i] = new Texture2D[2][];
@@ -125,6 +129,9 @@ public class EscenaParejasController : MonoBehaviour {
 
     private void asignarParejas()
     {
+        for (int i = 0; i < casillas.Count; i++)
+            casillas[i].GetComponent<BoxCollider>().enabled = true;
+
         n_parejas = casillas.Count / 2; // Número de parejas que tendrá el tablero
         int posibles_parejas = parejas[dificultad][0].Length; // Número total de sprites para las parejas
 
@@ -222,17 +229,24 @@ public class EscenaParejasController : MonoBehaviour {
     public void ganar()
     {
         print("HAS GANADO!!!!");
-        n_juegos--;
-        if(n_juegos > 0)
-            asignarParejas();
+        if (n_juegos < total_juegos )
+        {
+            for (int i = 0; i <casillas.Count;i++)
+                casillas[i].GetComponent<BoxCollider>().enabled = false;
+            StartCoroutine(SiguienteEscena("-", t_sig_escena, n_juegos-1));
+            //asignarParejas();
+        }
         else
-            StartCoroutine(SiguienteEscena("06_EscenaCastillo", t_sig_escena - 1f));
+            StartCoroutine(SiguienteEscena("06_EscenaCastillo", t_sig_escena, n_juegos-1));
+
+        n_juegos++;
     }
 
-    public IEnumerator SiguienteEscena(string escena, float seconds)
+    public IEnumerator SiguienteEscena(string escena, float seconds, int emocion)
     {
         yield return new WaitForSeconds(seconds);
-        SceneManager.LoadScene(escena);
+        //SceneManager.LoadScene(escena);
+        animacion_trofeo.IniciarAnimacion(true, emocion, escena);
     }
 
 }

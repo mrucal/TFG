@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class AnimacionTrofeo : MonoBehaviour {
 
-   // public static AnimacionTrofeo at;
+    // public static AnimacionTrofeo at;
+
+    public GameObject controller;
+    public string funcion;
 
     private bool activado;
     private Canvas canvas;
@@ -45,7 +48,7 @@ public class AnimacionTrofeo : MonoBehaviour {
         canvas.enabled = true;
         Invoke("MostrarFondo",0.5f); 
     }
-
+    
     private void MostrarFondo()
     {
         fondo.SetActive(true);
@@ -69,10 +72,15 @@ public class AnimacionTrofeo : MonoBehaviour {
 
     private void CargarEscena()
     {
-        canvas.enabled = false;
-        fondo.SetActive(false);
-        mago.SetActive(false);
-        trofeo.SetActive(false);
-        SceneManager.LoadScene(siguiente_escena);
+        if (!siguiente_escena.Equals("-"))
+            SceneManager.LoadScene(siguiente_escena);
+        else
+        {
+            canvas.enabled = false;
+            fondo.SetActive(false);
+            mago.SetActive(false);
+            trofeo.SetActive(false);
+            controller.SendMessage(funcion);
+        }
     }
 }

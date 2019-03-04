@@ -111,16 +111,19 @@ public class AnimacionTrofeoLaberinto : MonoBehaviour {
 
     private void CargarEscena()
     {
-        canvas.enabled = false;
-        fondo.SetActive(false);
-        mago.SetActive(false);
-        trofeo.SetActive(false);
-        trofeo1.SetActive(false);
-        trofeo2.SetActive(false);
+        
         activado = true;
         if (!siguiente_escena.Equals("-"))
             SceneManager.LoadScene(siguiente_escena);
         else
+        {
+            canvas.enabled = false;
+            fondo.SetActive(false);
+            mago.SetActive(false);
+            trofeo.SetActive(false);
+            trofeo1.SetActive(false);
+            trofeo2.SetActive(false);
             elc.siguienteCruce();
+        }
     }
 }

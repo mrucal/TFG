@@ -5,12 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/00_PantallaInicial.unity
     guid: 518b4d8b66f97da45b7943bca1584c7e
@@ -29,15 +23,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/05_EscenaPueblo.unity
     guid: 81e0fe44f059915459d71016ec5ab3db
-  - enabled: 0
-    path: Assets/Scenes/06_EscenaLaberinto.unity
-    guid: 379d979f954d0e249bec8df9c626d64e
-  - enabled: 0
-    path: Assets/Scenes/07_EscenaCastillo.unity
-    guid: 1ca0882b5d427294e97c7e2b27ba515e
-  - enabled: 0
-    path: Assets/Scenes/08_EscenaParejas.unity
-    guid: daf752927aa769b45b54ad1f746542bd
+  - enabled: 1
+    path: Assets/Scenes/06_EscenaCastillo.unity
+    guid: 0bd9030ec1e2c584ab587a7c5d580d71
+  - enabled: 1
+    path: Assets/Scenes/07_EscenaParejas.unity
+    guid: c769e065be5ad3c4183364d96c551bf3
+  - enabled: 1
+    path: Assets/Scenes/08_EscenaLaberinto.unity
+    guid: ff9711105169e214eaf33edd8cc13642
   - enabled: 1
     path: Assets/Scenes/09_EscenaMago.unity
     guid: 6dd6ce282e4cd03479aa75d7e76a291e

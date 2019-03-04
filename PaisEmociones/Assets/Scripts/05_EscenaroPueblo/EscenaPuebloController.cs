@@ -143,6 +143,11 @@ public class EscenaPuebloController : MonoBehaviour {
     {
         yield return new WaitForSeconds(seconds);
         //SceneManager.LoadScene(escena);
+        coche.GetComponent<BoxCollider>().enabled = false;
+        fuente.GetComponent<CapsuleCollider>().enabled = false;
+        farola.GetComponent<BoxCollider>().enabled = false;
+        pelota.GetComponent<BoxCollider>().enabled = false;
+        
         animacion_trofeo.IniciarAnimacion(acierto, 1, escena);
     }
 
