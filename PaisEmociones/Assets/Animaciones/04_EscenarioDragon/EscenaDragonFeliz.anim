@@ -19,9 +19,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 2800000, guid: 96ca2fa5249996746b8c7c707a7388d6, type: 3}
+      value: {fileID: 2800000, guid: 95f562a4df13d96488c064864f2a5510, type: 3}
     - time: 1
-      value: {fileID: 2800000, guid: 96ca2fa5249996746b8c7c707a7388d6, type: 3}
+      value: {fileID: 2800000, guid: 95f562a4df13d96488c064864f2a5510, type: 3}
     attribute: m_Texture
     path: Fondo
     classID: 114
@@ -41,8 +41,8 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 2800000, guid: 96ca2fa5249996746b8c7c707a7388d6, type: 3}
-    - {fileID: 2800000, guid: 96ca2fa5249996746b8c7c707a7388d6, type: 3}
+    - {fileID: 2800000, guid: 95f562a4df13d96488c064864f2a5510, type: 3}
+    - {fileID: 2800000, guid: 95f562a4df13d96488c064864f2a5510, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

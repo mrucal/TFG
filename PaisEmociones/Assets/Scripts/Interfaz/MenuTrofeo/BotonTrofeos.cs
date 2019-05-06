@@ -19,13 +19,13 @@ public class BotonTrofeos : MonoBehaviour {
 
     private void Awake()
     {
-        /*if (bt == null)
+        if (bt == null)
         {
             bt = this;            
             DontDestroyOnLoad(gameObject);
         }
         else if (bt != this)
-            Destroy(gameObject);*/
+            Destroy(gameObject);
         SceneManager.sceneLoaded += this.OnLoadCallback;
         switch_controller = GameObject.Find("SwitchController").GetComponent<SwitchController>();
     }

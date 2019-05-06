@@ -37,7 +37,7 @@ public class EscenaParqueController  : MonoBehaviour {
     private void Awake()
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
-        //estado_juego.reset();
+        estado_juego.reset();
     }
 
     // Use this for initialization
