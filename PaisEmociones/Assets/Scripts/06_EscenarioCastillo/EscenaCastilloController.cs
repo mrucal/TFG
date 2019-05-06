@@ -77,6 +77,7 @@ public class EscenaCastilloController  : MonoBehaviour {
     {
         if (enabled_interruptor)
         {
+            interruptor.GetComponents<AudioSource>()[0].Play();
             StartCoroutine(SiguienteEscena("07_EscenaParejas", t_sig_escena));
             escena_anterior = "parejas";
         }

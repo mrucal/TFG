@@ -52,6 +52,7 @@ public class EscenaPatioController  : MonoBehaviour {
 
     void EnablePortal()
     {
+        portal.GetComponents<AudioSource>()[0].Play();
         portal.transform.position = new Vector3(portal.transform.position.x, portal.transform.position.y, -1.5f);
         enabled_portal = true;
     }

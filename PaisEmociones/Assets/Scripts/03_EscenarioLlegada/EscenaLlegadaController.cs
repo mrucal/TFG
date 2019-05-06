@@ -39,6 +39,9 @@ public class EscenaLlegadaController : MonoBehaviour {
     {
         Iniciar();
         sol.GetComponent<Animator>().Play("SolNubeAnimation");
+        for (int i = 0; i < 3; i++)
+            estado_juego.ganarTrofeo(i);
+
         //StartCoroutine(PersonajeFeliz(t_animacion_inicial+td));
     }
 	
@@ -59,6 +62,7 @@ public class EscenaLlegadaController : MonoBehaviour {
     public IEnumerator SiguienteEscena(string escena, float seconds)
     {
         yield return new WaitForSeconds(seconds);
+        Finalizar();
         SceneManager.LoadScene(escena);
     }
     

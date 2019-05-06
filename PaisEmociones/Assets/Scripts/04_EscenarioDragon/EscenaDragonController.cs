@@ -14,6 +14,7 @@ public class EscenaDragonController : MonoBehaviour
     public GameObject conejo;
     public GameObject emoticono;
     public AnimacionTrofeo animacion_trofeo;
+    public SwitchController switch_controller;
 
     private const float t_sig_escena = 2f;
 
@@ -41,6 +42,7 @@ public class EscenaDragonController : MonoBehaviour
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
         animacion_trofeo = GameObject.Find("AnimacionTrofeo").GetComponent<AnimacionTrofeo>();
+        estado_juego.asignarMenuTrofeo(GameObject.Find("MenuTrofeos").GetComponent<MenuTrofeo>());
     }
 
     // Use this for initialization
@@ -75,6 +77,7 @@ public class EscenaDragonController : MonoBehaviour
     {
         //Destroy(astilla);
         //Destroy(espada);
+        switch_controller.desactivar_objetos(new int[] { 2 });
         conejo.GetComponent<Animator>().Play("ConejoAndandoAnimation");
         personaje.GetComponent<Animator>().Play("PersonajeAndandoAstilla");
         espada.GetComponent<Animator>().Play("EspadaQuietaAnimation");
@@ -94,6 +97,7 @@ public class EscenaDragonController : MonoBehaviour
     IEnumerator esperarPersonajeAstilla(float seconds)
     {
         yield return new WaitForSeconds(seconds);
+        GetComponent<AudioSource>().Play();
         Destroy(astilla);
         emoticono.GetComponent<Animator>().Play("AlegriaAnimation");
         cambiarEstado("EscenaDragonFeliz");
@@ -106,6 +110,7 @@ public class EscenaDragonController : MonoBehaviour
 
     public void AnimacionEspada()
     {
+        switch_controller.desactivar_objetos(new int[] {1});
         Destroy(espada);
         //dragon.SendMessage("cambiarEstado", "DragonEnfadoMaximoAnimation");
         personaje.GetComponent<Animator>().Play("PersonajeAndandoEspada");

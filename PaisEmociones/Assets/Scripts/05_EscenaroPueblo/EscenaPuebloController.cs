@@ -14,6 +14,7 @@ public class EscenaPuebloController : MonoBehaviour {
     public GameObject pelota;
     public GameObject perro;
     public AnimacionTrofeo animacion_trofeo;
+    public SwitchController switch_controller;
 
     public GameObject emoticono;
     public GameObject sol;
@@ -94,6 +95,8 @@ public class EscenaPuebloController : MonoBehaviour {
     {
         if (!encontrado)
         {
+            switch_controller.desactivar_objetos_menos(0);
+            perro.GetComponents<AudioSource>()[0].Play();
             perro.GetComponent<Animator>().Play("PerroEncontradoAnimation");
             StartCoroutine(esperarAnimacion(t_niño_feliz, niño, "NiñoFelizAnimation"));
             StartCoroutine(esperarAnimacion(t_niño_feliz + t_emoticono, emoticono, "AlegriaAnimation"));
@@ -121,6 +124,7 @@ public class EscenaPuebloController : MonoBehaviour {
 
     void SalirPueblo()
     {
+        perro.GetComponents<AudioSource>()[0].Play();
         if (confirmacion)
         {
             estado_juego.incrementarFallos(1);

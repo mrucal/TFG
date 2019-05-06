@@ -36,10 +36,11 @@ public class PantallaInicialController  : MonoBehaviour {
     void Inicio()
     {
         boton_inicio.GetComponent<Animator>().Play("BotonInicioPulsado");
+        boton_inicio.GetComponent<AudioSource>().Play();
         if (string.IsNullOrEmpty(estado_juego.datos.ultima_escena))
-            StartCoroutine(SiguienteEscena("01_EscenaParque", 1+t_sig_escena));
+            StartCoroutine(SiguienteEscena("01_EscenaParque", /*1+t_sig_escena*/boton_inicio.GetComponent<AudioSource>().clip.length + 1));
         else
-            StartCoroutine(SiguienteEscena(estado_juego.datos.ultima_escena, 1 + t_sig_escena));
+            StartCoroutine(SiguienteEscena(estado_juego.datos.ultima_escena,/* 1 + t_sig_escena*/boton_inicio.GetComponent<AudioSource>().clip.length + 1));
     }
 
     public IEnumerator SiguienteEscena(string escena, float seconds)

@@ -7,6 +7,7 @@ public class AnimacionTrofeoLaberinto : MonoBehaviour {
 
     // public static AnimacionTrofeo at;
     public EscenaLaberintoController elc;
+    public SwitchController switch_controller;
     private bool activado;
     private Canvas canvas;
     public GameObject fondo;
@@ -32,6 +33,7 @@ public class AnimacionTrofeoLaberinto : MonoBehaviour {
 
     public void IniciarAnimacion(bool acierto,int emocion, int emocion1, int emocion2, string siguiente_escena)
     {
+        switch_controller.desactivar_objetos();
         this.acierto = acierto;
         if (acierto)
         {
@@ -52,6 +54,7 @@ public class AnimacionTrofeoLaberinto : MonoBehaviour {
 
     public void IniciarAnimacion(int emocion1, int emocion2, string siguiente_escena)
     {
+        switch_controller.desactivar_objetos();
         Time.timeScale = 0;
         this.acierto = false;
         this.emocion1 = emocion1;
@@ -77,6 +80,14 @@ public class AnimacionTrofeoLaberinto : MonoBehaviour {
     {
         fondo.SetActive(true);
         fondo.GetComponent<Animator>().Play("Fondo" + (!acierto ? 1 : 0));
+        if (acierto)
+        {
+            GetComponents<AudioSource>()[0].Play();
+        }
+        else
+        {
+            GetComponents<AudioSource>()[2].Play();
+        }
         mago.SetActive(true);
         mago.GetComponent<Animator>().Play("ApareceMago" + (!acierto ? 1 : 0));
         Invoke("MostrarMenu", 1f);
@@ -104,7 +115,9 @@ public class AnimacionTrofeoLaberinto : MonoBehaviour {
         if (activado)
         {
             activado = false;
-            print("BREAK SIGUIENTE");
+            //print("BREAK SIGUIENTE");
+            GetComponents<AudioSource>()[4].Play();
+            switch_controller.activar_objetos();
             Invoke("CargarEscena", 2f);
         }
     }

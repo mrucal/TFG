@@ -26,6 +26,7 @@ public class Pasillo  : MonoBehaviour {
     {
         if (elc.isClicksActivos())
         {
+            elc.GetComponents<AudioSource>()[0].Play();
             elc.corregirCruce(idPasillo);
         }
     }

@@ -20,14 +20,13 @@ public class EscenaParqueController  : MonoBehaviour {
     private const float t_patada = 0.65f;
     private const float t_pelota = 2f;
 
-    private static string escena_anterior = "Inicio";
+    //private static string escena_anterior = "Inicio";
 
     private void Iniciar()
     {        
         estado_juego.cargar();
         estado_juego.datos.ultima_escena = "01_EscenaParque";
         estado_juego.guardar();
-        //estado_juego.reset();
     }
 
     private void Finalizar()
@@ -38,6 +37,7 @@ public class EscenaParqueController  : MonoBehaviour {
     private void Awake()
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+        //estado_juego.reset();
     }
 
     // Use this for initialization
@@ -48,7 +48,7 @@ public class EscenaParqueController  : MonoBehaviour {
         //if (escena_anterior.Equals("Inicio"))
         if(string.IsNullOrEmpty(estado_juego.datos.ultima_escena))
         {
-            escena_anterior = "Patio";
+            //escena_anterior = "Patio";
             //print("BREAK 1 "+ escena_anterior);
             StartCoroutine(patear(td + t_transicion));
         }
@@ -59,7 +59,7 @@ public class EscenaParqueController  : MonoBehaviour {
             pelota.GetComponent<Animator>().Play("PelotaNoVisible");
             personaje.GetComponent<Animator>().Play("PersonajeNoVisible");
             //print("BREAK 3 " + pelota.transform.position);
-            escena_anterior = "Inicio";
+            //escena_anterior = "Inicio";
         }
         Iniciar();
     }
@@ -77,6 +77,7 @@ public class EscenaParqueController  : MonoBehaviour {
     void PortalVisible()
     {
         print("BREAK PORTAL");
+        portal.GetComponent<AudioSource>().Play();
         portal.GetComponent<Animator>().Play("PortalApareceRaiz");
     }
 

@@ -7,6 +7,8 @@ public class EstadoJuego : MonoBehaviour
     public static EstadoJuego ej;
     public Datos datos;
 
+    private MenuTrofeo mt = null;
+
     private void Awake()
     {
         if (ej == null)
@@ -39,7 +41,8 @@ public class EstadoJuego : MonoBehaviour
             datos = JsonUtility.FromJson<Datos>(estadojson);
             /*datos.aciertosd = datos.aciertos[datos.dificultad];
             datos.fallosd = datos.fallos[datos.dificultad];*/
-
+            if (mt != null)
+                mt.Actualizar();
         }
     }
 
@@ -53,6 +56,26 @@ public class EstadoJuego : MonoBehaviour
         guardar();
     }
 
+    public void asignarMenuTrofeo(MenuTrofeo mt)
+    {
+        this.mt = mt;
+    }
+
+    public void ganarTrofeo(int emocion)
+    {
+        datos.trofeos[(datos.dificultad * 3) + emocion]++;
+        if (mt != null)
+            mt.Actualizar();
+    }
+
+    public void perderTrofeo(int emocion)
+    {
+        if(datos.trofeos[(datos.dificultad * 3) + emocion]>0)
+            datos.trofeos[(datos.dificultad * 3) + emocion]--;
+        if (mt != null)
+            mt.Actualizar();
+    }
+
     public int getAciertos(int emocion)
     {
         return datos.aciertos[(datos.dificultad *3)+emocion];
@@ -61,6 +84,7 @@ public class EstadoJuego : MonoBehaviour
     public void incrementarAciertos(int emocion)
     {
         datos.aciertos[(datos.dificultad * 3) + emocion]++;
+        ganarTrofeo(emocion);
         datos.aciertos_general++;
     }
 
@@ -72,12 +96,14 @@ public class EstadoJuego : MonoBehaviour
     public void incrementarFallos(int emocion)
     {
         datos.fallos[(datos.dificultad * 3) + emocion]++;
+        perderTrofeo(emocion);
         datos.fallos_general++;
     }
 
     public void incrementarAciertosLaberinto(int emocion)
     {
         datos.aciertos_laberinto[(datos.dificultad * 3) + emocion]++;
+        ganarTrofeo(emocion);
         datos.aciertos_general++;
         datos.total_laberinto[emocion]++;
     }
@@ -85,6 +111,7 @@ public class EstadoJuego : MonoBehaviour
     public void incrementarFallosLaberinto(int emocion)
     {
         datos.fallos_laberinto[(datos.dificultad * 3) + emocion]++;
+        perderTrofeo(emocion);
         //datos.fallos_general++;
     }
 }
@@ -95,6 +122,8 @@ public class Datos
     public int dificultad = 2;
 
     public string ultima_escena;
+
+    public int[] trofeos = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
     public int[] total_general = { 0, 1, 1 };
 
@@ -108,7 +137,7 @@ public class Datos
     public int[] aciertos_laberinto = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     public int[] fallos_laberinto = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-
+    public int[] total_parejas = { 0, 0, 0 };
     /*public int[][] aciertos = new int[][] { new int[] { 0, 0, 0 }, new int[] { 0, 0, 0 }, new int[] { 0, 0, 0 } };
     public int[][] fallos = new int[][] { new int[] { 0, 0, 0 }, new int[] { 0, 0, 0 }, new int[] { 0, 0, 0 } };*/
 

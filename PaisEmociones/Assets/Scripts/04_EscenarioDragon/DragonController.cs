@@ -6,12 +6,19 @@ public class DragonController : MonoBehaviour {
 
     private Animator animator;
 
-	void Start () {
+    /*private AudioSource[] sonidos;
+    private AudioSource gruñidoSonido;
+    private AudioSource fuegoSonido;
+
+    private void Awake()
+    {
+        sonidos = gameObject.GetComponents<AudioSource>();
+        gruñidoSonido = sonidos[0];
+        fuegoSonido = sonidos[1];
+    }*/
+
+    void Start () {
         animator = GetComponent<Animator>();	
-	}
-	
-	void Update () {
-		
 	}
 
     public void cambiarEstado(string estado = null)
@@ -19,4 +26,14 @@ public class DragonController : MonoBehaviour {
         if (estado != null)
             animator.Play(estado);
     }
+    /*
+    public void PlayGruñidoSonido()
+    {
+        gruñidoSonido.Play();
+    }
+
+    public void PlayFuegoSonido()
+    {
+        fuegoSonido.Play();
+    }*/
 }

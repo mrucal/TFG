@@ -28,7 +28,7 @@ public class EspadasController : MonoBehaviour
                 if (hit.transform.name == "Espada" && !click)
                 {
                     click = true;
-                    print("Clcik en espada!!");
+                    //print("Clcik en espada!!");
                     StartCoroutine(resetClick());
                     escena.SendMessage("AnimacionEspada");
                     /*escena.SendMessage("cambiarEstado", "EscenaDragonFeliz");

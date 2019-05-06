@@ -9,6 +9,7 @@ public class EscenaParejasController : MonoBehaviour {
     //public GameObject pelota_movimiento;
 
     public AnimacionTrofeo animacion_trofeo;
+    public SwitchController switch_controller;
 
     private const float t_sig_escena = 1f;
 
@@ -66,6 +67,9 @@ public class EscenaParejasController : MonoBehaviour {
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
         animacion_trofeo = GameObject.Find("AnimacionTrofeo").GetComponent<AnimacionTrofeo>();
+        animacion_trofeo.funcion = "asignarParejas";
+        animacion_trofeo.controller = gameObject;
+        switch_controller = GameObject.Find("SwitchController").GetComponent<SwitchController>();
     }
 
     // Use this for initialization
@@ -118,6 +122,7 @@ public class EscenaParejasController : MonoBehaviour {
                 //casillaTemp.GetComponent<Casilla>().asignarCarta();
 
                 casillas.Add(casillaTemp);
+                switch_controller.objetos.Add(casillaTemp);
 
                 casillaTemp.transform.parent = casillas_parent;
 
@@ -147,6 +152,20 @@ public class EscenaParejasController : MonoBehaviour {
         List<int> indices_ordenados = new List<int>();
         for (int i = 0; i < n_parejas; i++){
             parejas_ordenadas.Add(parejas[dificultad][0][i_tex_tablero[i]]);
+            //estado_juego.datos.total_parejas = parejas[dificultad][0][i_tex_tablero[i]];
+            //print("BREAK PAREJAS " + parejas[dificultad][0][i_tex_tablero[i]].name);
+            switch (parejas[dificultad][0][i_tex_tablero[i]].name[2])
+            {
+                case 'A':
+                    estado_juego.datos.total_parejas[0]++;
+                    break;
+                case 'T':
+                    estado_juego.datos.total_parejas[1]++;
+                    break;
+                case 'E':
+                    estado_juego.datos.total_parejas[2]++;
+                    break;
+            }
             parejas_ordenadas.Add(parejas[dificultad][1][i_tex_tablero[i]]);
             indices_ordenados.Add(i_tex_tablero[i]);
             indices_ordenados.Add(i_tex_tablero[i]);
@@ -177,7 +196,7 @@ public class EscenaParejasController : MonoBehaviour {
     {
         casilla_actual = c;
         if (c.isOculta()) {
-
+            GetComponents<AudioSource>()[0].Play();
             if (turno == 0) { // Se destapa la primera pareja
                 c.mostrarCarta();
                 ultima_casilla = c;
@@ -229,15 +248,19 @@ public class EscenaParejasController : MonoBehaviour {
     public void ganar()
     {
         print("HAS GANADO!!!!");
-        if (n_juegos < total_juegos )
+        estado_juego.ganarTrofeo(n_juegos - 1);
+        if (n_juegos < total_juegos)
         {
-            for (int i = 0; i <casillas.Count;i++)
+            for (int i = 0; i < casillas.Count; i++)
                 casillas[i].GetComponent<BoxCollider>().enabled = false;
-            StartCoroutine(SiguienteEscena("-", t_sig_escena, n_juegos-1));
+            StartCoroutine(SiguienteEscena("-", t_sig_escena, n_juegos - 1));
             //asignarParejas();
         }
         else
-            StartCoroutine(SiguienteEscena("06_EscenaCastillo", t_sig_escena, n_juegos-1));
+        {
+            Finalizar();
+            StartCoroutine(SiguienteEscena("06_EscenaCastillo", t_sig_escena, n_juegos - 1));
+        }
 
         n_juegos++;
     }
