@@ -21,7 +21,7 @@ public class PantallaInicialController  : MonoBehaviour {
     void Start () {
         estado_juego.cargar();
         //print("Ultima escena: " + estado_juego.datos.ultima_escena);
-        estado_juego.reset();
+        //estado_juego.reset();
         //estado_juego.datos.dificultad = 1;
         estado_juego.guardar();
         /*if (!string.IsNullOrEmpty(estado_juego.datos.ultima_escena))

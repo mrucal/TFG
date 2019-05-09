@@ -32,12 +32,12 @@ public class EscenaMagoController  : MonoBehaviour {
     private void Awake()
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+        Iniciar();
     }
 
     // Use this for initialization
     void Start()
     {
-        Iniciar();
         sol.GetComponent<Animator>().Play("SolNubeAnimation");
     }
 	

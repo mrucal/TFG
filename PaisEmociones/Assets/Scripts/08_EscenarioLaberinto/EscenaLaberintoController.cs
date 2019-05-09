@@ -8,6 +8,7 @@ public class EscenaLaberintoController  : MonoBehaviour {
     public GameObject personaje;
     public GameObject emoticono_pequeño;
     public AnimacionTrofeoLaberinto animacion_trofeo;
+    public MenuTrofeo2 mt;
     //public GameObject pelota_movimiento;
 
     public int dificultad;
@@ -58,12 +59,13 @@ public class EscenaLaberintoController  : MonoBehaviour {
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
         animacion_trofeo = GameObject.Find("AnimacionTrofeoLaberinto").GetComponent<AnimacionTrofeoLaberinto>();
+        mt = GameObject.Find("MenuTrofeos").GetComponent<MenuTrofeo2>();
+        Iniciar();
     }
 
     // Use this for initialization
     void Start()
     {
-        Iniciar();
         dificultad = estado_juego.datos.dificultad;
         n_cruces =  2 + (2 * dificultad);
         soluciones[0] = soluciones_dif0;
@@ -138,6 +140,7 @@ public class EscenaLaberintoController  : MonoBehaviour {
     public void corregirCruce(int idPasillo)
     {
         bool acierto; int emocion =-1, emocion1 =-1, emocion2 = -1;
+        animacion_trofeo.boton_salida.SetActive(true);
         if (solucion_actual == idPasillo) {//(soluciones[dificultad][cruce_actual] == idPasillo){
             acierto = true;
             emocion = cruce_actual_emociones[solucion_actual];
@@ -153,6 +156,7 @@ public class EscenaLaberintoController  : MonoBehaviour {
             estado_juego.datos.fallos_general++;
             estado_juego.datos.total_laberinto[cruce_actual_emociones[solucion_actual]]++;
         }
+        mt.Actualizar();
         pasillos[1].GetComponent<BoxCollider>().enabled = false;
         if (cruce_i < n_cruces){
             StartCoroutine(SiguienteEscena("-", 1f, acierto, emocion, emocion1, emocion2));

@@ -46,14 +46,15 @@ public class EscenaPuebloController : MonoBehaviour {
 
     private void Awake()
     {
+        print("AWAKE PUEBLO");
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
         animacion_trofeo = GameObject.Find("AnimacionTrofeo").GetComponent<AnimacionTrofeo>();
+        Iniciar();
     }
 
     // Use this for initialization
     void Start()
     {
-        Iniciar();
         sol.GetComponent<Animator>().Play("SolNubeAnimation");
         farola_on = false;
         encontrado = false;
@@ -127,6 +128,7 @@ public class EscenaPuebloController : MonoBehaviour {
         perro.GetComponents<AudioSource>()[0].Play();
         if (confirmacion)
         {
+            switch_controller.desactivar_objetos_menos(0);
             estado_juego.incrementarFallos(1);
             Finalizar();
             StartCoroutine(SiguienteEscena(/*"06_EscenaLaberinto"*/"06_EscenaCastillo", t_sig_escena,false));

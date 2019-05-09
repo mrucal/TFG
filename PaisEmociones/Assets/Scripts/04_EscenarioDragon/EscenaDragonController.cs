@@ -42,13 +42,14 @@ public class EscenaDragonController : MonoBehaviour
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
         animacion_trofeo = GameObject.Find("AnimacionTrofeo").GetComponent<AnimacionTrofeo>();
-        estado_juego.asignarMenuTrofeo(GameObject.Find("MenuTrofeos").GetComponent<MenuTrofeo>());
+        estado_juego.asignarMenuTrofeo(GameObject.Find("MenuTrofeos").GetComponent<MenuTrofeo2>());
+        print("BREAK DRAGON CONTROLLER");
+        Iniciar();
     }
 
     // Use this for initialization
     void Start()
     {
-        Iniciar();
         animator = GetComponent<Animator>();
     }
 

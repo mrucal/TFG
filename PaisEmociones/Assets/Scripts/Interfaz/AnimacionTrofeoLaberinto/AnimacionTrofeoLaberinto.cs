@@ -22,6 +22,8 @@ public class AnimacionTrofeoLaberinto : MonoBehaviour {
     private int emocion1;
     private int emocion2;
 
+    public GameObject boton_salida;
+
     void Start()
     {
         activado = true;
@@ -116,8 +118,8 @@ public class AnimacionTrofeoLaberinto : MonoBehaviour {
         {
             activado = false;
             //print("BREAK SIGUIENTE");
+            boton_salida.SetActive(false);
             GetComponents<AudioSource>()[4].Play();
-            switch_controller.activar_objetos();
             Invoke("CargarEscena", 2f);
         }
     }
@@ -126,6 +128,7 @@ public class AnimacionTrofeoLaberinto : MonoBehaviour {
     {
         
         activado = true;
+        switch_controller.activar_objetos();
         if (!siguiente_escena.Equals("-"))
             SceneManager.LoadScene(siguiente_escena);
         else

@@ -83,6 +83,7 @@ public class MenuTrofeo : MonoBehaviour {
                 inicio[i] = pos_centro - (ancho_real[i] / 2) + (ancho_trofeo / 2);
                 for (int j = 0; j < n_trofeos[i]; j++)
                     trofeos.Add(Instantiate(prefab[i], new Vector3(inicio[i] + (j * ancho_trofeo), prefab[i].transform.position.y, prefab[i].transform.position.z), Quaternion.identity, gameObject.transform));
+
             }
 
         }

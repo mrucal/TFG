@@ -7,7 +7,7 @@ public class EstadoJuego : MonoBehaviour
     public static EstadoJuego ej;
     public Datos datos;
 
-    private MenuTrofeo mt = null;
+    private MenuTrofeo2 mt = null;
 
     private void Awake()
     {
@@ -19,7 +19,9 @@ public class EstadoJuego : MonoBehaviour
             datos.ultima_escena = "01_EscenaParque";
         }
         else if (ej != this)
+        {
             Destroy(gameObject);
+        }
     }
 
     public void guardar()
@@ -56,7 +58,7 @@ public class EstadoJuego : MonoBehaviour
         guardar();
     }
 
-    public void asignarMenuTrofeo(MenuTrofeo mt)
+    public void asignarMenuTrofeo(MenuTrofeo2 mt)
     {
         this.mt = mt;
     }

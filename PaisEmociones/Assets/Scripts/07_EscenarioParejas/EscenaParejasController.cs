@@ -253,11 +253,13 @@ public class EscenaParejasController : MonoBehaviour {
         {
             for (int i = 0; i < casillas.Count; i++)
                 casillas[i].GetComponent<BoxCollider>().enabled = false;
+            animacion_trofeo.boton_salida.SetActive(true);
             StartCoroutine(SiguienteEscena("-", t_sig_escena, n_juegos - 1));
             //asignarParejas();
         }
         else
         {
+            animacion_trofeo.boton_salida.SetActive(true);
             Finalizar();
             StartCoroutine(SiguienteEscena("06_EscenaCastillo", t_sig_escena, n_juegos - 1));
         }

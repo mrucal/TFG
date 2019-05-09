@@ -23,6 +23,8 @@ public class AnimacionTrofeo : MonoBehaviour {
     private bool acierto;
     private int emocion;
 
+    public GameObject boton_salida;
+
 
     void OnLoadCallback(Scene scene, LoadSceneMode sceneMode)
     {
@@ -30,6 +32,7 @@ public class AnimacionTrofeo : MonoBehaviour {
         try
         {
             switch_controller = GameObject.Find("SwitchController").GetComponent<SwitchController>();
+            boton_salida.SetActive(true);
         }
         catch { }
     }
@@ -101,8 +104,9 @@ public class AnimacionTrofeo : MonoBehaviour {
     private void SiguienteEscena()
     {
         print("BREAK SIGUIENTE");
+        boton_salida.SetActive(false);
         GetComponents<AudioSource>()[4].Play();
-        switch_controller.activar_objetos();
+        switch_controller.activar_objeto_i(0);
         Invoke("CargarEscena",2f);
     }
 

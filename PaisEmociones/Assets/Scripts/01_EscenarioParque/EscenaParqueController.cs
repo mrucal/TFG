@@ -37,7 +37,7 @@ public class EscenaParqueController  : MonoBehaviour {
     private void Awake()
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
-        estado_juego.reset();
+        //estado_juego.reset();
     }
 
     // Use this for initialization
@@ -56,6 +56,8 @@ public class EscenaParqueController  : MonoBehaviour {
         {
             //print("BREAK 2 "+pelota.transform.position);
             //pelota.transform.position = new Vector3(0,0,0);
+            
+
             pelota.GetComponent<Animator>().Play("PelotaNoVisible");
             personaje.GetComponent<Animator>().Play("PersonajeNoVisible");
             //print("BREAK 3 " + pelota.transform.position);

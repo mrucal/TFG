@@ -12,11 +12,39 @@ public class SwitchController : MonoBehaviour {
         if (sc != null)
         {
             objetos = sc.objetos;
-            print("EMPTY");
+            //print("EMPTY");
         }
-        else
-            print("NOT EMPTY");
+        //else
+            //print("NOT EMPTY");
         
+    }
+
+    public void activar_objeto_i(int i)
+    {
+        try
+        {
+            objetos[i].GetComponent<BoxCollider>().enabled = true;
+        }
+        catch { }
+        try
+        {
+            objetos[i].GetComponent<CapsuleCollider>().enabled = true;
+        }
+        catch { }
+    }
+
+    public void desactivar_objeto_i(int i)
+    {
+        try
+        {
+            objetos[i].GetComponent<BoxCollider>().enabled = false;
+        }
+        catch { }
+        try
+        {
+            objetos[i].GetComponent<CapsuleCollider>().enabled = false;
+        }
+        catch { }
     }
 
     public void activar_objetos()

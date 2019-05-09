@@ -36,12 +36,12 @@ public class EscenaPatioController  : MonoBehaviour {
     private void Awake()
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+        Iniciar();
     }
 
     // Use this for initialization
     void Start()
     {
-        Iniciar();
         sol.GetComponent<Animator>().Play("SolNubeAnimation");
     }
 	
@@ -77,6 +77,7 @@ public class EscenaPatioController  : MonoBehaviour {
     public IEnumerator SiguienteEscena(string escena, float seconds)
     {
         yield return new WaitForSeconds(seconds);
+        Destroy(GameObject.Find("Boton").GetComponent<BotonTrofeos>().gameObject);
         SceneManager.LoadScene(escena);
     }
 }

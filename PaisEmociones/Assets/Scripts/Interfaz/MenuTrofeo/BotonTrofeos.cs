@@ -7,14 +7,16 @@ public class BotonTrofeos : MonoBehaviour {
 
     BotonTrofeos bt;
 
-    public MenuTrofeo mt;
+    public MenuTrofeo2 mt;
     public SwitchController switch_controller;
 
     void OnLoadCallback(Scene scene, LoadSceneMode sceneMode)
     {
         try{
             switch_controller = GameObject.Find("SwitchController").GetComponent<SwitchController>();
-        }catch { }
+            mt = GameObject.Find("MenuTrofeos").GetComponent<MenuTrofeo2>();
+        }
+        catch { }
     }
 
     private void Awake()
@@ -28,6 +30,7 @@ public class BotonTrofeos : MonoBehaviour {
             Destroy(gameObject);
         SceneManager.sceneLoaded += this.OnLoadCallback;
         switch_controller = GameObject.Find("SwitchController").GetComponent<SwitchController>();
+        mt = GameObject.Find("MenuTrofeos").GetComponent<MenuTrofeo2>();
     }
 
     void Start()
@@ -38,6 +41,7 @@ public class BotonTrofeos : MonoBehaviour {
 
     private void OnMouseDown()
     {
+        print("BOTON BINGO!");
         GetComponent<AudioSource>().Play();
         switch_controller.desactivar_objetos();
         Invoke("activarMenu", 1f);
