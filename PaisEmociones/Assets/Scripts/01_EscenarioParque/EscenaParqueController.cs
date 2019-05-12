@@ -25,7 +25,7 @@ public class EscenaParqueController  : MonoBehaviour {
     private void Iniciar()
     {        
         estado_juego.cargar();
-        estado_juego.datos.ultima_escena = "01_EscenaParque";
+        //estado_juego.datos.ultima_escena = "01_EscenaParque";
         estado_juego.guardar();
     }
 

@@ -25,6 +25,8 @@ public class EscenaDragonController : MonoBehaviour
 
     private EstadoJuego estado_juego;
 
+    private bool acierto;
+
     private void Iniciar()
     {
         estado_juego.cargar();
@@ -91,6 +93,7 @@ public class EscenaDragonController : MonoBehaviour
     IEnumerator SiguienteEscena(string escena, float seconds,bool acierto)
     {
         yield return new WaitForSeconds(seconds);
+        Finalizar(acierto);
         animacion_trofeo.IniciarAnimacion(acierto, 2,escena);
         //SceneManager.LoadScene(escena);
     }
@@ -105,7 +108,7 @@ public class EscenaDragonController : MonoBehaviour
         dragon.SendMessage("cambiarEstado", "DragonFelizAnimation");
         //estado_juego.datos.aciertos[estado_juego.datos.dificultad][2]++;
         estado_juego.incrementarAciertos(2);
-        Finalizar(true);
+        acierto = true;// Finalizar(true);
         StartCoroutine(SiguienteEscena("05_EscenaPueblo", t_pers_fin_as + t_sig_escena/*7f*/,true));
     }
 
@@ -129,7 +132,7 @@ public class EscenaDragonController : MonoBehaviour
         estado_juego.datos.fallos[estado_juego.datos.dificultad][2]++;
         print("fallos: " + estado_juego.datos.fallos[estado_juego.datos.dificultad][2]);*/
         estado_juego.incrementarFallos(2);
-        Finalizar(false);
+        acierto = false;// Finalizar(false);
         StartCoroutine(SiguienteEscena("05_EscenaPueblo", t_pers_fin_esp + t_sig_escena/*7f*/,false));
     }
 }

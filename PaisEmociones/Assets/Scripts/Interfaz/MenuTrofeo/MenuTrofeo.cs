@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuTrofeo : MonoBehaviour {
 
-    public MenuTrofeo mt = null;
+    private static MenuTrofeo mt = null;
     private EstadoJuego estado_juego;
 
     public GameObject [] prefab;

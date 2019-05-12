@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class BotonHome : MonoBehaviour {
 
-    BotonHome bh = null;
+    static BotonHome bh = null;
 
     private void Awake()
     {
@@ -23,11 +23,15 @@ public class BotonHome : MonoBehaviour {
         GetComponent<AudioSource>().Play();
         Invoke("GoHome", 2f);
     }
-
+    
     private void GoHome()
     {
         Destroy(gameObject);
-        Destroy(GameObject.Find("Boton").GetComponent<BotonTrofeos>().gameObject);
+        try
+        {
+            Destroy(GameObject.Find("Boton").GetComponent<BotonTrofeos>().gameObject);
+        }
+        catch { }
         SceneManager.LoadScene("00_PantallaInicial");
     }
 }

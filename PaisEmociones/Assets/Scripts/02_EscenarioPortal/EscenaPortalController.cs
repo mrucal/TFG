@@ -57,6 +57,7 @@ public class EscenaPortalController : MonoBehaviour {
     {
         if (enabled_portal)
         {
+            GetComponent<AudioSource>().Play();
             personaje.GetComponent<Animator>().Play("PersonajeEntrarPortal");
             StartCoroutine(SiguienteEscena("03_EscenaLlegada", t_entrar_portal + t_sig_escena));
         }

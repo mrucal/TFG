@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuTrofeo2 : MonoBehaviour {
 
-    public MenuTrofeo2 mt = null;
+    private static MenuTrofeo2 mt = null;
     public EstadoJuego estado_juego;
 
     //public GameObject [] prefab;
@@ -35,7 +35,7 @@ public class MenuTrofeo2 : MonoBehaviour {
     {
         if (mt == null)
         {
-            print("AWAKE 1 " + mt);
+            //print("AWAKE 1 " + mt);
             mt = this;
             DontDestroyOnLoad(this.gameObject);
             gameObject.GetComponent<Canvas>().enabled = false;
@@ -50,7 +50,7 @@ public class MenuTrofeo2 : MonoBehaviour {
         }
         else if (mt != this)
         {
-            print("AWAKE 2");
+            //print("AWAKE 2");
             Destroy(gameObject);
         }
     }
@@ -65,14 +65,14 @@ public class MenuTrofeo2 : MonoBehaviour {
         for(int i=0; i<n;i++)
             Instantiate(prefab[0], new Vector3(inicio+(i*ancho_trofeo), prefab[0].transform.position.y, prefab[0].transform.position.z), Quaternion.identity, gameObject.transform);*/
         //print("BREAK START MENU");
-        print("START 1");
+        //print("START 1");
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
         //print("B dificultad: " + estado_juego.datos.dificultad);
         n_trofeos = new int[3];
         for (int i = 0; i < 3; i++)
         {
             n_trofeos[i] = estado_juego.datos.trofeos[(estado_juego.datos.dificultad * 3) + i];
-            print("Ntrofeos: " + n_trofeos[i] + " dificultad: " + estado_juego.datos.dificultad);
+            //print("Ntrofeos: " + n_trofeos[i] + " dificultad: " + estado_juego.datos.dificultad);
             //print(n_trofeos[i]+" "+ estado_juego.datos.trofeos[(estado_juego.datos.dificultad * 3) + i]);
         }
         Iniciar();
@@ -123,7 +123,7 @@ public class MenuTrofeo2 : MonoBehaviour {
 
     public void Actualizar()
     {
-        print("BREAK ACTUALIZAR");
+        //print("BREAK ACTUALIZAR");
         /* MENU1 Clear();
         for (int i = 0; i < 3; i++)
         {
@@ -131,12 +131,12 @@ public class MenuTrofeo2 : MonoBehaviour {
         }*/
         if (n_trofeos.Length!=0 && estado_juego!=null)
         {
-            print("BREAK ACTUALIZAR 2: " + n_trofeos.Length);
+            //print("BREAK ACTUALIZAR 2: " + n_trofeos.Length);
             Clear();
             for (int i = 0; i < 3; i++)
             {
                 n_trofeos[i] = estado_juego.datos.trofeos[(estado_juego.datos.dificultad * 3) + i];
-                print("Ntrofeos: " + n_trofeos[i] + " dificultad: " + estado_juego.datos.dificultad);
+                //print("Ntrofeos: " + n_trofeos[i] + " dificultad: " + estado_juego.datos.dificultad);
                 //print(n_trofeos[i]+" "+ estado_juego.datos.trofeos[(estado_juego.datos.dificultad * 3) + i]);
             }
             Iniciar();

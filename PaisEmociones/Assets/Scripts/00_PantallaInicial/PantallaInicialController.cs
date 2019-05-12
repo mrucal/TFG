@@ -14,12 +14,11 @@ public class PantallaInicialController  : MonoBehaviour {
     private void Awake()
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
-        
+        estado_juego.cargar();
     }
 
     // Use this for initialization
     void Start () {
-        estado_juego.cargar();
         //print("Ultima escena: " + estado_juego.datos.ultima_escena);
         //estado_juego.reset();
         //estado_juego.datos.dificultad = 1;
@@ -27,16 +26,55 @@ public class PantallaInicialController  : MonoBehaviour {
         /*if (!string.IsNullOrEmpty(estado_juego.datos.ultima_escena))
             SceneManager.LoadScene(estado_juego.datos.ultima_escena);*/
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+    
+    public LayerMask touchInputMask;
+    // Update is called once per frame
+    void Update () {
+
+        /*if (Input.touchCount > 0)
+        {
+            print("ntouch: "+Input.touchCount+" touch: "+Input.GetTouch(0));
+            boton_inicio.SetActive(false);
+        }*/
+        
+        foreach (Touch touch in Input.touches)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(touch.position);
+            RaycastHit hit;
+
+
+            if(Physics.Raycast(ray, out hit, touchInputMask)) {
+                GameObject recipient = hit.transform.gameObject;
+                print("TOCADO: "+recipient.name+" "+touch.phase+" "+TouchPhase.Began+ " "+TouchPhase.Ended);
+                /*switch (touch.phase)
+                {
+                    case TouchPhase.Began:
+                        GetComponent<AudioSource>().Play();
+                    case TouchPhase.Stationary:
+                        recipient.SendMessage("OnTouchDrag");
+                        break;
+                    case TouchPhase.Canceled:
+                    case TouchPhase.Ended:
+                    case TouchPhase.Moved:
+                        recipient.SendMessage("OnTouchUp");
+                        break;
+                }*/
+                if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Stationary)
+                    if (touch.phase == TouchPhase.Began)
+                        GetComponent<AudioSource>().Play();
+                    recipient.SendMessage("OnTouchDrag");
+                if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Canceled)
+                    recipient.SendMessage("OnTouchUp");
+            }
+        }
 	}
 
     void Inicio()
     {
         boton_inicio.GetComponent<Animator>().Play("BotonInicioPulsado");
         boton_inicio.GetComponent<AudioSource>().Play();
+        estado_juego.guardar();
         if (string.IsNullOrEmpty(estado_juego.datos.ultima_escena))
             StartCoroutine(SiguienteEscena("01_EscenaParque", /*1+t_sig_escena*/boton_inicio.GetComponent<AudioSource>().clip.length + 1));
         else

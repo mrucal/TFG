@@ -21,7 +21,7 @@ public class BotonConfiguracion : MonoBehaviour {
         Invoke("AbrirMenuConfiguración", 2f);
     }
 
-    private void AbrirMenuConfiguración()
+    public void AbrirMenuConfiguración()
     {
         print("CONFIG!!");
     }

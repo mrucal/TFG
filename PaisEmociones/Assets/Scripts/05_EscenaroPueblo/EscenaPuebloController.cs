@@ -108,7 +108,7 @@ public class EscenaPuebloController : MonoBehaviour {
             print("fallos: " + estado_juego.datos.fallos[estado_juego.datos.dificultad][2]);*/
 
             estado_juego.incrementarAciertos(1);
-            Finalizar();
+            //Finalizar();
             StartCoroutine(SiguienteEscena(/*"06_EscenaLaberinto"*/"06_EscenaCastillo", t_niño_feliz + t_emoticono+t_sig_escena,true));
             encontrado = true;
         }
@@ -130,7 +130,7 @@ public class EscenaPuebloController : MonoBehaviour {
         {
             switch_controller.desactivar_objetos_menos(0);
             estado_juego.incrementarFallos(1);
-            Finalizar();
+            //Finalizar();
             StartCoroutine(SiguienteEscena(/*"06_EscenaLaberinto"*/"06_EscenaCastillo", t_sig_escena,false));
         }
         /*else
@@ -153,7 +153,8 @@ public class EscenaPuebloController : MonoBehaviour {
         fuente.GetComponent<CapsuleCollider>().enabled = false;
         farola.GetComponent<BoxCollider>().enabled = false;
         pelota.GetComponent<BoxCollider>().enabled = false;
-        
+
+        Finalizar();
         animacion_trofeo.IniciarAnimacion(acierto, 1, escena);
     }
 

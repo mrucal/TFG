@@ -121,7 +121,7 @@ public class EstadoJuego : MonoBehaviour
 [System.Serializable]
 public class Datos
 {
-    public int dificultad = 2;
+    public int dificultad = 0;
 
     public string ultima_escena;
 
