@@ -9,6 +9,11 @@ public class SwitchController : MonoBehaviour {
 
     private void Awake()
     {
+        try
+        {
+            objetos[0] = GameObject.Find("Boton").GetComponent<BotonTrofeos>().gameObject;
+        }
+        catch { }
         if (sc != null)
         {
             objetos = sc.objetos;
@@ -19,6 +24,9 @@ public class SwitchController : MonoBehaviour {
         
     }
 
+    private void Start()
+    {
+    }
     public void activar_objeto_i(int i)
     {
         try

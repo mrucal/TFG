@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuTrofeo2 : MonoBehaviour {
 
@@ -25,6 +26,14 @@ public class MenuTrofeo2 : MonoBehaviour {
         try
         {
             switch_controller = GameObject.Find("SwitchController").GetComponent<SwitchController>();
+            n_trofeos = new int[3];
+            estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+            for (int i = 0; i < 3; i++)
+            {
+                n_trofeos[i] = estado_juego.datos.trofeos[(estado_juego.datos.dificultad * 3) + i];
+                //print("Ntrofeos: " + n_trofeos[i] + " dificultad: " + estado_juego.datos.dificultad);
+                //print(n_trofeos[i]+" "+ estado_juego.datos.trofeos[(estado_juego.datos.dificultad * 3) + i]);
+            }
             Actualizar();
             //switch_controller.objetos.Insert(0, GameObject.Find("Boton").GetComponent<GameObject>());
         }
@@ -108,17 +117,27 @@ public class MenuTrofeo2 : MonoBehaviour {
         }*/
 
         //n_trofeos = new int[3]; n_trofeos[0] = 4; n_trofeos[1] = 2; n_trofeos[2] = 3;
-        int nti_max = 7,nti;
-
+        int nti_max = 7,nti=0;
+        int[] min_trof = estado_juego.getMinTrofeos();
         for (int i = 0; i < 3; i++)
         {
+            //print("nti: " + nti);
             nti = n_trofeos[i] < nti_max ? n_trofeos[i] : nti_max;
+            //print("nti_max: " + nti_max);
             for (int j = 0; j < nti; j++)
             {
-                //print(i + " " + j + " "+ trofeos[i][j].name);
+                //print(i + " " + j + " "+ trofeos[i][j].name
+                //trofeos[i][j].GetComponent<Image>().color = new Color(85, 85, 85, 153);
+                trofeos[i][j].SetActive(true);
+            }
+            for (int j = nti; j < min_trof[i]; j++)
+            {
+                //print(i + " " + j + " "+ trofeos[i][j].name
+                trofeos[i][j].GetComponent<Image>().color = new Color(0.33f, 0.33f, 0.33f, 0.6f);
                 trofeos[i][j].SetActive(true);
             }
         }
+    
     }
 
     public void Actualizar()

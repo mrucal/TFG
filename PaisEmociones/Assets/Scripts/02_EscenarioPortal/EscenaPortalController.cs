@@ -34,12 +34,22 @@ public class EscenaPortalController : MonoBehaviour {
     private void Awake()
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+        Iniciar();
     }
 
     // Use this for initialization
     void Start () {
-        Iniciar();
         sol.GetComponent<Animator>().Play("SolAnimation");
+    }
+
+    public void esperarD02()
+    {
+        Invoke("playD02", personaje.GetComponents<AudioSource>()[2].clip.length+1f);
+    }
+    public void playD02()
+    {
+        GetComponents<AudioSource>()[1].Play();
+        Invoke("enablePortal", GetComponents<AudioSource>()[1].clip.length);
     }
 	
 	// Update is called once per frame
@@ -59,8 +69,15 @@ public class EscenaPortalController : MonoBehaviour {
         {
             GetComponent<AudioSource>().Play();
             personaje.GetComponent<Animator>().Play("PersonajeEntrarPortal");
-            StartCoroutine(SiguienteEscena("03_EscenaLlegada", t_entrar_portal + t_sig_escena));
+            //StartCoroutine(SiguienteEscena("03_EscenaLlegada", t_entrar_portal + t_sig_escena));
+            Invoke("playN03",0.5f/*(2*t_entrar_portal)/3*/);
         }
+    }
+
+    void playN03()
+    {
+        GetComponents<AudioSource>()[2].Play();
+        StartCoroutine(SiguienteEscena("03_EscenaLlegada", /*t_entrar_portal*/ GetComponents<AudioSource>()[2].clip.length + t_sig_escena));
     }
 
     public IEnumerator SiguienteEscena(string escena, float seconds)

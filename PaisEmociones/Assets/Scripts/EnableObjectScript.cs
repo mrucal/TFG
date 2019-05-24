@@ -8,6 +8,8 @@ public class EnableObjectScript : MonoBehaviour
     public GameObject controller_escena;
     public string enableFunction;
 
+    public string[] enableFunctions;
+
     // Use this for initialization
     void Start()
     {
@@ -23,5 +25,10 @@ public class EnableObjectScript : MonoBehaviour
     void enable()
     {
         controller_escena.SendMessage(enableFunction);
+    }
+
+    public void enable_i(int i)
+    {
+        controller_escena.SendMessage(enableFunctions[i]);
     }
 }

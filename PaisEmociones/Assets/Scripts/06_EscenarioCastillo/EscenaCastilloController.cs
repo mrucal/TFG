@@ -8,6 +8,8 @@ public class EscenaCastilloController  : MonoBehaviour {
     public GameObject personaje;
     public GameObject interruptor;
     public GameObject sol;
+
+    public SwitchController switch_controller;
     //public GameObject pelota_movimiento;
 
     private const float t_sig_escena = 2f;
@@ -48,19 +50,28 @@ public class EscenaCastilloController  : MonoBehaviour {
         print(escena_anterior);
         if (escena_anterior.Equals("laberinto"))
         {
+            //boton.GetComponent<BoxCollider>().enabled = false;
+            print("BREAK CASTILLO");
+            switch_controller.desactivar_objetos();
             personaje.GetComponent<Animator>().Play("PersonajeLlegaCastillo");
             interruptor.GetComponent<Animator>().Play("PantallaParpadea");
         }else
         {
+            interruptor.GetComponent<Animator>().Play("PantallaCorrecta");
             estado_juego.datos.ultima_escena = /*"09_EscenaMago"*/"08_EscenaLaberinto";
             print("BREAK ultima escena: " + estado_juego.datos.ultima_escena);
-            interruptor.GetComponent<Animator>().Play("PantallaCorrecta");
-            personaje.GetComponent<Animator>().Play("PersonajeEntraCastillo");
-            this.GetComponent<Animator>().Play("AbrirCastillo");
-            Finalizar();
-            StartCoroutine(SiguienteEscena(/*"09_EscenaMago"*/"08_EscenaLaberinto", t_entrada + t_sig_escena));
-            escena_anterior = "laberinto";
+            GetComponents<AudioSource>()[1].Play();
+            Invoke("escenaAbrirPuertas", GetComponents<AudioSource>()[1].clip.length+0.5f);
         }
+    }
+
+    void escenaAbrirPuertas()
+    {
+        personaje.GetComponent<Animator>().Play("PersonajeEntraCastillo");
+        this.GetComponent<Animator>().Play("AbrirCastillo");
+        Finalizar();
+        StartCoroutine(SiguienteEscena(/*"09_EscenaMago"*/"08_EscenaLaberinto", t_entrada + t_sig_escena));
+        escena_anterior = "laberinto";
     }
 	
 	// Update is called once per frame
@@ -70,13 +81,21 @@ public class EscenaCastilloController  : MonoBehaviour {
 
     void enableInterruptor()
     {
-        enabled_interruptor = true;
+        Invoke("esperarIntroduccion", personaje.GetComponents<AudioSource>()[2].clip.length + 0.5f);
     }
     
+    void esperarIntroduccion()
+    {
+        enabled_interruptor = true;
+        //boton.GetComponent<BoxCollider>().enabled = false;
+        switch_controller.activar_objetos();
+    }
+
     void InterruptorOn()
     {
         if (enabled_interruptor)
         {
+            enabled_interruptor = false;
             interruptor.GetComponents<AudioSource>()[0].Play();
             StartCoroutine(SiguienteEscena("07_EscenaParejas", t_sig_escena));
             escena_anterior = "parejas";

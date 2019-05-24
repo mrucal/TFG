@@ -9,6 +9,9 @@ public class EscenaLaberintoController  : MonoBehaviour {
     public GameObject emoticono_pequeño;
     public AnimacionTrofeoLaberinto animacion_trofeo;
     public MenuTrofeo2 mt;
+    public SwitchController switch_controller;
+    public GameObject audios_descripciones;
+    public GameObject audios_instrucciones;
     //public GameObject pelota_movimiento;
 
     public int dificultad;
@@ -19,6 +22,9 @@ public class EscenaLaberintoController  : MonoBehaviour {
 
     private int n_pasillos = 3;
     public Pasillo[] pasillos;
+    public GameObject[] seleccion;
+    public int[] emociones_pasillos = { 0, 0, 0 };
+    public int[] indices_cartas = { 0, 0, 0 };
 
     /*public PasilloTexturas texturas0;
     public PasilloTexturas texturas1;
@@ -28,7 +34,7 @@ public class EscenaLaberintoController  : MonoBehaviour {
 
     private int[] soluciones_dif0 = { 0, 1, 2 };
     private int[] soluciones_dif1 = { 0, 0, 1, 1, 2, 2 };
-    private int[] soluciones_dif2 = { 0, 0, 1, 1, 2, 2 };//GVGRRV
+    private int[] soluciones_dif2 = { 0, 0, 0, 1, 1, 1, 2, 2, 2 };//GVGRRV
 
     private int[][] soluciones = new int[3][];
 
@@ -59,6 +65,7 @@ public class EscenaLaberintoController  : MonoBehaviour {
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
         animacion_trofeo = GameObject.Find("AnimacionTrofeoLaberinto").GetComponent<AnimacionTrofeoLaberinto>();
+        switch_controller = GameObject.Find("SwitchController").GetComponent<SwitchController>();
         mt = GameObject.Find("MenuTrofeos").GetComponent<MenuTrofeo2>();
         Iniciar();
     }
@@ -67,7 +74,7 @@ public class EscenaLaberintoController  : MonoBehaviour {
     void Start()
     {
         dificultad = estado_juego.datos.dificultad;
-        n_cruces =  2 + (2 * dificultad);
+        n_cruces = 3 * (dificultad +1);/*2 + (2 * dificultad);*/
         soluciones[0] = soluciones_dif0;
         soluciones[1] = soluciones_dif1;
         soluciones[2] = soluciones_dif2;
@@ -77,11 +84,21 @@ public class EscenaLaberintoController  : MonoBehaviour {
         cruces = new List<int>();
         for (int i = 0; i < soluciones[dificultad].Length; i++)
             cruces.Add(i);
-        siguienteCruce();
+        siguienteCruce(true);
+        switch_controller.desactivar_objetos();
+        StartCoroutine(play(1, 1f));
+        switch_controller.Invoke("activar_objetos", GetComponents<AudioSource>()[1].clip.length + 1f);
+        StartCoroutine(playDescripciones(GetComponents<AudioSource>()[1].clip.length + 1f));
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    public IEnumerator play(int i, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        GetComponents<AudioSource>()[i].Play();
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
@@ -90,7 +107,107 @@ public class EscenaLaberintoController  : MonoBehaviour {
         return clicks_activos;
     }
 
-    void mostrarCruceLaberinto(int dificultad,int i)
+    IEnumerator playDescripciones(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        int n_cartas_alegria = 9, n_cartas_tristeza = 8;
+        int[] indices_audios = { 0,0,0};
+        for(int i = 0; i < indices_audios.Length; i++)
+        {
+            switch (emociones_pasillos[i])
+            {
+                case 0:
+                    indices_audios[i] = indices_cartas[i];
+                    break;
+                case 1:
+                    indices_audios[i] = n_cartas_alegria + indices_cartas[i];
+                    break;
+                case 2:
+                    indices_audios[i] = n_cartas_alegria + n_cartas_tristeza + indices_cartas[i];
+                    break;
+            }
+        }
+                
+        float tiempo = 0.5f;
+        switch_controller.desactivar_objetos();
+
+        StartCoroutine(playInstruccion(emociones_pasillos[solucion_actual], tiempo));
+        tiempo += audios_instrucciones.GetComponents<AudioSource>()[solucion_actual].clip.length + 1f;
+
+
+        StartCoroutine(playDescripcion(indices_audios[0], tiempo));
+        StartCoroutine(activarSeleccion(0, true, tiempo));
+        tiempo += audios_descripciones.GetComponents<AudioSource>()[0].clip.length + 1f;
+        StartCoroutine(activarSeleccion(0, false, tiempo));
+        tiempo += 0.5f;
+
+        StartCoroutine(playDescripcion(indices_audios[1], tiempo));
+        StartCoroutine(activarSeleccion(1, true, tiempo));
+        tiempo += audios_descripciones.GetComponents<AudioSource>()[1].clip.length + 1f;
+        StartCoroutine(activarSeleccion(1, false, tiempo));
+        tiempo += 0.5f;
+
+        StartCoroutine(playDescripcion(indices_audios[2], tiempo));
+        StartCoroutine(activarSeleccion(2, true, tiempo));
+        tiempo += audios_descripciones.GetComponents<AudioSource>()[2].clip.length + 1f;
+        StartCoroutine(activarSeleccion(2, false, tiempo));
+
+        switch_controller.Invoke("activar_objetos", tiempo + 1f);
+    }
+
+    public IEnumerator playInstruccion(int i, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        audios_instrucciones.GetComponents<AudioSource>()[i].Play();
+    }
+
+
+    public IEnumerator playDescripcion(int i, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        audios_descripciones.GetComponents<AudioSource>()[i].Play();
+    }
+
+    /*IEnumerator playDescripciones(int i, int j, int k, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        float tiempo = 0.5f;
+        switch_controller.desactivar_objetos();
+        StartCoroutine(playPasillo(0, i, tiempo));
+        StartCoroutine(activarSeleccion(0, true, tiempo));
+        tiempo += pasillos[0].GetComponents<AudioSource>()[i].clip.length;
+        StartCoroutine(activarSeleccion(0, false, tiempo));
+        tiempo += 1f;
+
+        StartCoroutine(playPasillo(1, j, tiempo));
+        StartCoroutine(activarSeleccion(1, true, tiempo));
+        tiempo += pasillos[1].GetComponents<AudioSource>()[j].clip.length;
+        StartCoroutine(activarSeleccion(1, false, tiempo));
+        tiempo += 1f;
+
+        StartCoroutine(playPasillo(2, k, tiempo));
+        StartCoroutine(activarSeleccion(2, true, tiempo));
+        tiempo += pasillos[2].GetComponents<AudioSource>()[k].clip.length;
+        StartCoroutine(activarSeleccion(2, false, tiempo));
+
+        switch_controller.Invoke("activar_objetos", tiempo + 1f);
+    }*/
+
+    /*
+public IEnumerator playPasillo(int i, int j, float seconds)
+{
+    yield return new WaitForSeconds(seconds);
+    pasillos[i].GetComponents<AudioSource>()[j].Play();
+}*/
+
+    IEnumerator activarSeleccion(int i, bool activar, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        seleccion[i].SetActive(activar);
+    }
+
+    void mostrarCruceLaberinto(bool primero)
     {
         //print(texturas.Length);
         List<int> orden = new List<int>();
@@ -107,10 +224,15 @@ public class EscenaLaberintoController  : MonoBehaviour {
             //print(soluciones[dificultad][cruce_actual] + " " + orden[r] + " " + r + " " + orden.Count);
             orden.RemoveAt(r);*/
 
+        
         for (int j = 0; j < n_pasillos; j++)
         {
             r = Random.Range(0, orden.Count);
-            pasillos[j].mostrarCrucePasillo(texturas[orden[r]].obtenerTextura(dificultad));
+            emociones_pasillos[j] = orden[r];
+            Texture2D tex = texturas[orden[r]].obtenerTextura(dificultad);
+            int.TryParse(tex.name.Substring(2,2),out indices_cartas[j]);
+            indices_cartas[j]--;
+            pasillos[j].mostrarCrucePasillo(tex);
             cruce_actual_emociones[j] = orden[r];
             if (soluciones[dificultad][cruce_actual] == orden[r])
                 solucion_actual = j;
@@ -119,20 +241,25 @@ public class EscenaLaberintoController  : MonoBehaviour {
 
         }
         emoticono_pequeño.GetComponent<Animator>().Play("Emocion"+ soluciones[dificultad][cruce_actual]);
-
+        
+        if (!primero)
+        {
+            StartCoroutine(playDescripciones(1f));
+        }
+            //playDescripciones(emociones_pasillos[0], emociones_pasillos[1], emociones_pasillos[2], 0f);
         /*for (int j = 0; j < n_pasillos; j++)
             //pasillos[j].mostrarCrucePasillo(dificultad, i);
             pasillos[j].mostrarCrucePasillo(texturas[j].obtenerTextura(dificultad,i));*/
     }
 
-    public void siguienteCruce()
+    public void siguienteCruce(bool primero)
     {
         //print(cruces.Count);
         pasillos[1].GetComponent<BoxCollider>().enabled = true;
         int r = Random.Range(0, cruces.Count);//print(r+" "+cruces.Count);
         cruce_actual = cruces[r];
         //print("Cruce_i:" + cruce_i + " cruce_actual:" + cruce_actual + " n_cruces:" + n_cruces);
-        mostrarCruceLaberinto(dificultad, cruce_actual);
+        mostrarCruceLaberinto(primero);
         cruces.Remove(cruce_actual);
         cruce_i++;
     }
@@ -144,13 +271,13 @@ public class EscenaLaberintoController  : MonoBehaviour {
         if (solucion_actual == idPasillo) {//(soluciones[dificultad][cruce_actual] == idPasillo){
             acierto = true;
             emocion = cruce_actual_emociones[solucion_actual];
-            print("Cruce " + cruce_actual + ": CORRECTO!! "+emocion);
+            //print("Cruce " + cruce_actual + ": CORRECTO!! "+emocion);
             estado_juego.incrementarAciertosLaberinto(cruce_actual_emociones[solucion_actual]);
         }else{
             acierto = false;
             emocion1 = cruce_actual_emociones[solucion_actual];
             emocion2 = cruce_actual_emociones[idPasillo];
-            print("Cruce " + cruce_actual + ": HAS FALLADO :(");
+            //print("Cruce " + cruce_actual + ": HAS FALLADO :(");
             estado_juego.incrementarFallosLaberinto(cruce_actual_emociones[solucion_actual]);
             estado_juego.incrementarFallosLaberinto(cruce_actual_emociones[idPasillo]);
             estado_juego.datos.fallos_general++;

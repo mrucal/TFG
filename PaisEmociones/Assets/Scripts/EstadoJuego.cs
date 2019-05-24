@@ -106,6 +106,7 @@ public class EstadoJuego : MonoBehaviour
     {
         datos.aciertos_laberinto[(datos.dificultad * 3) + emocion]++;
         ganarTrofeo(emocion);
+        ganarTrofeo(emocion);
         datos.aciertos_general++;
         datos.total_laberinto[emocion]++;
     }
@@ -115,6 +116,24 @@ public class EstadoJuego : MonoBehaviour
         datos.fallos_laberinto[(datos.dificultad * 3) + emocion]++;
         perderTrofeo(emocion);
         //datos.fallos_general++;
+    }
+
+    public bool juegoGanado()
+    {
+        for (int i = 0; i < 3; i++)
+            if (datos.trofeos[(datos.dificultad * 3) + i] < datos.min_trofeos[(datos.dificultad * 3) + i])
+                return false;
+
+        return true;
+    }
+
+    public int[] getMinTrofeos()
+    {
+        int[] mt = { 0, 0, 0 };
+        for(int i=0; i < 3; i++)
+            mt[i] = datos.min_trofeos[(datos.dificultad*3)+i];
+        
+        return mt;
     }
 }
 
@@ -126,6 +145,8 @@ public class Datos
     public string ultima_escena;
 
     public int[] trofeos = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+    public int[] min_trofeos = { 2, 3, 3, 3, 4, 4, 4, 5, 5 };
 
     public int[] total_general = { 0, 1, 1 };
 

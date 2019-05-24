@@ -23,6 +23,7 @@ public class MenuConfiguracion : MonoBehaviour {
     public void activarMenu()
     {
         GetComponent<Canvas>().enabled = true;
+        toggles[dificultad].isOn = true;
         candado.llaveL = false;
         candado.llaveR = false;
     }

@@ -15,8 +15,8 @@ public class EscenaParqueController  : MonoBehaviour {
 
     private const float t_sig_escena = 2f;
 
-    private const float td = 0f;
-    private const float t_transicion = 3f;
+    private float td = 0f;
+    private const float t_transicion = 1f;
     private const float t_patada = 0.65f;
     private const float t_pelota = 2f;
 
@@ -38,6 +38,7 @@ public class EscenaParqueController  : MonoBehaviour {
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
         //estado_juego.reset();
+        Iniciar();
     }
 
     // Use this for initialization
@@ -49,12 +50,14 @@ public class EscenaParqueController  : MonoBehaviour {
         if(string.IsNullOrEmpty(estado_juego.datos.ultima_escena))
         {
             //escena_anterior = "Patio";
-            //print("BREAK 1 "+ escena_anterior);
+            //print("BREAK 1 "+ estado_juego.datos.ultima_escena/*+ escena_anterior*/);
+            td = GetComponent<AudioSource>().clip.length;
             StartCoroutine(patear(td + t_transicion));
+            Invoke("playIntroduccionPatear", 1f);
         }
         else
         {
-            //print("BREAK 2 "+pelota.transform.position);
+            print("BREAK 2 "+ estado_juego.datos.ultima_escena/*+pelota.transform.position*/);
             //pelota.transform.position = new Vector3(0,0,0);
             
 
@@ -63,11 +66,15 @@ public class EscenaParqueController  : MonoBehaviour {
             //print("BREAK 3 " + pelota.transform.position);
             //escena_anterior = "Inicio";
         }
-        Iniciar();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    void playIntroduccionPatear()
+    {
+        GetComponent<AudioSource>().Play();
+    }
+    
+    // Update is called once per frame
+    void Update () {
 		
 	}
     

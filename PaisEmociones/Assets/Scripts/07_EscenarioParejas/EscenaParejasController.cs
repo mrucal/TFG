@@ -70,11 +70,7 @@ public class EscenaParejasController : MonoBehaviour {
         animacion_trofeo.funcion = "asignarParejas";
         animacion_trofeo.controller = gameObject;
         switch_controller = GameObject.Find("SwitchController").GetComponent<SwitchController>();
-    }
 
-    // Use this for initialization
-    void Start()
-    {
         Iniciar();
         dificultad = estado_juego.datos.dificultad;
         n_juegos = 1;
@@ -89,7 +85,44 @@ public class EscenaParejasController : MonoBehaviour {
         parejas[2][1] = parejas2dif2;
 
         Crear();
-	}
+    }
+
+    private IEnumerator activarCasillas(bool activar, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        for (int i = 0; i < casillas_parent.childCount; i++)
+            casillas_parent.GetChild(i).GetComponent<BoxCollider>().enabled = activar;
+    }
+
+    // Use this for initialization
+    void Start()
+    {
+        StartCoroutine(activarCasillas(false,0f));
+        switch_controller.desactivar_objetos();
+        StartCoroutine(play(1,1f));
+        StartCoroutine(activarCasillas(true, GetComponents<AudioSource>()[1].clip.length+1f));
+        switch_controller.Invoke("activar_objetos", GetComponents<AudioSource>()[1].clip.length+1f);
+        /*Iniciar();
+        dificultad = estado_juego.datos.dificultad;
+        n_juegos = 1;
+        parejas = new Texture2D[3][][];
+        for (int i = 0; i < 3; i++)
+            parejas[i] = new Texture2D[2][];
+        parejas[0][0] = parejas1dif0;
+        parejas[0][1] = parejas2dif0;
+        parejas[1][0] = parejas1dif1;
+        parejas[1][1] = parejas2dif1;
+        parejas[2][0] = parejas1dif2;
+        parejas[2][1] = parejas2dif2;
+
+        Crear();*/
+    }
+
+    public IEnumerator play(int i, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        GetComponents<AudioSource>()[i].Play();
+    }
 
     public bool isFinTurno()
     {
@@ -239,7 +272,7 @@ public class EscenaParejasController : MonoBehaviour {
 
     private void ocultarAcutalUltima()
     {
-        print(ultima_casilla.numCasilla + " " + casilla_actual.numCasilla);
+        //print(ultima_casilla.numCasilla + " " + casilla_actual.numCasilla);
         casilla_actual.ocultarCarta();
         ultima_casilla.ocultarCarta();
         fin_turno = false;
@@ -247,21 +280,23 @@ public class EscenaParejasController : MonoBehaviour {
 
     public void ganar()
     {
-        print("HAS GANADO!!!!");
+        print("HAS GANADO!!!! "+n_juegos);
         estado_juego.ganarTrofeo(n_juegos - 1);
+        float tiempo = GetComponents<AudioSource>()[n_juegos + 1].clip.length;
+        StartCoroutine(play(n_juegos+1, 1f));
         if (n_juegos < total_juegos)
         {
             for (int i = 0; i < casillas.Count; i++)
                 casillas[i].GetComponent<BoxCollider>().enabled = false;
             animacion_trofeo.boton_salida.SetActive(true);
-            StartCoroutine(SiguienteEscena("-", t_sig_escena, n_juegos - 1));
+            StartCoroutine(SiguienteEscena("-", tiempo + t_sig_escena, n_juegos - 1));
             //asignarParejas();
         }
         else
         {
             animacion_trofeo.boton_salida.SetActive(true);
             Finalizar();
-            StartCoroutine(SiguienteEscena("06_EscenaCastillo", t_sig_escena, n_juegos - 1));
+            StartCoroutine(SiguienteEscena("06_EscenaCastillo", tiempo + t_sig_escena, n_juegos - 1));
         }
 
         n_juegos++;

@@ -100,8 +100,12 @@ public class AnimacionTrofeoLaberinto : MonoBehaviour {
         if (acierto)
         {
             print("BREAK MENU: " + emocion);
-            trofeo.SetActive(true);
-            trofeo.GetComponent<Animator>().Play("ApareceTrofeo" + emocion);
+            /*trofeo.SetActive(true);
+            trofeo.GetComponent<Animator>().Play("ApareceTrofeo" + emocion);*/
+            trofeo1.SetActive(true);
+            trofeo1.GetComponent<Animator>().Play("ApareceTrofeo" + emocion);
+            trofeo2.SetActive(true);
+            trofeo2.GetComponent<Animator>().Play("ApareceTrofeo" + emocion);
         }
         else
         {
@@ -139,7 +143,7 @@ public class AnimacionTrofeoLaberinto : MonoBehaviour {
             trofeo.SetActive(false);
             trofeo1.SetActive(false);
             trofeo2.SetActive(false);
-            elc.siguienteCruce();
+            elc.siguienteCruce(false);
         }
     }
 }

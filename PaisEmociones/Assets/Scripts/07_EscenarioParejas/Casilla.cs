@@ -22,7 +22,7 @@ public class Casilla : MonoBehaviour {
 
     private void OnMouseDown()
     {
-        print("NumCasilla: "+numCasilla.ToString()+" IdPareja "+idCarta);
+        //print("NumCasilla: "+numCasilla.ToString()+" IdPareja "+idCarta);
         /*if (oculta){
             if (carta != null)
                 mostrarCarta();

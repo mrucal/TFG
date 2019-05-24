@@ -39,10 +39,51 @@ public class EscenaMagoController  : MonoBehaviour {
     void Start()
     {
         sol.GetComponent<Animator>().Play("SolNubeAnimation");
+        Invoke("playIntroduccion", 1f);
     }
 	
-	// Update is called once per frame
-	void Update () {
+    void playIntroduccion()
+    {
+        GetComponent<AudioSource>().Play();
+        StartCoroutine(playPrincipalesLlegando(GetComponent<AudioSource>().clip.length));
+    }    
+
+    public IEnumerator playPrincipalesLlegando( float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        personaje.GetComponent<Animator>().Play("PrincipalesLlegando");
+    }
+
+    public void continuarIntroduccion()
+    {
+        StartCoroutine(play(1, 0.5f));
+        float tiempo = 0.5f;
+        if (estado_juego.juegoGanado())
+        {
+            tiempo += GetComponents<AudioSource>()[1].clip.length + 0.5f;
+            StartCoroutine(play(2, tiempo));
+            tiempo += GetComponents<AudioSource>()[2].clip.length + 0.5f;
+            StartCoroutine(play(3, tiempo));
+            tiempo += GetComponents<AudioSource>()[3].clip.length;
+            StartCoroutine(SiguienteEscena("10_EscenaPatio", tiempo + t_sig_escena));
+        }
+        else
+        {
+            tiempo += GetComponents<AudioSource>()[1].clip.length + 0.5f;
+            StartCoroutine(play(4, tiempo));
+            tiempo += GetComponents<AudioSource>()[4].clip.length + 0.5f;
+            StartCoroutine(play(5, tiempo));
+        }
+    }
+
+    public IEnumerator play(int i, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        GetComponents<AudioSource>()[i].Play();
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 

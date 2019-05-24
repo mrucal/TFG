@@ -43,4 +43,31 @@ public class Personaje4 : MonoBehaviour {
         gruñidoSonido.volume = 0.15f;
     }
 
+    public void esperarPersonajeAstilla()
+    {
+        controller_escena.SendMessage("esperarPersonajeAstilla");
+    }
+
+    public void terminarAstilla()
+    {
+        controller_escena.SendMessage("terminarAstilla");
+    }
+
+    public void esperarPersonajeEspada()
+    {
+        dragon.GetComponent<Animator>().Play("DragonEnfadadoIdleAnimation");
+        dragon.GetComponents<AudioSource>()[2].Play();
+        Invoke("esperarPersonajeEspada2", dragon.GetComponents<AudioSource>()[2].clip.length + 0.5f);
+    }
+
+    public void esperarPersonajeEspada2()
+    {
+        controller_escena.SendMessage("esperarPersonajeEspada");
+    }
+
+    public void terminarEspada()
+    {
+        controller_escena.SendMessage("terminarEspada");
+    }
 }
+

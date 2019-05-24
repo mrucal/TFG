@@ -6,6 +6,8 @@ public class DragonController : MonoBehaviour {
 
     private Animator animator;
 
+    public GameObject personaje;
+
     /*private AudioSource[] sonidos;
     private AudioSource gruñidoSonido;
     private AudioSource fuegoSonido;
@@ -36,4 +38,27 @@ public class DragonController : MonoBehaviour {
     {
         fuegoSonido.Play();
     }*/
+    
+    public void terminarAnimacionFeliz()
+    {
+        //GetComponent<Animator>().Play("DragonFelizAnimation");
+        //print("Animacion");
+        GetComponents<AudioSource>()[3].Play();
+        Invoke("terminarAnimacionFeliz2",GetComponents<AudioSource>()[3].clip.length+0.5f);
+    }
+
+    public void terminarAnimacionFeliz2()
+    {
+        GetComponent<Animator>().Play("DragonFelizAnimationMove");
+    }
+
+    public void terminarAnimacionFeliz3()
+    {
+        personaje.GetComponent<Animator>().Play("PersonajeAndandoAstilla2");
+    }
+
+    public void terminarAnimacionEspada()
+    {
+        personaje.GetComponent<Animator>().Play("PersonajeAndandoEspada2");
+    }
 }

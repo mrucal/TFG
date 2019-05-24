@@ -113,7 +113,9 @@ public class AnimacionTrofeo : MonoBehaviour {
     private void CargarEscena()
     {
         if (!siguiente_escena.Equals("-"))
+        {
             SceneManager.LoadScene(siguiente_escena);
+        }
         else
         {
             canvas.enabled = false;

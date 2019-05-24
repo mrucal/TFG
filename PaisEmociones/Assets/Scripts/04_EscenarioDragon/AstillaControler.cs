@@ -24,7 +24,7 @@ public class AstillaControler : MonoBehaviour {
             if (Physics.Raycast(ray, out hit))
                 if (hit.transform.name == "Astilla" && !click)
                 {
-                    print("Clcik en astilla!!");
+                    //print("Clcik en astilla!!");
                     //StartCoroutine(resetClick());
                     click = true;
                     escena.SendMessage("AnimacionAstilla");

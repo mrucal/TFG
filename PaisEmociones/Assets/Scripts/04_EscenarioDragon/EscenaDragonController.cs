@@ -45,7 +45,7 @@ public class EscenaDragonController : MonoBehaviour
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
         animacion_trofeo = GameObject.Find("AnimacionTrofeo").GetComponent<AnimacionTrofeo>();
         estado_juego.asignarMenuTrofeo(GameObject.Find("MenuTrofeos").GetComponent<MenuTrofeo2>());
-        print("BREAK DRAGON CONTROLLER");
+        //print("BREAK DRAGON CONTROLLER");
         Iniciar();
     }
 
@@ -53,6 +53,32 @@ public class EscenaDragonController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        switch_controller.desactivar_objetos();
+        Invoke("playIntroduccion", 1f);
+    }
+
+    public void playIntroduccion()
+    {
+        /* float tiempo = 0f;
+         for (int i = 0; i < 4; i++)
+         {
+             print("T: " + tiempo);
+             StartCoroutine(play(i+1, tiempo));
+             tiempo += GetComponents<AudioSource>()[i+1].clip.length + 0.5f;
+         }*/
+        float tiempo = 0f;
+        StartCoroutine(play(1, 0f));
+        tiempo += GetComponents<AudioSource>()[1].clip.length + 0.5f;
+        StartCoroutine(play(2, tiempo));
+        tiempo += GetComponents<AudioSource>()[2].clip.length +1f;
+        StartCoroutine(play(4,tiempo));
+        tiempo += GetComponents<AudioSource>()[4].clip.length;
+        switch_controller.Invoke("activar_objetos",tiempo);
+    } 
+    public IEnumerator play(int i, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        GetComponents<AudioSource>()[i].Play();
     }
 
     void Update()
@@ -84,7 +110,7 @@ public class EscenaDragonController : MonoBehaviour
         conejo.GetComponent<Animator>().Play("ConejoAndandoAnimation");
         personaje.GetComponent<Animator>().Play("PersonajeAndandoAstilla");
         espada.GetComponent<Animator>().Play("EspadaQuietaAnimation");
-        StartCoroutine(esperarPersonajeAstilla(t_pers_dr_as));
+        //StartCoroutine(esperarPersonajeAstilla(t_pers_dr_as));
         //cambiarEstado("EscenaDragonFeliz");
         //dragon.SendMessage("cambiarEstado", "DragonFelizAnimation");
 
@@ -98,18 +124,22 @@ public class EscenaDragonController : MonoBehaviour
         //SceneManager.LoadScene(escena);
     }
 
-    IEnumerator esperarPersonajeAstilla(float seconds)
+    public void/* IEnumerator*/ esperarPersonajeAstilla(/*float seconds*/)
     {
-        yield return new WaitForSeconds(seconds);
+       // yield return new WaitForSeconds(seconds);
         GetComponent<AudioSource>().Play();
         Destroy(astilla);
         emoticono.GetComponent<Animator>().Play("AlegriaAnimation");
         cambiarEstado("EscenaDragonFeliz");
         dragon.SendMessage("cambiarEstado", "DragonFelizAnimation");
         //estado_juego.datos.aciertos[estado_juego.datos.dificultad][2]++;
+    }
+
+    public void terminarAstilla()
+    {
         estado_juego.incrementarAciertos(2);
         acierto = true;// Finalizar(true);
-        StartCoroutine(SiguienteEscena("05_EscenaPueblo", t_pers_fin_as + t_sig_escena/*7f*/,true));
+        StartCoroutine(SiguienteEscena("05_EscenaPueblo", /*t_pers_fin_as + */t_sig_escena/*7f*/, true));
     }
 
     public void AnimacionEspada()
@@ -119,20 +149,25 @@ public class EscenaDragonController : MonoBehaviour
         //dragon.SendMessage("cambiarEstado", "DragonEnfadoMaximoAnimation");
         personaje.GetComponent<Animator>().Play("PersonajeAndandoEspada");
         conejo.GetComponent<Animator>().Play("ConejoAndandoAnimation");
-        StartCoroutine(esperarPersonajeEspada(t_pers_dr_esp/*4.5f*/));
+        //StartCoroutine(esperarPersonajeEspada(t_pers_dr_esp/*4.5f*/));
 
     }
 
-    IEnumerator esperarPersonajeEspada(float seconds)
+    public void /*IEnumerator*/ esperarPersonajeEspada(/*float seconds*/)
     {
-        yield return new WaitForSeconds(seconds);
+        //yield return new WaitForSeconds(seconds);
+        print("ESPERAR");
         dragon.SendMessage("cambiarEstado", "DragonEnfadoMaximoAnimation");
         astilla.GetComponent<Animator>().Play("AstillaMoveAnimation");
         /*print("fallos: " + estado_juego.datos.fallos[estado_juego.datos.dificultad][2]);
         estado_juego.datos.fallos[estado_juego.datos.dificultad][2]++;
         print("fallos: " + estado_juego.datos.fallos[estado_juego.datos.dificultad][2]);*/
+    }
+
+    public void terminarEspada()
+    {
         estado_juego.incrementarFallos(2);
         acierto = false;// Finalizar(false);
-        StartCoroutine(SiguienteEscena("05_EscenaPueblo", t_pers_fin_esp + t_sig_escena/*7f*/,false));
+        StartCoroutine(SiguienteEscena("05_EscenaPueblo", /*t_pers_fin_esp +*/ t_sig_escena/*7f*/, false));
     }
 }

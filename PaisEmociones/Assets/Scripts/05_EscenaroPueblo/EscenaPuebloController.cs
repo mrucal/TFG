@@ -8,11 +8,13 @@ public class EscenaPuebloController : MonoBehaviour {
     public GameController controller;
 
     public GameObject niño;
+    public GameObject niño_body;
     public GameObject coche;
     public GameObject fuente;
     public GameObject farola;
     public GameObject pelota;
     public GameObject perro;
+    public GameObject señal;
     public AnimacionTrofeo animacion_trofeo;
     public SwitchController switch_controller;
 
@@ -46,7 +48,7 @@ public class EscenaPuebloController : MonoBehaviour {
 
     private void Awake()
     {
-        print("AWAKE PUEBLO");
+        //print("AWAKE PUEBLO");
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
         animacion_trofeo = GameObject.Find("AnimacionTrofeo").GetComponent<AnimacionTrofeo>();
         Iniciar();
@@ -58,15 +60,73 @@ public class EscenaPuebloController : MonoBehaviour {
         sol.GetComponent<Animator>().Play("SolNubeAnimation");
         farola_on = false;
         encontrado = false;
+        switch_controller.desactivar_objetos();
+        Invoke("playIntroduccion", 1f);
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    void playIntroduccion()
+    {
+        float tiempo = 0f;
+        StartCoroutine(play(0, 0f));
+        tiempo += GetComponents<AudioSource>()[0].clip.length + 0.5f;
+        StartCoroutine(play(1, tiempo));
+        tiempo += GetComponents<AudioSource>()[1].clip.length + 0.5f;
+        Invoke("activarTristin", tiempo);
+    }
+
+    public IEnumerator play(int i, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        GetComponents<AudioSource>()[i].Play();
+    }
+
+    void activarTristin()
+    {
+        niño_body.GetComponent<BoxCollider>().enabled = true;
+        
+    }
+
+    void terminarLlorar()
+    {
+        niño.GetComponents<AudioSource>()[1].Stop();
+        niño.GetComponent<Animator>().Play("NiñoTristeIdle");
+    }
+
+    void activarObjetos()
+    {
+        switch_controller.activar_objetos();
+    }
+
+    public void playTristin()
+    {
+        niño_body.GetComponent<AudioSource>().Play();
+        niño_body.GetComponent<BoxCollider>().enabled = false;
+
+        float tiempo = 0f;
+        for(int i =2; i < 6; i++)
+        {
+            switch (i)
+            {
+                case 3:
+                    Invoke("terminarLlorar", tiempo);
+                    break;
+                case 5:
+                    Invoke("activarObjetos", tiempo + GetComponents<AudioSource>()[5].clip.length);
+                    break;
+            }
+            StartCoroutine(play(i, tiempo));
+            tiempo += GetComponents<AudioSource>()[i].clip.length + 0.5f;
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
     void CocheRun()
     {
+        confirmacion = false;
         //ParticleSystem ps = fuente.GetComponent<ParticleSystem>();
         //print("Controller coche! "/*+ps.name*/);
         coche.GetComponent<Animator>().Play("CocheRunAnimation");
@@ -74,21 +134,28 @@ public class EscenaPuebloController : MonoBehaviour {
 
     void FuenteRun()
     {
+        confirmacion = false;
         fuente.GetComponent<Animator>().Play("FuenteRunAnimation");
     }
 
     void FarolaRun()
     {
-        if(farola_on)
+        confirmacion = false;
+        if (farola_on)
             farola.GetComponent<Animator>().Play("FarolaOffAnimation");
         else
+        {
+            switch_controller.desactivar_objetos_menos(0);
             farola.GetComponent<Animator>().Play("FarolaOnAnimation");
+            switch_controller.Invoke("activar_objetos", farola.GetComponents<AudioSource>()[1].clip.length);
+        }
 
         farola_on = !farola_on;
     }
 
     void PelotaRun()
     {
+        confirmacion = false;
         pelota.GetComponent<Animator>().Play("PelotaAnimation");
     }
 
@@ -131,12 +198,27 @@ public class EscenaPuebloController : MonoBehaviour {
             switch_controller.desactivar_objetos_menos(0);
             estado_juego.incrementarFallos(1);
             //Finalizar();
-            StartCoroutine(SiguienteEscena(/*"06_EscenaLaberinto"*/"06_EscenaCastillo", t_sig_escena,false));
+            StartCoroutine(SiguienteEscena(/*"06_EscenaLaberinto"*/"06_EscenaCastillo", t_sig_escena, false));
         }
-        /*else
-            Conejo pregunta si esta seguro de salir del pueblo
-        */
+        else
+        {
+            //Conejo pregunta si esta seguro de salir del pueblo
+            señal.GetComponent<BoxCollider>().enabled = false;
+            Invoke("playConfirmacion", 0.5f);
+            Invoke("activarSeñal", señal.GetComponent<AudioSource>().clip.length);
+        }
+        
         confirmacion = !confirmacion;
+    }
+
+    void activarSeñal()
+    {
+        señal.GetComponent<BoxCollider>().enabled = true;
+    }
+
+    void playConfirmacion()
+    {
+        señal.GetComponent<AudioSource>().Play();
     }
 
     IEnumerator esperarAnimacion(float seconds, GameObject go, string animacion)
