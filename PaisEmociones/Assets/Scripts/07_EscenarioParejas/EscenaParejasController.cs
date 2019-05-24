@@ -295,7 +295,7 @@ public class EscenaParejasController : MonoBehaviour {
         else
         {
             animacion_trofeo.boton_salida.SetActive(true);
-            Finalizar();
+            //Finalizar();
             StartCoroutine(SiguienteEscena("06_EscenaCastillo", tiempo + t_sig_escena, n_juegos - 1));
         }
 

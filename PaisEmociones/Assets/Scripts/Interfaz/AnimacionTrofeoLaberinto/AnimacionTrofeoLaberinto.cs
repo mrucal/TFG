@@ -134,7 +134,10 @@ public class AnimacionTrofeoLaberinto : MonoBehaviour {
         activado = true;
         switch_controller.activar_objetos();
         if (!siguiente_escena.Equals("-"))
+        {
+            elc.SendMessage("Finalizar");
             SceneManager.LoadScene(siguiente_escena);
+        }
         else
         {
             canvas.enabled = false;

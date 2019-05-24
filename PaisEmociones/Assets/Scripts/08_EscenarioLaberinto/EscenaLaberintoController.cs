@@ -290,7 +290,7 @@ public IEnumerator playPasillo(int i, int j, float seconds)
             //siguienteCruce();
         }else
         {
-            Finalizar();
+            //Finalizar();
             StartCoroutine(SiguienteEscena(/*"07_EscenaCastillo"*/"09_EscenaMago", t_sig_escena,acierto, emocion, emocion1, emocion2));
         }
     }

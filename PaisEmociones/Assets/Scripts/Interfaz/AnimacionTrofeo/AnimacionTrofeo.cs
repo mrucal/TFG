@@ -114,6 +114,7 @@ public class AnimacionTrofeo : MonoBehaviour {
     {
         if (!siguiente_escena.Equals("-"))
         {
+            controller.SendMessage("Finalizar");
             SceneManager.LoadScene(siguiente_escena);
         }
         else

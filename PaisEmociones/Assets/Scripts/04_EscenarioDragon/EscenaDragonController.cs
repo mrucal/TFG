@@ -35,7 +35,7 @@ public class EscenaDragonController : MonoBehaviour
         //estado_juego.reset();
     }
 
-    private void Finalizar(bool acierto)
+    private void Finalizar(/*bool acierto*/)
     {
         estado_juego.guardar();
     }
@@ -116,10 +116,10 @@ public class EscenaDragonController : MonoBehaviour
 
     }
 
-    IEnumerator SiguienteEscena(string escena, float seconds,bool acierto)
+    IEnumerator SiguienteEscena(string escena, float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        Finalizar(acierto);
+        //Finalizar();
         animacion_trofeo.IniciarAnimacion(acierto, 2,escena);
         //SceneManager.LoadScene(escena);
     }
@@ -139,7 +139,7 @@ public class EscenaDragonController : MonoBehaviour
     {
         estado_juego.incrementarAciertos(2);
         acierto = true;// Finalizar(true);
-        StartCoroutine(SiguienteEscena("05_EscenaPueblo", /*t_pers_fin_as + */t_sig_escena/*7f*/, true));
+        StartCoroutine(SiguienteEscena("05_EscenaPueblo", /*t_pers_fin_as + */t_sig_escena/*7f*/));
     }
 
     public void AnimacionEspada()
@@ -168,6 +168,6 @@ public class EscenaDragonController : MonoBehaviour
     {
         estado_juego.incrementarFallos(2);
         acierto = false;// Finalizar(false);
-        StartCoroutine(SiguienteEscena("05_EscenaPueblo", /*t_pers_fin_esp +*/ t_sig_escena/*7f*/, false));
+        StartCoroutine(SiguienteEscena("05_EscenaPueblo", /*t_pers_fin_esp +*/ t_sig_escena/*7f*/));
     }
 }

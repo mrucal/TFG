@@ -236,7 +236,7 @@ public class EscenaPuebloController : MonoBehaviour {
         farola.GetComponent<BoxCollider>().enabled = false;
         pelota.GetComponent<BoxCollider>().enabled = false;
 
-        Finalizar();
+        //Finalizar();
         animacion_trofeo.IniciarAnimacion(acierto, 1, escena);
     }
 
