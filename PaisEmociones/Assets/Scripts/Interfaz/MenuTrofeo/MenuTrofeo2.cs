@@ -27,13 +27,15 @@ public class MenuTrofeo2 : MonoBehaviour {
         {
             switch_controller = GameObject.Find("SwitchController").GetComponent<SwitchController>();
             n_trofeos = new int[3];
+            //print("MT2 ONCALL");
             estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
-            for (int i = 0; i < 3; i++)
+            /*for (int i = 0; i < 3; i++)
             {
                 n_trofeos[i] = estado_juego.datos.trofeos[(estado_juego.datos.dificultad * 3) + i];
+                print("MT2 NTROFEOS "+ estado_juego.datos.trofeos[(estado_juego.datos.dificultad * 3) + i]);
                 //print("Ntrofeos: " + n_trofeos[i] + " dificultad: " + estado_juego.datos.dificultad);
                 //print(n_trofeos[i]+" "+ estado_juego.datos.trofeos[(estado_juego.datos.dificultad * 3) + i]);
-            }
+            }*/
             Actualizar();
             //switch_controller.objetos.Insert(0, GameObject.Find("Boton").GetComponent<GameObject>());
         }
@@ -44,7 +46,7 @@ public class MenuTrofeo2 : MonoBehaviour {
     {
         if (mt == null)
         {
-            //print("AWAKE 1 " + mt);
+            //print("MT2 AWAKE 1 " + mt);
             mt = this;
             DontDestroyOnLoad(this.gameObject);
             gameObject.GetComponent<Canvas>().enabled = false;
@@ -59,7 +61,7 @@ public class MenuTrofeo2 : MonoBehaviour {
         }
         else if (mt != this)
         {
-            //print("AWAKE 2");
+            //print("MT2 AWAKE 2");
             Destroy(gameObject);
         }
     }
@@ -123,16 +125,18 @@ public class MenuTrofeo2 : MonoBehaviour {
         {
             //print("nti: " + nti);
             nti = n_trofeos[i] < nti_max ? n_trofeos[i] : nti_max;
+            //print("nti2: " + nti);
             //print("nti_max: " + nti_max);
             for (int j = 0; j < nti; j++)
             {
-                //print(i + " " + j + " "+ trofeos[i][j].name
+                //print(i + " " + j + " " + "color"/*trofeos[i][j].name*/);
                 //trofeos[i][j].GetComponent<Image>().color = new Color(85, 85, 85, 153);
+                trofeos[i][j].GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
                 trofeos[i][j].SetActive(true);
             }
             for (int j = nti; j < min_trof[i]; j++)
             {
-                //print(i + " " + j + " "+ trofeos[i][j].name
+                //print(i + " " + j + " " + "negro"/*trofeos[i][j].name*/);
                 trofeos[i][j].GetComponent<Image>().color = new Color(0.33f, 0.33f, 0.33f, 0.6f);
                 trofeos[i][j].SetActive(true);
             }

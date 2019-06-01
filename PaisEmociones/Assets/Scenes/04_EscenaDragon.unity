@@ -3053,6 +3053,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114104311201646352, guid: a1eae37d41dcd694d9f91bcb1121b1d4,
+        type: 2}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 1185103448}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1eae37d41dcd694d9f91bcb1121b1d4, type: 2}
   m_IsPrefabAsset: 0

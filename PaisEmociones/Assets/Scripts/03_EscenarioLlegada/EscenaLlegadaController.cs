@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class EscenaLlegadaController : MonoBehaviour {
 
     public GameObject personaje;
-
+    public GameObject conejo;
     public GameObject sol;
 
     public GameObject viñeta_pelota;
@@ -44,6 +44,7 @@ public class EscenaLlegadaController : MonoBehaviour {
     private void Awake()
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+        conejo.GetComponent<Animator>().Play("ConejoIdleAnimation");
     }
 
     // Use this for initialization

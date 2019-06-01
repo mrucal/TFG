@@ -7,6 +7,7 @@ public class EscenaPuebloController : MonoBehaviour {
 
     public GameController controller;
 
+    public GameObject conejo;
     public GameObject niño;
     public GameObject niño_body;
     public GameObject coche;
@@ -51,6 +52,7 @@ public class EscenaPuebloController : MonoBehaviour {
         //print("AWAKE PUEBLO");
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
         animacion_trofeo = GameObject.Find("AnimacionTrofeo").GetComponent<AnimacionTrofeo>();
+        conejo.GetComponent<Animator>().Play("ConejoIdleAnimation");
         Iniciar();
     }
 

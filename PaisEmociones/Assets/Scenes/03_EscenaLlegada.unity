@@ -1857,6 +1857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   personaje: {fileID: 1756156877}
+  conejo: {fileID: 2064565977}
   sol: {fileID: 460892557}
   "vi\xF1eta_pelota": {fileID: 1427466644}
   "vi\xF1eta_alegria": {fileID: 1041269701}

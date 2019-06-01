@@ -103,18 +103,25 @@ public class AnimacionTrofeo : MonoBehaviour {
 
     private void SiguienteEscena()
     {
-        print("BREAK SIGUIENTE");
+        //print("BREAK SIGUIENTE");
         boton_salida.SetActive(false);
         GetComponents<AudioSource>()[4].Play();
         switch_controller.activar_objeto_i(0);
         Invoke("CargarEscena",2f);
     }
 
+    void Finalizar()
+    {
+        EstadoJuego estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+        estado_juego.guardar();
+    }
+
     private void CargarEscena()
     {
         if (!siguiente_escena.Equals("-"))
         {
-            controller.SendMessage("Finalizar");
+            //controller.SendMessage("Finalizar");
+            Finalizar();
             SceneManager.LoadScene(siguiente_escena);
         }
         else

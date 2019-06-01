@@ -46,6 +46,7 @@ public class EscenaDragonController : MonoBehaviour
         animacion_trofeo = GameObject.Find("AnimacionTrofeo").GetComponent<AnimacionTrofeo>();
         estado_juego.asignarMenuTrofeo(GameObject.Find("MenuTrofeos").GetComponent<MenuTrofeo2>());
         //print("BREAK DRAGON CONTROLLER");
+        conejo.GetComponent<Animator>().Play("ConejoIdleAnimation");
         Iniciar();
     }
 

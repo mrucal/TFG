@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class EscenaLaberintoController  : MonoBehaviour {
 
     public GameObject personaje;
+    public GameObject conejo;
     public GameObject emoticono_pequeño;
     public AnimacionTrofeoLaberinto animacion_trofeo;
     public MenuTrofeo2 mt;
@@ -67,6 +68,7 @@ public class EscenaLaberintoController  : MonoBehaviour {
         animacion_trofeo = GameObject.Find("AnimacionTrofeoLaberinto").GetComponent<AnimacionTrofeoLaberinto>();
         switch_controller = GameObject.Find("SwitchController").GetComponent<SwitchController>();
         mt = GameObject.Find("MenuTrofeos").GetComponent<MenuTrofeo2>();
+        conejo.GetComponent<Animator>().Play("ConejoIdleAnimation");
         Iniciar();
     }
 

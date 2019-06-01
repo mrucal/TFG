@@ -3404,6 +3404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   personaje: {fileID: 0}
+  conejo: {fileID: 609023052}
   "emoticono_peque\xF1o": {fileID: 1811009043}
   animacion_trofeo: {fileID: 0}
   mt: {fileID: 0}
