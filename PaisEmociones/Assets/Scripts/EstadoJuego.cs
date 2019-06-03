@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EstadoJuego : MonoBehaviour
 {
@@ -93,6 +94,7 @@ public class EstadoJuego : MonoBehaviour
         datos.aciertos[(datos.dificultad * 3) + emocion]++;
         ganarTrofeo(emocion);
         datos.aciertos_general++;
+        datos.tot_general++;
     }
 
     public int getFallosEmocion(int emocion)
@@ -110,6 +112,7 @@ public class EstadoJuego : MonoBehaviour
         datos.fallos[(datos.dificultad * 3) + emocion]++;
         perderTrofeo(emocion);
         datos.fallos_general++;
+        datos.tot_general++;
     }
 
     public void incrementarAciertosLaberinto(int emocion)
@@ -198,12 +201,32 @@ public class EstadoJuego : MonoBehaviour
         return datos.intentos_parejas[(datos.dificultad * 3) + tablero];
     }
 
-    public void siguienteEscena(bool acierto)
+    public void siguienteEscena(bool acierto = true)
     {
+        //print("ZIGUIENTE EZENA: " + acierto+" indice: "+datos.indice_escena + " len: " + datos.escenas.Count);
         if (!acierto)
             datos.indice_escena++;
         else
             datos.escenas.RemoveAt(datos.indice_escena);
+
+        //print("ZIGUIENTE EZENA2: " + acierto + " indice: " + datos.indice_escena+" len: "+datos.escenas.Count);
+        guardar();
+        SceneManager.LoadScene(datos.escenas[datos.indice_escena]);
+    }
+
+    public void siguienteEscenaBoton()
+    {
+        datos.indice_escena++;
+        guardar();
+        SceneManager.LoadScene(datos.escenas[datos.indice_escena]);
+    }
+
+    public void anteriorEscenaBoton()
+    {
+        datos.indice_escena--;
+        guardar();
+        SceneManager.LoadScene(datos.escenas[datos.indice_escena]);
+
     }
 }
 
@@ -214,8 +237,16 @@ public class Datos
 
     public string ultima_escena;
 
-    public List<string> escenas =new List<string>( new string[]{ "01_EscenaParque" , "02_EscenaPortal", "03_EscenaLlegada" , "04_EscenaDragon", "05_EscenaPueblo",
-                            "06_EscenaCastillo","07_EscenaParejas","08_EscenaLaberinto","09_EscenaMago","10_EscenaPatio"});
+    public List<string> escenas =new List<string>( new string[]{ "01_EscenaParque" , "02_EscenaPortal", "03_EscenaLlegada" 
+                                    , "04_EscenaDragon", "05_EscenaPueblo","06_EscenaCastillo"
+                                    , "07_EscenaParejas","06_EscenaCastillo","08_EscenaLaberinto"
+                                    ,"09_EscenaMago","10_EscenaPatio","01_EscenaParque" ,});
+
+    public bool modo_atras = false;
+
+    public bool parejas = false;
+
+    public bool final = false;
 
     public int indice_escena = 0;
 
@@ -224,6 +255,8 @@ public class Datos
     public int[] min_trofeos = { 2, 3, 3, 3, 4, 4, 4, 5, 5 };
 
     public int[] total_general = { 0, 1, 1 };
+
+    public float tot_general = 0f;
 
     public int aciertos_general;
     public int fallos_general;

@@ -48,7 +48,8 @@ public class EscenaCastilloController  : MonoBehaviour {
         sol.GetComponent<Animator>().Play("SolAnimation");
         enabled_interruptor = false;
         print(escena_anterior);
-        if (escena_anterior.Equals("laberinto"))
+        //if (escena_anterior.Equals("laberinto"))
+        if(!estado_juego.datos.parejas)
         {
             //boton.GetComponent<BoxCollider>().enabled = false;
             print("BREAK CASTILLO");
@@ -105,6 +106,7 @@ public class EscenaCastilloController  : MonoBehaviour {
     public IEnumerator SiguienteEscena(string escena, float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        SceneManager.LoadScene(escena);
+        //SceneManager.LoadScene(escena);
+        estado_juego.siguienteEscena();
     }
 }

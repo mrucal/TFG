@@ -78,6 +78,8 @@ public class EscenaPatioController  : MonoBehaviour {
     {
         yield return new WaitForSeconds(seconds);
         Destroy(GameObject.Find("Boton").GetComponent<BotonTrofeos>().gameObject);
-        SceneManager.LoadScene(escena);
+        //SceneManager.LoadScene(escena);
+        estado_juego.datos.final = true;
+        estado_juego.siguienteEscena();
     }
 }

@@ -99,7 +99,7 @@ public class AnimacionTrofeoLaberinto : MonoBehaviour {
     {
         if (acierto)
         {
-            print("BREAK MENU: " + emocion);
+            //print("BREAK MENU: " + emocion);
             /*trofeo.SetActive(true);
             trofeo.GetComponent<Animator>().Play("ApareceTrofeo" + emocion);*/
             trofeo1.SetActive(true);
@@ -136,7 +136,8 @@ public class AnimacionTrofeoLaberinto : MonoBehaviour {
         if (!siguiente_escena.Equals("-"))
         {
             elc.SendMessage("Finalizar");
-            SceneManager.LoadScene(siguiente_escena);
+            //SceneManager.LoadScene(siguiente_escena);
+            GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>().siguienteEscena(false);
         }
         else
         {

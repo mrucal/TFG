@@ -64,20 +64,23 @@ public class MenuEvaluacion : MonoBehaviour {
             fallos_general_emocion_text[i].text = estado.getFallosEmocion(i).ToString();
         }
 
-        float total_ejercicios = 2;
-        float porcentaje_aciertos = estado.datos.aciertos_general / total_ejercicios;
-        float porcentaje_fallos = estado.datos.fallos_general / total_ejercicios;
-        float porcentaje_restante = (1 - (porcentaje_aciertos + porcentaje_fallos));
+        float total_ejercicios = estado.datos.tot_general;
+        if (total_ejercicios != 0)
+        {
+            float porcentaje_aciertos = estado.datos.aciertos_general / total_ejercicios;
+            float porcentaje_fallos = estado.datos.fallos_general / total_ejercicios;
+            float porcentaje_restante = (1 - (porcentaje_aciertos + porcentaje_fallos));
 
-        general_text[0].text = (porcentaje_aciertos*100f).ToString() + "%";
-        setBarra(barra_general_aciertos, porcentaje_aciertos);
+            general_text[0].text = (porcentaje_aciertos * 100f).ToString() + "%";
+            setBarra(barra_general_aciertos, porcentaje_aciertos);
 
-        general_text[1].text = (porcentaje_fallos * 100f).ToString() + "%";
-        setBarra(barra_general_fallos, (porcentaje_aciertos + porcentaje_fallos));
+            general_text[1].text = (porcentaje_fallos * 100f).ToString() + "%";
+            setBarra(barra_general_fallos, (porcentaje_aciertos + porcentaje_fallos));
 
-        general_text[2].text = (porcentaje_restante * 100f).ToString() + "%";
+            general_text[2].text = (porcentaje_restante * 100f).ToString() + "%";
 
-        total_general_text.text = "Total: "+ total_ejercicios.ToString();
+            total_general_text.text = "Total: " + total_ejercicios.ToString();
+        }
     }
 
     private void cargarPanelParejas()

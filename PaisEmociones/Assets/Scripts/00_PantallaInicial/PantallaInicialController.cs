@@ -11,10 +11,14 @@ public class PantallaInicialController  : MonoBehaviour {
 
     private const float t_sig_escena = 2f;
 
+    public GameObject boton_atras, boton_adelante;
+
     private void Awake()
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
         estado_juego.cargar();
+        //boton_atras.GetComponent<SpriteRenderer>().enabled = false;
+       // boton_adelante.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     // Use this for initialization
@@ -30,14 +34,20 @@ public class PantallaInicialController  : MonoBehaviour {
     
     public LayerMask touchInputMask;
     // Update is called once per frame
-    void Update () {
+    void Update ()
+    {
+
+        GameObject.Find("BotonAtras").GetComponent<BotonAtrasAdelante>().GetComponent<SpriteRenderer>().enabled = false;
+        GameObject.Find("BotonAdelante").GetComponent<BotonAtrasAdelante>().GetComponent<SpriteRenderer>().enabled = false;
+        GameObject.Find("BotonAtras").GetComponent<BotonAtrasAdelante>().GetComponent<BoxCollider>().enabled = false;
+        GameObject.Find("BotonAdelante").GetComponent<BotonAtrasAdelante>().GetComponent<BoxCollider>().enabled = false;
 
         /*if (Input.touchCount > 0)
         {
             print("ntouch: "+Input.touchCount+" touch: "+Input.GetTouch(0));
             boton_inicio.SetActive(false);
         }*/
-        
+
         foreach (Touch touch in Input.touches)
         {
             Ray ray = Camera.main.ScreenPointToRay(touch.position);
@@ -84,6 +94,7 @@ public class PantallaInicialController  : MonoBehaviour {
     public IEnumerator SiguienteEscena(string escena, float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        SceneManager.LoadScene(escena);
+        //SceneManager.LoadScene(escena);
+        SceneManager.LoadScene(estado_juego.datos.escenas[estado_juego.datos.indice_escena]);
     }
 }

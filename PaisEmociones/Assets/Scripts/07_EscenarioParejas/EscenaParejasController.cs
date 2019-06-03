@@ -243,13 +243,13 @@ public class EscenaParejasController : MonoBehaviour {
                 fin_turno = true;
                 c.mostrarCarta();
                 estado_juego.incremetarIntentosTablero(n_juegos - 1);
-                print("Intentos Tablero " + (n_juegos - 1) + ": " + estado_juego.datos.intentos_parejas[(estado_juego.datos.dificultad * 3) + (n_juegos-1)]);
+                //print("Intentos Tablero " + (n_juegos - 1) + ": " + estado_juego.datos.intentos_parejas[(estado_juego.datos.dificultad * 3) + (n_juegos-1)]);
                 if (dificultad == 2)
                 {
                     if(c.carta.name[1] != ultima_casilla.carta.name[1] && c.carta.name[2] == ultima_casilla.carta.name[2])
                     {
                         n_parejas--;
-                        print("Quedan " + n_parejas + " parejas");
+                        //print("Quedan " + n_parejas + " parejas");
                         fin_turno = false;
                         if (n_parejas == 0)
                             Invoke("ganar", 1f);
@@ -304,6 +304,7 @@ public class EscenaParejasController : MonoBehaviour {
         {
             animacion_trofeo.boton_salida.SetActive(true);
             //Finalizar();
+            estado_juego.datos.parejas = true;
             StartCoroutine(SiguienteEscena("06_EscenaCastillo", tiempo + t_sig_escena, n_juegos - 1));
         }
 

@@ -32,6 +32,13 @@ public class EscenaMagoController  : MonoBehaviour {
     private void Awake()
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+        print("AWAKE MAGO");
+        //GameObject.Find("BotonAtras").GetComponent<BotonAtrasAdelante>();
+        //GameObject.Find("BotonAdelante").GetComponent<BotonAtrasAdelante>().gameObject.SetActive(false);
+        estado_juego.datos.modo_atras = false;
+        estado_juego.guardar();
+        GameObject.Find("BotonAtras").GetComponent<BotonAtrasAdelante>().GetComponent<SpriteRenderer>().enabled = true;
+        GameObject.Find("BotonAdelante").GetComponent<BotonAtrasAdelante>().GetComponent<SpriteRenderer>().enabled = true;
         Iniciar();
     }
 
@@ -73,7 +80,16 @@ public class EscenaMagoController  : MonoBehaviour {
             StartCoroutine(play(4, tiempo));
             tiempo += GetComponents<AudioSource>()[4].clip.length + 0.5f;
             StartCoroutine(play(5, tiempo));
+            tiempo += GetComponents<AudioSource>()[5].clip.length + 0.5f;
+            Invoke("mostrarBotonAtras", tiempo);
         }
+    }
+
+    public void mostrarBotonAtras()
+    {
+        GameObject.Find("BotonAtras").GetComponent<BotonAtrasAdelante>().GetComponent<SpriteRenderer>().enabled = true;
+        GameObject.Find("BotonAtras").GetComponent<BoxCollider>().enabled = true;
+        estado_juego.datos.modo_atras = true;
     }
 
     public IEnumerator play(int i, float seconds)
@@ -95,6 +111,7 @@ public class EscenaMagoController  : MonoBehaviour {
     public IEnumerator SiguienteEscena(string escena, float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        SceneManager.LoadScene(escena);
+        //SceneManager.LoadScene(escena);
+        estado_juego.siguienteEscena();
     }
 }

@@ -76,7 +76,8 @@ public class EscenaLlegadaController : MonoBehaviour {
     {
         yield return new WaitForSeconds(seconds);
         Finalizar();
-        SceneManager.LoadScene(escena);
+        //SceneManager.LoadScene(escena);
+        estado_juego.siguienteEscena();
     }
     
     public void playN01()

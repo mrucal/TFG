@@ -47,7 +47,8 @@ public class EscenaParqueController  : MonoBehaviour {
         sol.GetComponent<Animator>().Play("SolAnimation");
         //print(escena_anterior);
         //if (escena_anterior.Equals("Inicio"))
-        if(string.IsNullOrEmpty(estado_juego.datos.ultima_escena))
+        //if(string.IsNullOrEmpty(estado_juego.datos.ultima_escena))
+        if(!estado_juego.datos.final)
         {
             //escena_anterior = "Patio";
             //print("BREAK 1 "+ estado_juego.datos.ultima_escena/*+ escena_anterior*/);
@@ -116,6 +117,7 @@ public class EscenaParqueController  : MonoBehaviour {
     {
         yield return new WaitForSeconds(seconds);
         Finalizar();
-        SceneManager.LoadScene(escena);
+        //SceneManager.LoadScene(escena);
+        estado_juego.siguienteEscena();
     }
 }

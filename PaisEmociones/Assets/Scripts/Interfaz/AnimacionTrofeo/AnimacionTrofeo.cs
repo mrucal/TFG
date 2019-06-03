@@ -122,7 +122,8 @@ public class AnimacionTrofeo : MonoBehaviour {
         {
             //controller.SendMessage("Finalizar");
             Finalizar();
-            SceneManager.LoadScene(siguiente_escena);
+            //SceneManager.LoadScene(escena);
+            GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>().siguienteEscena(acierto);
         }
         else
         {
