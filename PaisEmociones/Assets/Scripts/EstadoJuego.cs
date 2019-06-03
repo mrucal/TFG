@@ -78,9 +78,14 @@ public class EstadoJuego : MonoBehaviour
             mt.Actualizar();
     }
 
-    public int getAciertos(int emocion)
+    public int getAciertosEmocion(int emocion)
     {
         return datos.aciertos[(datos.dificultad *3)+emocion];
+    }
+
+    public int getAciertosLaberintoEmocion(int emocion)
+    {
+        return datos.aciertos_laberinto[(datos.dificultad * 3) + emocion];
     }
 
     public void incrementarAciertos(int emocion)
@@ -90,9 +95,14 @@ public class EstadoJuego : MonoBehaviour
         datos.aciertos_general++;
     }
 
-    public int getFallos(int emocion)
+    public int getFallosEmocion(int emocion)
     {
         return datos.fallos[(datos.dificultad * 3) + emocion];
+    }
+
+    public int getFallosLaberintoEmocion(int emocion)
+    {
+        return datos.fallos_laberinto[(datos.dificultad * 3) + emocion];
     }
 
     public void incrementarFallos(int emocion)
@@ -107,8 +117,8 @@ public class EstadoJuego : MonoBehaviour
         datos.aciertos_laberinto[(datos.dificultad * 3) + emocion]++;
         ganarTrofeo(emocion);
         ganarTrofeo(emocion);
-        datos.aciertos_general++;
-        datos.total_laberinto[emocion]++;
+        //datos.aciertos_general++;
+        datos.total_laberinto[(datos.dificultad * 3) + emocion]++;
     }
 
     public void incrementarFallosLaberinto(int emocion)
@@ -116,6 +126,30 @@ public class EstadoJuego : MonoBehaviour
         datos.fallos_laberinto[(datos.dificultad * 3) + emocion]++;
         perderTrofeo(emocion);
         //datos.fallos_general++;
+    }
+
+    public int getTotalLaberinto()
+    {
+        int total = 0;
+        for (int i = (datos.dificultad * 3); i < 3; i++)
+            total += datos.total_laberinto[i];
+        return total;
+    }
+
+    public int getAciertosLaberinto()
+    {
+        int total = 0;
+        for (int i = (datos.dificultad * 3); i < 3; i++)
+            total += datos.aciertos_laberinto[i];
+        return total;
+    }
+
+    public int getFallosLaberinto()
+    {
+        int total = 0;
+        for (int i = (datos.dificultad * 3); i < 3; i++)
+            total += datos.fallos_laberinto[i];
+        return total/2;
     }
 
     public bool juegoGanado()
@@ -135,6 +169,42 @@ public class EstadoJuego : MonoBehaviour
         
         return mt;
     }
+
+    public void incremetarParejaEmocion(int emocion)
+    {
+        datos.total_parejas_emocion[(datos.dificultad * 3) + emocion]++;
+    }
+
+    public void incremetarIntentosTablero(int tablero)
+    {
+        datos.intentos_parejas[(datos.dificultad * 3) + tablero]++;
+    }
+
+    public void resetIntentosTablero()
+    {
+        for(int i = (datos.dificultad * 3); i< 3;i++)
+            datos.intentos_parejas[i] = 0;
+    }
+
+    /* public int getTotalParejasTablero(int tablero)
+     {
+         int total = 0;
+         for (int i = (datos.dificultad * 3); i < 3; i++)
+             total += datos.total_parejas_emocion[i];
+         return total / 2;
+     }*/
+    public int getIntentosTablero(int tablero)
+    {
+        return datos.intentos_parejas[(datos.dificultad * 3) + tablero];
+    }
+
+    public void siguienteEscena(bool acierto)
+    {
+        if (!acierto)
+            datos.indice_escena++;
+        else
+            datos.escenas.RemoveAt(datos.indice_escena);
+    }
 }
 
 [System.Serializable]
@@ -143,6 +213,11 @@ public class Datos
     public int dificultad = 0;
 
     public string ultima_escena;
+
+    public List<string> escenas =new List<string>( new string[]{ "01_EscenaParque" , "02_EscenaPortal", "03_EscenaLlegada" , "04_EscenaDragon", "05_EscenaPueblo",
+                            "06_EscenaCastillo","07_EscenaParejas","08_EscenaLaberinto","09_EscenaMago","10_EscenaPatio"});
+
+    public int indice_escena = 0;
 
     public int[] trofeos = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
@@ -156,11 +231,13 @@ public class Datos
     public int[] aciertos = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     public int[] fallos = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-    public int[] total_laberinto = { 0, 0, 0 };
+    public int[] total_laberinto = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     public int[] aciertos_laberinto = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     public int[] fallos_laberinto = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-    public int[] total_parejas = { 0, 0, 0 };
+    public int[] total_parejas_emocion = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    public int[] intentos_parejas = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    public int[] n_parejas = { 0,0,0}; // Una para cada dificultad
     /*public int[][] aciertos = new int[][] { new int[] { 0, 0, 0 }, new int[] { 0, 0, 0 }, new int[] { 0, 0, 0 } };
     public int[][] fallos = new int[][] { new int[] { 0, 0, 0 }, new int[] { 0, 0, 0 }, new int[] { 0, 0, 0 } };*/
 

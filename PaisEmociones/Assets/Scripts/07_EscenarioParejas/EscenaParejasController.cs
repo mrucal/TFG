@@ -66,6 +66,7 @@ public class EscenaParejasController : MonoBehaviour {
     private void Awake()
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+        estado_juego.resetIntentosTablero();
         animacion_trofeo = GameObject.Find("AnimacionTrofeo").GetComponent<AnimacionTrofeo>();
         animacion_trofeo.funcion = "asignarParejas";
         animacion_trofeo.controller = gameObject;
@@ -171,6 +172,8 @@ public class EscenaParejasController : MonoBehaviour {
             casillas[i].GetComponent<BoxCollider>().enabled = true;
 
         n_parejas = casillas.Count / 2; // Número de parejas que tendrá el tablero
+        estado_juego.datos.n_parejas[dificultad] = n_parejas;
+
         int posibles_parejas = parejas[dificultad][0].Length; // Número total de sprites para las parejas
 
         List<int> i_tex_tablero = new List<int>(); // Indices aleatorios en la lista de sprites de parejas de las parejas que tendrá el tablero
@@ -187,16 +190,19 @@ public class EscenaParejasController : MonoBehaviour {
             parejas_ordenadas.Add(parejas[dificultad][0][i_tex_tablero[i]]);
             //estado_juego.datos.total_parejas = parejas[dificultad][0][i_tex_tablero[i]];
             //print("BREAK PAREJAS " + parejas[dificultad][0][i_tex_tablero[i]].name);
-            switch (parejas[dificultad][0][i_tex_tablero[i]].name[2])
+            switch (parejas[dificultad][0][i_tex_tablero[i]].name[1])
             {
                 case 'A':
-                    estado_juego.datos.total_parejas[0]++;
+                    //estado_juego.datos.total_parejas[0]++;
+                    estado_juego.incremetarParejaEmocion(0);
                     break;
                 case 'T':
-                    estado_juego.datos.total_parejas[1]++;
+                    //estado_juego.datos.total_parejas[1]++;
+                    estado_juego.incremetarParejaEmocion(1);
                     break;
                 case 'E':
-                    estado_juego.datos.total_parejas[2]++;
+                    //estado_juego.datos.total_parejas[2]++;
+                    estado_juego.incremetarParejaEmocion(2);
                     break;
             }
             parejas_ordenadas.Add(parejas[dificultad][1][i_tex_tablero[i]]);
@@ -236,6 +242,8 @@ public class EscenaParejasController : MonoBehaviour {
             } else { // Se destapa la segunda pareja
                 fin_turno = true;
                 c.mostrarCarta();
+                estado_juego.incremetarIntentosTablero(n_juegos - 1);
+                print("Intentos Tablero " + (n_juegos - 1) + ": " + estado_juego.datos.intentos_parejas[(estado_juego.datos.dificultad * 3) + (n_juegos-1)]);
                 if (dificultad == 2)
                 {
                     if(c.carta.name[1] != ultima_casilla.carta.name[1] && c.carta.name[2] == ultima_casilla.carta.name[2])
@@ -259,7 +267,7 @@ public class EscenaParejasController : MonoBehaviour {
                     else
                     {
                         n_parejas--;
-                        print("Quedan " + n_parejas + " parejas");
+                        //print("Quedan " + n_parejas + " parejas");
                         fin_turno = false;
                         if (n_parejas == 0)
                             Invoke("ganar", 1f);
@@ -280,7 +288,7 @@ public class EscenaParejasController : MonoBehaviour {
 
     public void ganar()
     {
-        print("HAS GANADO!!!! "+n_juegos);
+        //print("HAS GANADO!!!! "+n_juegos);
         estado_juego.ganarTrofeo(n_juegos - 1);
         float tiempo = GetComponents<AudioSource>()[n_juegos + 1].clip.length;
         StartCoroutine(play(n_juegos+1, 1f));
@@ -306,6 +314,7 @@ public class EscenaParejasController : MonoBehaviour {
     {
         yield return new WaitForSeconds(seconds);
         //SceneManager.LoadScene(escena);
+        GameObject.Find("MenuTrofeos").GetComponent<MenuTrofeo2>().Actualizar();
         animacion_trofeo.IniciarAnimacion(true, emocion, escena);
     }
 

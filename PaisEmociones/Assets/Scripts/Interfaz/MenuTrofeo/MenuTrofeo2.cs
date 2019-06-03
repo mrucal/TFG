@@ -15,7 +15,7 @@ public class MenuTrofeo2 : MonoBehaviour {
     public GameObject[] trofeosE;
     public GameObject[][] trofeos;
 
-    private float pos_centro = 371.5f,/* ancho = 300,*/ ancho_trofeo = 60;
+    //private float pos_centro = 371.5f,/* ancho = 300,*/ ancho_trofeo = 60;
 
     public int[] n_trofeos = null;// = { 4, 6, 2 };
     //MENU1 public List<GameObject> trofeos = new List<GameObject>();

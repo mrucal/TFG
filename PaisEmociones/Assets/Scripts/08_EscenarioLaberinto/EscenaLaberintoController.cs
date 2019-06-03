@@ -109,6 +109,13 @@ public class EscenaLaberintoController  : MonoBehaviour {
         return clicks_activos;
     }
 
+    private void Ayuda()
+    {
+        gameObject.GetComponents<AudioSource>()[2].Play();
+        switch_controller.desactivar_objetos();
+        StartCoroutine(playInstruccion(emociones_pasillos[solucion_actual], 0.5f));
+        switch_controller.Invoke("activar_objetos", audios_instrucciones.GetComponents<AudioSource>()[solucion_actual].clip.length + 1f);
+    }
     IEnumerator playDescripciones(float seconds)
     {
         yield return new WaitForSeconds(seconds);
@@ -282,8 +289,8 @@ public IEnumerator playPasillo(int i, int j, float seconds)
             //print("Cruce " + cruce_actual + ": HAS FALLADO :(");
             estado_juego.incrementarFallosLaberinto(cruce_actual_emociones[solucion_actual]);
             estado_juego.incrementarFallosLaberinto(cruce_actual_emociones[idPasillo]);
-            estado_juego.datos.fallos_general++;
-            estado_juego.datos.total_laberinto[cruce_actual_emociones[solucion_actual]]++;
+            //estado_juego.datos.fallos_general++;
+            estado_juego.datos.total_laberinto[(estado_juego.datos.dificultad * 3) +cruce_actual_emociones[solucion_actual]]++;
         }
         mt.Actualizar();
         pasillos[1].GetComponent<BoxCollider>().enabled = false;
