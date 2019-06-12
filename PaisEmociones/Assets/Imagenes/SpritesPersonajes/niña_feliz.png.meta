@@ -1,7 +1,12 @@
 fileFormatVersion: 2
-guid: ccfea78272369d94bb9915cadb65fd2a
+guid: c0df5505953b96d4394d904055a5c189
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: "ni\xF1a_feliz_0"
+    21300002: "ni\xF1a_feliz_1"
+    21300004: "ni\xF1a_feliz_2"
+    21300006: "ni\xF1a_feliz_3"
+    21300008: "ni\xF1a_feliz_4"
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -20,7 +25,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
@@ -40,11 +45,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.5, y: 0.3}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -93,11 +98,51 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: "ni\xF1a_feliz_1"
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 14
+        width: 340
+        height: 485
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76cd3256df820b14ea637cede65c44b1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "ni\xF1a_feliz_3"
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 14
+        width: 340
+        height: 485
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb679c39157a9e74ca358a0130f9267f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 952045ef4bb41be418147ccbe210073b
+    spriteID: 3592734e9aecc7646ad4434c13536b10
     vertices: []
     indices: 
     edges: []

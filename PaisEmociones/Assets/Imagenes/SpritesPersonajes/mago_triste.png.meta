@@ -121,9 +121,9 @@ TextureImporter:
       name: mago_triste_2
       rect:
         serializedVersion: 2
-        x: 784
+        x: 767
         y: 0
-        width: 598
+        width: 630
         height: 744
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

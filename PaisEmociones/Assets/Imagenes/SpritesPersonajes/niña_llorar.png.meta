@@ -1,7 +1,11 @@
 fileFormatVersion: 2
-guid: ccfea78272369d94bb9915cadb65fd2a
+guid: d41fc5a9b394ee5408df4afae75794be
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: "ni\xF1a_llorar_1"
+    21300002: "ni\xF1a_llorar_3"
+    21300004: "ni\xF1a_llorar_5"
+    21300006: "ni\xF1a_llorar_7"
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -20,7 +24,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
@@ -40,11 +44,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.5, y: 0.3}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -93,11 +97,91 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: "ni\xF1a_llorar_1"
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 14
+        width: 340
+        height: 485
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89caaff8c7a8b4547bfea4e1ed42d184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "ni\xF1a_llorar_3"
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 14
+        width: 340
+        height: 485
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57b2102953284ba42a81f32f2bde536c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "ni\xF1a_llorar_5"
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 14
+        width: 340
+        height: 485
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b3e8182c9cb3f445819aa479269ead2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "ni\xF1a_llorar_7"
+      rect:
+        serializedVersion: 2
+        x: 1453
+        y: 14
+        width: 340
+        height: 485
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fee64ebbed8dd2941ae86b9ee7532ee8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 952045ef4bb41be418147ccbe210073b
+    spriteID: 1ff22c45f26a13143b56ee06a3022fe7
     vertices: []
     indices: 
     edges: []

@@ -28,6 +28,9 @@ public class MenuEvaluacion : MonoBehaviour {
     public Text[] laberinto_text;
     public Text total_laberinto_text;
 
+    public TextMeshProUGUI[] intentos_caras;
+    public Text[] intentos_caras_emocion;
+
     private EstadoJuego estado;
 
     private void Awake()
@@ -52,6 +55,9 @@ public class MenuEvaluacion : MonoBehaviour {
                 break;
             case 2:
                 cargarPanelLaberinto();
+                break;
+            case 3:
+                cargarPanelCaras();
                 break;
         }
     }
@@ -119,6 +125,14 @@ public class MenuEvaluacion : MonoBehaviour {
         total_laberinto_text.text = "Total cruces: " + total_ejercicios.ToString();
     }
 
+    private void cargarPanelCaras()
+    {
+        for (int i = 0; i < intentos_caras.Length; i++)
+            intentos_caras[i].text = estado.datos.intentos_cara[i].ToString();
+        for (int i = 0; i < intentos_caras_emocion.Length; i++)
+            intentos_caras_emocion[i].text = estado.datos.intentos_cara_emocion[i].ToString();
+    }
+
     private void setBarra(GameObject barra, float porcentaje)
     {
         barra.transform.localScale = new Vector3(porcentaje, barra.transform.localScale.y, barra.transform.localScale.z);
@@ -147,14 +161,14 @@ public class MenuEvaluacion : MonoBehaviour {
     public void siguientePanel()
     {
         GetComponent<AudioSource>().Play();
-        i_panel = (i_panel + 1) % 3;
+        i_panel = (i_panel + 1) % paneles.Length;
         cargarPanel();
     }
 
     public void anteriorPanel()
     {
         GetComponent<AudioSource>().Play();
-        i_panel = (i_panel + 3 - 1) % 3;
+        i_panel = (i_panel + paneles.Length - 1) % paneles.Length;
         cargarPanel();
     }
 }

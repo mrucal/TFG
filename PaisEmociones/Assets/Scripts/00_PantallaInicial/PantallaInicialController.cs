@@ -23,6 +23,7 @@ public class PantallaInicialController  : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
         //print("Ultima escena: " + estado_juego.datos.ultima_escena);
         //estado_juego.reset();
         //estado_juego.datos.dificultad = 1;

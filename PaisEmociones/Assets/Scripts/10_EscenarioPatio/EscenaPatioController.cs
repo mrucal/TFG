@@ -12,6 +12,8 @@ public class EscenaPatioController  : MonoBehaviour {
     public GameObject emoticono;
     public GameObject sol;
 
+    public SwitchController switch_controller;
+
     private const float t_sig_escena = 2f;
 
     private const float td = 0f;
@@ -36,12 +38,15 @@ public class EscenaPatioController  : MonoBehaviour {
     private void Awake()
     {
         estado_juego = GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>();
+        BotonTrofeos bt = GameObject.Find("Boton").GetComponent<BotonTrofeos>();
+        bt.transform.position = new Vector3(bt.transform.position.x,bt.transform.position.y,-3.5f);
         Iniciar();
     }
 
     // Use this for initialization
     void Start()
     {
+        switch_controller.desactivar_objetos();
         sol.GetComponent<Animator>().Play("SolNubeAnimation");
     }
 	
@@ -57,12 +62,17 @@ public class EscenaPatioController  : MonoBehaviour {
         enabled_portal = true;
     }
 
+    void enableBotonTrofeo()
+    {
+        switch_controller.activar_lista_objetos(new int[] {0,1});
+    }
+
     void EntrarPortal()
     {
         if(enabled_portal)
             personaje.GetComponent<Animator>().Play("EntrarPortal");
     }
-    void Inicio()
+    void AnimacionPortal()
     {
         mago.GetComponent<Animator>().Play("MagoPortal");
         sol.GetComponent<Animator>().Play("SolAnimation");

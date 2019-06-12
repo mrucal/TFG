@@ -201,6 +201,16 @@ public class EstadoJuego : MonoBehaviour
         return datos.intentos_parejas[(datos.dificultad * 3) + tablero];
     }
 
+
+    public void incrementarIntentosCara(int p, int e)
+    {
+        if (e != 0)
+        {
+            datos.intentos_cara[p]++;
+            datos.intentos_cara_emocion[(p * 2) + (e-1)]++;
+        }
+    }
+
     public void siguienteEscena(bool acierto = true)
     {
         //print("ZIGUIENTE EZENA: " + acierto+" indice: "+datos.indice_escena + " len: " + datos.escenas.Count);
@@ -228,6 +238,7 @@ public class EstadoJuego : MonoBehaviour
         SceneManager.LoadScene(datos.escenas[datos.indice_escena]);
 
     }
+
 }
 
 [System.Serializable]
@@ -237,7 +248,7 @@ public class Datos
 
     public string ultima_escena;
 
-    public List<string> escenas =new List<string>( new string[]{ "01_EscenaParque" , "02_EscenaPortal", "03_EscenaLlegada" 
+    public List<string> escenas = new List<string>(new string[]{ "01_EscenaParque" , "02_EscenaPortal", "03_EscenaLlegada"
                                     , "04_EscenaDragon", "05_EscenaPueblo","06_EscenaCastillo"
                                     , "07_EscenaParejas","06_EscenaCastillo","08_EscenaLaberinto"
                                     ,"09_EscenaMago","10_EscenaPatio","01_EscenaParque" ,});
@@ -270,8 +281,10 @@ public class Datos
 
     public int[] total_parejas_emocion = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     public int[] intentos_parejas = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-    public int[] n_parejas = { 0,0,0}; // Una para cada dificultad
+    public int[] n_parejas = { 0, 0, 0 }; // Una para cada dificultad
     /*public int[][] aciertos = new int[][] { new int[] { 0, 0, 0 }, new int[] { 0, 0, 0 }, new int[] { 0, 0, 0 } };
     public int[][] fallos = new int[][] { new int[] { 0, 0, 0 }, new int[] { 0, 0, 0 }, new int[] { 0, 0, 0 } };*/
 
+    public int[] intentos_cara = { 0, 0 };
+    public int[] intentos_cara_emocion = { 0, 0, 0, 0 };
 }
