@@ -21,7 +21,7 @@ public class EscenaLlegadaController : MonoBehaviour {
     public GameObject circuloL;
     public GameObject circuloR;
 
-    private const float t_sig_escena = 2f;
+    private const float t_sig_escena = 1f;
 
     private const float t_animacion_inicial = 7.3f;
     private const float td = 0f;
@@ -109,7 +109,7 @@ public class EscenaLlegadaController : MonoBehaviour {
                     break;
                 case 7:
                     Invoke("playFelizIdleAnimation", 0.3f);
-                    StartCoroutine(playAnimation(personaje, "playFelizIdleAnimation", 0.3f));
+                    //StartCoroutine(playAnimation(personaje, "playFelizIdleAnimation", 0.3f));
                     break;
                 case 10:
                     StartCoroutine(mostrarViñeta(viñeta_alegria, 6f));
@@ -137,7 +137,7 @@ public class EscenaLlegadaController : MonoBehaviour {
                 case 15:
                     GameObject.Find("AnimacionTrofeoLlegada").GetComponent<AnimacionTrofeoLlegada>().IniciarAnimacion();
                     break;
-                case 17:
+                case 18:
                     trofeo.SetActive(true);
                     emoticono.SetActive(true);
                     StartCoroutine(mostrarViñeta(circuloL, 1f));

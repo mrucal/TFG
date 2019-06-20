@@ -100,9 +100,19 @@ public class EscenaParejasController : MonoBehaviour {
     {
         StartCoroutine(activarCasillas(false,0f));
         switch_controller.desactivar_objetos();
-        StartCoroutine(play(1,1f));
-        StartCoroutine(activarCasillas(true, GetComponents<AudioSource>()[1].clip.length+1f));
-        switch_controller.Invoke("activar_objetos", GetComponents<AudioSource>()[1].clip.length+1f);
+        float tiempo = 0f;
+        if (estado_juego.datos.dificultad != 2)
+        {
+            StartCoroutine(play(5, 1f));
+            tiempo = GetComponents<AudioSource>()[5].clip.length + 1f;
+        }
+        else
+        {
+            StartCoroutine(play(5, 1f));
+            tiempo = GetComponents<AudioSource>()[5].clip.length + 1f;
+        }
+        StartCoroutine(activarCasillas(true, tiempo));
+        switch_controller.Invoke("activar_objetos", tiempo);
         /*Iniciar();
         dificultad = estado_juego.datos.dificultad;
         n_juegos = 1;
@@ -296,13 +306,13 @@ public class EscenaParejasController : MonoBehaviour {
         {
             for (int i = 0; i < casillas.Count; i++)
                 casillas[i].GetComponent<BoxCollider>().enabled = false;
-            animacion_trofeo.boton_salida.SetActive(true);
+            //animacion_trofeo.boton_salida.SetActive(true);
             StartCoroutine(SiguienteEscena("-", tiempo + t_sig_escena, n_juegos - 1));
             //asignarParejas();
         }
         else
         {
-            animacion_trofeo.boton_salida.SetActive(true);
+            //animacion_trofeo.boton_salida.SetActive(true);
             //Finalizar();
             estado_juego.datos.parejas = true;
             StartCoroutine(SiguienteEscena("06_EscenaCastillo", tiempo + t_sig_escena, n_juegos - 1));

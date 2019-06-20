@@ -7,9 +7,11 @@ public class EscenaPortalController : MonoBehaviour {
     
     public GameObject personaje;
 
+    //public GameObject tap;
+
     public GameObject sol;
 
-    private const float t_sig_escena = 2f;
+    private const float t_sig_escena = 1f;
 
     private const float td = 0f;
     private const float t_entrar_portal = 7f;
@@ -60,13 +62,17 @@ public class EscenaPortalController : MonoBehaviour {
     void enablePortal()
     {
         //print("ACTIVADO!!");
-        enabled_portal = true;
+        enabled_portal = true;/*
+        tap.GetComponent<SpriteRenderer>().enabled = true;
+        tap.GetComponent<Animator>().Play("TapAnimation");
+        tap.GetComponent<AudioSource>().Play();*/
     }
 
     void PortalRun()
     {
         if (enabled_portal)
         {
+            //tap.GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<AudioSource>().Play();
             personaje.GetComponent<Animator>().Play("PersonajeEntrarPortal");
             //StartCoroutine(SiguienteEscena("03_EscenaLlegada", t_entrar_portal + t_sig_escena));

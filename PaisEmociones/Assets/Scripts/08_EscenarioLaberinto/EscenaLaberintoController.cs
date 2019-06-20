@@ -276,7 +276,7 @@ public IEnumerator playPasillo(int i, int j, float seconds)
     public void corregirCruce(int idPasillo)
     {
         bool acierto; int emocion =-1, emocion1 =-1, emocion2 = -1;
-        animacion_trofeo.boton_salida.SetActive(true);
+       // animacion_trofeo.boton_salida.SetActive(true);
         if (solucion_actual == idPasillo) {//(soluciones[dificultad][cruce_actual] == idPasillo){
             acierto = true;
             emocion = cruce_actual_emociones[solucion_actual];

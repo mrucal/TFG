@@ -57,7 +57,16 @@ public class Personaje4 : MonoBehaviour {
     {
         dragon.GetComponent<Animator>().Play("DragonEnfadadoIdleAnimation");
         dragon.GetComponents<AudioSource>()[2].Play();
-        Invoke("esperarPersonajeEspada2", dragon.GetComponents<AudioSource>()[2].clip.length + 0.5f);
+        float tiempo = dragon.GetComponents<AudioSource>()[2].clip.length + 1f;
+        Invoke("hablaConejo", tiempo);
+        tiempo += dragon.GetComponents<AudioSource>()[4].clip.length + 0.5f;
+        Invoke("esperarPersonajeEspada2",tiempo);
+    }
+
+
+    private void hablaConejo()
+    {
+        dragon.GetComponents<AudioSource>()[4].Play();
     }
 
     public void esperarPersonajeEspada2()

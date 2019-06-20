@@ -60,13 +60,21 @@ public class EscenaParqueController  : MonoBehaviour {
         {
             print("BREAK 2 "+ estado_juego.datos.ultima_escena/*+pelota.transform.position*/);
             //pelota.transform.position = new Vector3(0,0,0);
-            
 
+            GetComponents<AudioSource>()[1].Play();
             pelota.GetComponent<Animator>().Play("PelotaNoVisible");
             personaje.GetComponent<Animator>().Play("PersonajeNoVisible");
+            Invoke("PortalVisible", GetComponents<AudioSource>()[1].clip.length);
+            //pelota.GetComponent<Animator>().Play("PelotaNoVisible");
+            //personaje.GetComponent<Animator>().Play("PersonajeNoVisible");
             //print("BREAK 3 " + pelota.transform.position);
             //escena_anterior = "Inicio";
         }
+    }
+
+    void playPersonajeRegresa()
+    {
+        GetComponents<AudioSource>()[2].Play();
     }
 
     void playIntroduccionPatear()

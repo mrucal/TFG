@@ -74,7 +74,8 @@ public class EscenaDragonController : MonoBehaviour
         tiempo += GetComponents<AudioSource>()[2].clip.length +1f;
         StartCoroutine(play(4,tiempo));
         tiempo += GetComponents<AudioSource>()[4].clip.length;
-        switch_controller.Invoke("activar_objetos",tiempo);
+        //switch_controller.Invoke("activar_objetos",tiempo);
+        Invoke("activarObjetos", tiempo );
     } 
     public IEnumerator play(int i, float seconds)
     {
@@ -85,6 +86,20 @@ public class EscenaDragonController : MonoBehaviour
     void Update()
     {
 
+    }
+
+    void activarObjetos()
+    {
+        switch_controller.activar_objetos();
+        conejo.GetComponent<BoxCollider>().enabled = true;
+    }
+
+    void ayudaConejo()
+    {
+        conejo.GetComponents<AudioSource>()[1].Play();
+        switch_controller.desactivar_objetos();
+        conejo.GetComponent<BoxCollider>().enabled = false;
+        Invoke("activarObjetos", conejo.GetComponents<AudioSource>()[1].clip.length);
     }
 
     public void cambiarEstado(string estado = null)
@@ -143,15 +158,25 @@ public class EscenaDragonController : MonoBehaviour
         StartCoroutine(SiguienteEscena("05_EscenaPueblo", /*t_pers_fin_as + */t_sig_escena/*7f*/));
     }
 
+    private bool mensaje_espada = true;
     public void AnimacionEspada()
     {
-        switch_controller.desactivar_objetos(new int[] {1});
-        Destroy(espada);
-        //dragon.SendMessage("cambiarEstado", "DragonEnfadoMaximoAnimation");
-        personaje.GetComponent<Animator>().Play("PersonajeAndandoEspada");
-        conejo.GetComponent<Animator>().Play("ConejoAndandoAnimation");
-        //StartCoroutine(esperarPersonajeEspada(t_pers_dr_esp/*4.5f*/));
-
+        if (mensaje_espada)
+        {
+            GetComponents<AudioSource>()[5].Play();
+            switch_controller.desactivar_objetos();
+            switch_controller.Invoke("activar_objetos", GetComponents<AudioSource>()[5].clip.length);
+        }
+        else
+        {
+            switch_controller.desactivar_objetos(new int[] { 1 });
+            Destroy(espada);
+            //dragon.SendMessage("cambiarEstado", "DragonEnfadoMaximoAnimation");
+            personaje.GetComponent<Animator>().Play("PersonajeAndandoEspada");
+            conejo.GetComponent<Animator>().Play("ConejoAndandoAnimation");
+            //StartCoroutine(esperarPersonajeEspada(t_pers_dr_esp/*4.5f*/));
+        }
+        mensaje_espada = !mensaje_espada;
     }
 
     public void /*IEnumerator*/ esperarPersonajeEspada(/*float seconds*/)

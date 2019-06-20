@@ -10,6 +10,7 @@ public class EscenaPuebloController : MonoBehaviour {
     public GameObject conejo;
     public GameObject niño;
     public GameObject niño_body;
+    public GameObject banco_derecho;
     public GameObject coche;
     public GameObject fuente;
     public GameObject farola;
@@ -97,6 +98,14 @@ public class EscenaPuebloController : MonoBehaviour {
     void activarObjetos()
     {
         switch_controller.activar_objetos();
+        conejo.GetComponent<BoxCollider>().enabled = true;
+    }
+
+    void ayudaConejo()
+    {
+        GetComponents<AudioSource>()[5].Play();
+        switch_controller.desactivar_objetos();
+        switch_controller.Invoke("activar_objetos", GetComponents<AudioSource>()[5].clip.length);
     }
 
     public void playTristin()
@@ -132,6 +141,14 @@ public class EscenaPuebloController : MonoBehaviour {
         //ParticleSystem ps = fuente.GetComponent<ParticleSystem>();
         //print("Controller coche! "/*+ps.name*/);
         coche.GetComponent<Animator>().Play("CocheRunAnimation");
+    }
+
+    void BancoDerechoRunEncontrado()
+    {
+        confirmacion = false;
+        banco_derecho.GetComponent<AudioSource>().Play();
+        switch_controller.desactivar_objetos_menos(0);
+        switch_controller.Invoke("activar_objetos", banco_derecho.GetComponent<AudioSource>().clip.length);
     }
 
     void FuenteRun()

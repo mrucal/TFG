@@ -10,7 +10,7 @@ public class EscenaMagoController  : MonoBehaviour {
     public GameObject emoticono;
     public GameObject sol;
 
-    private const float t_sig_escena = 2f;
+    private const float t_sig_escena = 1f;
 
     private const float td = 0f;
 
@@ -90,6 +90,7 @@ public class EscenaMagoController  : MonoBehaviour {
         GameObject.Find("BotonAtras").GetComponent<BotonAtrasAdelante>().GetComponent<SpriteRenderer>().enabled = true;
         GameObject.Find("BotonAtras").GetComponent<BoxCollider>().enabled = true;
         estado_juego.datos.modo_atras = true;
+        estado_juego.datos.indice_escena = 1; // Prueba primera escena fallada
     }
 
     public IEnumerator play(int i, float seconds)

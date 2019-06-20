@@ -84,11 +84,47 @@ public class JuegoCara : MonoBehaviour {
 
         GameObject.Find("EstadoJuego").GetComponent<EstadoJuego>().incrementarIntentosCara(p, e);
 
-        if (emocion_parte[0] == 0 && emocion_parte[1] == 0)
+        if (emocion_parte[0] != -1 && emocion_parte[1] != -1)
         {
-            print("CORRECTO!! WOOOOW");
-            Invoke("disableJuego",1f);
-            epc.Invoke("AnimacionPortal", 1f);
+            if (emocion_parte[0] == 0 && emocion_parte[1] == 0)
+            {
+                print("CORRECTO!! WOOOOW");
+                float tiempo = 1f;
+                StartCoroutine(play(gameObject, 1, tiempo));
+                tiempo += getTiempoAudio(gameObject, 1) + 1f;
+                StartCoroutine(play(gameObject, 0, tiempo));
+                tiempo += getTiempoAudio(gameObject, 0) + 1f;
+                StartCoroutine(niñaFeliz(tiempo));
+                /*Invoke("disableJuego",tiempo);
+                epc.Invoke("AnimacionPortal", tiempo);
+                niña.GetComponent<Animator>().Play("NiñaFelizAnimation");*/
+            }else
+            {
+                int m = (Random.Range(1, 30) % 3)+2;
+                print("BREAK: " + m);
+                StartCoroutine(play(gameObject, m, 0f));
+                
+            }
         }
+    }
+
+    public IEnumerator niñaFeliz(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        float tiempo = 0f;
+        Invoke("disableJuego", tiempo);
+        epc.Invoke("playIntroduccionAnimacionPortal", tiempo+0.5f);
+        niña.GetComponent<Animator>().Play("NiñaFelizAnimation");
+    }
+
+    public IEnumerator play(GameObject objeto, int i, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        objeto.GetComponents<AudioSource>()[i].Play();
+    }
+
+    float getTiempoAudio(GameObject objeto, int i)
+    {
+        return objeto.GetComponents<AudioSource>()[i].clip.length;
     }
 }

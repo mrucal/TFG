@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 public class EscenaCastilloController  : MonoBehaviour {
 
     public GameObject personaje;
+    public GameObject conejo;
     public GameObject interruptor;
     public GameObject sol;
 
     public SwitchController switch_controller;
     //public GameObject pelota_movimiento;
 
-    private const float t_sig_escena = 2f;
+    private const float t_sig_escena = 1f;
 
     private const float td = 0f;
     private const float t_entrada = 5f;
@@ -74,11 +75,20 @@ public class EscenaCastilloController  : MonoBehaviour {
         StartCoroutine(SiguienteEscena(/*"09_EscenaMago"*/"08_EscenaLaberinto", t_entrada + t_sig_escena));
         escena_anterior = "laberinto";
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    void activarObjetos()
+    {
+        switch_controller.activar_objetos();
+        conejo.GetComponent<BoxCollider>().enabled = true;
+    }
+
+    void ayudaConejo()
+    {
+        conejo.GetComponents<AudioSource>()[0].Play();
+        switch_controller.desactivar_objetos();
+        conejo.GetComponent<BoxCollider>().enabled = false;
+        Invoke("activarObjetos", conejo.GetComponents<AudioSource>()[0].clip.length);
+    }
 
     void enableInterruptor()
     {
@@ -89,7 +99,8 @@ public class EscenaCastilloController  : MonoBehaviour {
     {
         enabled_interruptor = true;
         //boton.GetComponent<BoxCollider>().enabled = false;
-        switch_controller.activar_objetos();
+        //switch_controller.activar_objetos();
+        activarObjetos();
     }
 
     void InterruptorOn()

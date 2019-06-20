@@ -14,7 +14,7 @@ public class EscenaPatioController  : MonoBehaviour {
 
     public SwitchController switch_controller;
 
-    private const float t_sig_escena = 2f;
+    private const float t_sig_escena = 1f;
 
     private const float td = 0f;
 
@@ -55,6 +55,28 @@ public class EscenaPatioController  : MonoBehaviour {
 		
 	}
 
+    public void iniciarIntroduccion()
+    {
+        print("Introduccion");
+        switch_controller.desactivar_objeto_i(1);
+        float tiempo = 0f;
+        StartCoroutine(play(0, tiempo));
+        tiempo += GetComponents<AudioSource>()[0].clip.length + 0.5f;
+        StartCoroutine(play(1, tiempo));
+        tiempo += GetComponents<AudioSource>()[1].clip.length + 0.5f;
+        Invoke("activarNiña", tiempo);
+    }
+
+    public IEnumerator play(int i, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        GetComponents<AudioSource>()[i].Play();
+    }
+
+    private void activarNiña()
+    {
+        switch_controller.activar_objeto_i(1);
+    }
     void EnablePortal()
     {
         portal.GetComponents<AudioSource>()[0].Play();
@@ -69,14 +91,42 @@ public class EscenaPatioController  : MonoBehaviour {
 
     void EntrarPortal()
     {
-        if(enabled_portal)
-            personaje.GetComponent<Animator>().Play("EntrarPortal");
+        if (enabled_portal)
+        {
+            portal.GetComponents<AudioSource>()[1].Play();
+            float tiempo = 0.5f;
+            for (int i = 4; i < 6; i++)
+            {
+                StartCoroutine(play(i, tiempo));
+                tiempo += GetComponents<AudioSource>()[i].clip.length + 0.5f;
+            }
+            Invoke("animacionEntrarPortal", tiempo - 0.5f);
+            //personaje.GetComponent<Animator>().Play("EntrarPortal");
+        }
     }
+
+    void animacionEntrarPortal()
+    {
+        personaje.GetComponent<Animator>().Play("EntrarPortal");
+    }
+
+    void playIntroduccionAnimacionPortal()
+    {
+        mago.GetComponent<Animator>().Play("MagoFeliz");
+        sol.GetComponent<Animator>().Play("SolAnimation");
+        emoticono.GetComponent<Animator>().Play("AlegriaAnimation");
+        float tiempo = 0f;
+        for(int i= 2; i < 4; i++)
+        {
+            StartCoroutine(play(i, tiempo));
+            tiempo += GetComponents<AudioSource>()[i].clip.length + 0.5f;
+        }
+        Invoke("AnimacionPortal", tiempo-0.5f);
+    }
+
     void AnimacionPortal()
     {
         mago.GetComponent<Animator>().Play("MagoPortal");
-        sol.GetComponent<Animator>().Play("SolAnimation");
-        emoticono.GetComponent<Animator>().Play("AlegriaAnimation");
     }
 
     void SiguienteEscena()

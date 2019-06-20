@@ -135,7 +135,7 @@ public class AnimacionTrofeoLlegada : MonoBehaviour {
     public void continuarDialogo()
     {
         GetComponent<Canvas>().enabled = false;
-        GetComponents<AudioSource>()[4].Play();
+        GetComponents<AudioSource>()[2].Play();
         fondo.SetActive(false);
         for (int i = 0; i < trofeos.Length; i++)
             trofeos[i].SetActive(false);

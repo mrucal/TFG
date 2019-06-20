@@ -70,7 +70,7 @@ public class MenuEvaluacion : MonoBehaviour {
             fallos_general_emocion_text[i].text = estado.getFallosEmocion(i).ToString();
         }
 
-        float total_ejercicios = estado.datos.tot_general;
+        float total_ejercicios = estado.datos.tot_general < 2 ? 2 : estado.datos.tot_general;
         if (total_ejercicios != 0)
         {
             float porcentaje_aciertos = estado.datos.aciertos_general / total_ejercicios;

@@ -8,6 +8,10 @@ public class AnimacionTrofeoLaberinto : MonoBehaviour {
     // public static AnimacionTrofeo at;
     public EscenaLaberintoController elc;
     public SwitchController switch_controller;
+
+    public GameObject audioganar;
+    public GameObject audioperder;
+
     private bool activado;
     private Canvas canvas;
     public GameObject fondo;
@@ -78,17 +82,48 @@ public class AnimacionTrofeoLaberinto : MonoBehaviour {
         Invoke("MostrarFondo", 0.5f);
     }
 
+    public IEnumerator play(GameObject objeto, int i, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        objeto.GetComponents<AudioSource>()[i].Play();
+    }
+
+    float getTiempoAudio(GameObject objeto, int i)
+    {
+        return objeto.GetComponents<AudioSource>()[i].clip.length;
+    }
+
+    void activarBotonSalida()
+    {
+        boton_salida.SetActive(true);
+    }
+
     private void MostrarFondo()
     {
         fondo.SetActive(true);
         fondo.GetComponent<Animator>().Play("Fondo" + (!acierto ? 1 : 0));
+        float tiempo = 0f;
         if (acierto)
         {
-            GetComponents<AudioSource>()[0].Play();
+            int m = Random.Range(3, 4);
+            print("Break: " + m);
+            StartCoroutine(play(gameObject, 0, tiempo));
+            tiempo += getTiempoAudio(gameObject, 0) / 2;
+            StartCoroutine(play(gameObject, m, tiempo));
+            tiempo += getTiempoAudio(gameObject, m) + 0.5f;
+            StartCoroutine(play(audioganar, emocion, tiempo));
+            tiempo += getTiempoAudio(audioganar, emocion);
+            Invoke("activarBotonSalida", tiempo);
+            //GetComponents<AudioSource>()[0].Play();
         }
         else
         {
-            GetComponents<AudioSource>()[2].Play();
+            StartCoroutine(play(gameObject, 1, tiempo));
+            tiempo += getTiempoAudio(gameObject, 1) / 2;
+            StartCoroutine(play(audioperder, emocion, tiempo));
+            tiempo += getTiempoAudio(audioperder, emocion);
+            Invoke("activarBotonSalida", tiempo);
+            //GetComponents<AudioSource>()[1].Play();
         }
         mago.SetActive(true);
         mago.GetComponent<Animator>().Play("ApareceMago" + (!acierto ? 1 : 0));
@@ -120,11 +155,11 @@ public class AnimacionTrofeoLaberinto : MonoBehaviour {
     {
         if (activado)
         {
-            activado = false;
-            //print("BREAK SIGUIENTE");
             boton_salida.SetActive(false);
-            GetComponents<AudioSource>()[4].Play();
-            Invoke("CargarEscena", 2f);
+            activado = false;
+            //print("BREAK SIGUIENTE"); 
+            GetComponents<AudioSource>()[2].Play();
+            Invoke("CargarEscena", 1f);
         }
     }
 
